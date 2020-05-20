@@ -3,6 +3,9 @@ package cat.institutmarianao.domain;
 import java.util.Date;
 import java.util.Objects;
 
+//@Entity
+//@Table(name="Users")
+
 public abstract class User {
 
 	private String dni;

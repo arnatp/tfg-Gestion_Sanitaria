@@ -2,6 +2,8 @@ package cat.institutmarianao.domain;
 
 import java.util.Date;
 
+//@Entity
+//@Table(name="Personeel")
 public abstract class Personeel extends User {
 
 	private String shift;
