@@ -1,22 +1,73 @@
 package cat.institutmarianao.domain;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Objects;
 
-//@Entity
-//@Table(name="Users")
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
+@Entity
+@Table(name = "Users")
 public abstract class User {
 
+	private static final String DNIREGEXP = "\\d{8}[A-HJ-NP-TV-Z]";
+	private static final String GENDERREGEXP = "[H,M]";
+	private static final String EMAILREGEXP = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int userId;
+
+	@NotNull
+	@Size(max = 9)
+	@Pattern(regexp = DNIREGEXP)
+	@Column(name = "dni")
 	private String dni;
+
+	@NotNull
+	@Size(max = 25)
+	@Column(name = "name")
 	private String name;
+
+	@NotNull
+	@Size(max = 9)
+	@Column(name = "medicard")
 	private String mediCard;
-	private Date bornDate;
+
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@Column(name = "borndate")
+	private Calendar bornDate;
+
+	@NotNull
+	@Size(max = 1)
+	@Pattern(regexp = GENDERREGEXP)
+	@Column(name = "gender")
 	private String gender;
+
+	@NotNull
+	@Size(max = 30)
+	@Pattern(regexp = EMAILREGEXP)
+	@Column(name = "email")
 	private String email;
+
+	@NotNull
+	@Size(max = 30, min = 5)
+	@Column(name = "password")
 	private String psswd;
 
-	public User(String dni, String name, String mediCard, Date bornDate, String gender, String email, String psswd) {
+	public User(String dni, String name, String mediCard, Calendar bornDate, String gender, String email,
+			String psswd) {
 		this.dni = dni;
 		this.name = name;
 		this.mediCard = mediCard;
@@ -50,11 +101,11 @@ public abstract class User {
 		this.mediCard = mediCard;
 	}
 
-	public Date getBornDate() {
+	public Calendar getBornDate() {
 		return bornDate;
 	}
 
-	public void setBornDate(Date bornDate) {
+	public void setBornDate(Calendar bornDate) {
 		this.bornDate = bornDate;
 	}
 
