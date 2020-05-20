@@ -6,9 +6,26 @@ import java.util.List;
 public class Expedient {
 
 	private int ExpedientId;
-	private List<Visits> history;
+	private List<Visit> history;
 
 	public Expedient() {
-		this.history = new LinkedList<Visits>();
+		history = new LinkedList<Visit>();
 	}
+
+	public int getExpedientId() {
+		return ExpedientId;
+	}
+
+	public void setExpedientId(int expedientId) {
+		ExpedientId = expedientId;
+	}
+
+	public List<Visit> getHistory() {
+		return history;
+	}
+
+	public void setHistory(List<Visit> history) {
+		this.history = history;
+	}
+
 }
