@@ -77,6 +77,10 @@ public abstract class User {
 		this.psswd = psswd;
 	}
 
+	public User() {
+		// Constructor vacio para evitar errores
+	}
+
 	public String getDni() {
 		return dni;
 	}

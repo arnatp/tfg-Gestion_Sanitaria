@@ -1,6 +1,6 @@
 package cat.institutmarianao.domain;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Patient extends User {
 
@@ -8,8 +8,8 @@ public class Patient extends User {
 	private float height;
 	private float weigth;
 
-	public Patient(String dni, String name, String mediCard, Date bornDate, String gender, String email, String psswd,
-			float height, float weigth) {
+	public Patient(String dni, String name, String mediCard, Calendar bornDate, String gender, String email,
+			String psswd, float height, float weigth) {
 		super(dni, name, mediCard, bornDate, gender, email, psswd);
 		expedient = new Expedient();
 		this.height = height;
