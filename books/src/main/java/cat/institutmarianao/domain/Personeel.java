@@ -6,19 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Personeel")
+@Table(name = "Personeel")
 public abstract class Personeel extends User {
 
 	private String shift;
 
-	public Personeel(String dni, String name, String mediCard, Calendar bornDate, String gender, String email, String psswd,
-			String shift) {
+	public Personeel(String dni, String name, String mediCard, Calendar bornDate, String gender, String email,
+			String psswd, String shift) {
 		super(dni, name, mediCard, bornDate, gender, email, psswd);
 		this.shift = shift;
-	}
-	
-	public Personeel() {
-		// Constructor vacio para evitar errores
 	}
 
 	public String getShift() {

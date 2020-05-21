@@ -1,5 +1,6 @@
 package cat.institutmarianao.domain;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -16,9 +17,13 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Users")
-public abstract class User {
+@Table(name = "users")
+public class User implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5416039502082691004L;
 	private static final String DNIREGEXP = "\\d{8}[A-HJ-NP-TV-Z]";
 	private static final String GENDERREGEXP = "[H,M]";
 	private static final String EMAILREGEXP = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
@@ -31,7 +36,7 @@ public abstract class User {
 	@NotNull
 	@Size(max = 9)
 	@Pattern(regexp = DNIREGEXP)
-	@Column(name = "dni")
+	@Column(name = "dni", length = 9)
 	private String dni;
 
 	@NotNull
@@ -78,7 +83,7 @@ public abstract class User {
 	}
 
 	public User() {
-		// Constructor vacio para evitar errores
+		// Constructor para poder crear las tablas con JPA
 	}
 
 	public String getDni() {
