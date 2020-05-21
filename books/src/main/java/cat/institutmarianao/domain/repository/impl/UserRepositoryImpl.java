@@ -2,18 +2,20 @@ package cat.institutmarianao.domain.repository.impl;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
 import cat.institutmarianao.domain.User;
 import cat.institutmarianao.domain.repository.UserRepository;
 
+@Stateless
 public class UserRepositoryImpl implements UserRepository {
 
 	public EntityManager entityManager;
 
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<User> getAll() {
 		return entityManager.createQuery("select u from User u ").getResultList();
 	}
@@ -24,8 +26,8 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public User update(User user) {
-		return entityManager.merge(user);
+	public void update(User user) {
+		entityManager.merge(user);
 	}
 
 	@Override
