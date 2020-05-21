@@ -2,45 +2,57 @@ package cat.institutmarianao.domain.repository.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+
 import cat.institutmarianao.domain.User;
 import cat.institutmarianao.domain.repository.UserRepository;
 
 public class UserRepositoryImpl implements UserRepository {
 
+	public EntityManager entityManager;
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery("select u from User u ").getResultList();
 	}
 
 	@Override
 	public void add(User user) {
-		// TODO Auto-generated method stub
-
+		entityManager.persist(user);
 	}
 
 	@Override
-	public void update(User user) {
-		// TODO Auto-generated method stub
-
+	public User update(User user) {
+		return entityManager.merge(user);
 	}
 
 	@Override
 	public void delete(User user) {
-		// TODO Auto-generated method stub
 
+		User user1 = entityManager.merge(user);
+		entityManager.remove(user1);
 	}
 
 	@Override
 	public User getUserByDni(String dni) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return (User) entityManager.createQuery("select u from User u where u.dni = :dni").setParameter("dni", dni)
+					.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public User getuserByMediCard(String mediCard) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return (User) entityManager.createQuery("select u from User u where u.mediCard = :mediCard")
+					.setParameter("mediCard", mediCard).getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 }

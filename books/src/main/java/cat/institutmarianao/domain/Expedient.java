@@ -1,23 +1,51 @@
 package cat.institutmarianao.domain;
 
-import java.util.LinkedList;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Expedient {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-	private int ExpedientId;
-	private List<Visit> history;
+@Entity
+@Table(name = "expedient")
+public class Expedient implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "expedientId")
+	private int expedientId;
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "visitId")
+	private List<Visit> history = new ArrayList<Visit>();
+
+	@OneToOne(mappedBy = "expedient", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	private Patient patient;
 
 	public Expedient() {
-		history = new LinkedList<Visit>();
 	}
 
 	public int getExpedientId() {
-		return ExpedientId;
+		return expedientId;
 	}
 
 	public void setExpedientId(int expedientId) {
-		ExpedientId = expedientId;
+		this.expedientId = expedientId;
 	}
 
 	public List<Visit> getHistory() {

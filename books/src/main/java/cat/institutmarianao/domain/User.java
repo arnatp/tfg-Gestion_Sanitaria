@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,13 +19,14 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
 public class User implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5416039502082691004L;
+	private static final long serialVersionUID = 1L;
 	private static final String DNIREGEXP = "\\d{8}[A-HJ-NP-TV-Z]";
 	private static final String GENDERREGEXP = "[H,M]";
 	private static final String EMAILREGEXP = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
@@ -36,39 +39,39 @@ public class User implements Serializable {
 	@NotNull
 	@Size(max = 9)
 	@Pattern(regexp = DNIREGEXP)
-	@Column(name = "dni", length = 9)
+	@Column(name = "dni", nullable = false, length = 9)
 	private String dni;
 
 	@NotNull
 	@Size(max = 25)
-	@Column(name = "name")
+	@Column(name = "name", nullable = false, length = 25)
 	private String name;
 
 	@NotNull
 	@Size(max = 9)
-	@Column(name = "medicard")
+	@Column(name = "medicard", nullable = false, length = 9)
 	private String mediCard;
 
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	@Column(name = "borndate")
+	@Column(name = "borndate", nullable = false)
 	private Calendar bornDate;
 
 	@NotNull
 	@Size(max = 1)
 	@Pattern(regexp = GENDERREGEXP)
-	@Column(name = "gender")
+	@Column(name = "gender", nullable = false, length = 1)
 	private String gender;
 
 	@NotNull
 	@Size(max = 30)
 	@Pattern(regexp = EMAILREGEXP)
-	@Column(name = "email")
+	@Column(name = "email", nullable = false, length = 30)
 	private String email;
 
 	@NotNull
 	@Size(max = 30, min = 5)
-	@Column(name = "password")
+	@Column(name = "password", nullable = false, length = 30)
 	private String psswd;
 
 	public User(String dni, String name, String mediCard, Calendar bornDate, String gender, String email,

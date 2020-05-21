@@ -1,11 +1,37 @@
 package cat.institutmarianao.domain;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Patient extends User {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+@Entity
+@PrimaryKeyJoinColumn(name = "userId")
+@Table(name = "patient")
+public class Patient extends User implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "expedientId")
 	private Expedient expedient;
+
+	@NotNull
+	@Column(name = "height", nullable = false)
 	private float height;
+
+	@NotNull
+	@Column(name = "weigth", nullable = false)
 	private float weigth;
 
 	public Patient(String dni, String name, String mediCard, Calendar bornDate, String gender, String email,
@@ -14,6 +40,10 @@ public class Patient extends User {
 		expedient = new Expedient();
 		this.height = height;
 		this.weigth = weigth;
+	}
+
+	public Patient() {
+		// Constructor vacio para poder crear las tablas en JPA
 	}
 
 	public Expedient getExpedient() {

@@ -1,0 +1,44 @@
+package cat.institutmarianao.domain;
+
+import java.io.Serializable;
+import java.util.Calendar;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+//@Inheritance(strategy = InheritanceType.JOINED)
+@PrimaryKeyJoinColumn(name = "userId")
+@Table(name = "Employee")
+public class Employee extends User implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@NotNull
+	@Column(name = "shift", nullable = false)
+	private String shift;
+
+	public Employee(String dni, String name, String mediCard, Calendar bornDate, String gender, String email,
+			String psswd, String shift) {
+		super(dni, name, mediCard, bornDate, gender, email, psswd);
+		this.shift = shift;
+	}
+
+	public Employee() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getShift() {
+		return shift;
+	}
+
+	public void setShift(String shift) {
+		this.shift = shift;
+	}
+
+}

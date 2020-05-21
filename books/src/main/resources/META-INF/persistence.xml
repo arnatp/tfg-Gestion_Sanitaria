@@ -6,6 +6,14 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     <persistence-unit name="UserPersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <jta-data-source>java:/tfg</jta-data-source>
         <class>cat.institutmarianao.domain.User</class>
+        <class>cat.institutmarianao.domain.Employee</class>
+        <class>cat.institutmarianao.domain.Doctor</class>
+        <class>cat.institutmarianao.domain.Nurse</class>
+        <class>cat.institutmarianao.domain.Patient</class>
+        <class>cat.institutmarianao.domain.Auxiliar</class>
+        <class>cat.institutmarianao.domain.Expedient</class>
+        <class>cat.institutmarianao.domain.Visit</class>
+        <class>cat.institutmarianao.domain.Prescription</class>
         <properties>
             <property name="eclipselink.logging.level" value="FINEST"/>
         </properties>
