@@ -4,16 +4,11 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
-@Entity
-//@Inheritance(strategy = InheritanceType.JOINED)
-@PrimaryKeyJoinColumn(name = "userId")
-@Table(name = "Employee")
-public class Employee extends User implements Serializable {
+@MappedSuperclass
+public abstract class Employee extends User implements Serializable {
 
 	/**
 	 * 

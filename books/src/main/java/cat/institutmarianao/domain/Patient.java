@@ -8,12 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "userId")
 @Table(name = "patient")
 public class Patient extends User implements Serializable {
 

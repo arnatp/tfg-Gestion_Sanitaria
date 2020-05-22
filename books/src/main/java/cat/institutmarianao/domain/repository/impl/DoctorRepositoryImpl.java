@@ -10,7 +10,7 @@ import cat.institutmarianao.domain.User;
 import cat.institutmarianao.domain.repository.UserRepository;
 
 @Stateless
-public class UserRepositoryImpl implements UserRepository {
+public class DoctorRepositoryImpl implements UserRepository {
 
 	public EntityManager entityManager;
 

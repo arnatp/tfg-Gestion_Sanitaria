@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -46,6 +47,10 @@ public class Visit implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "doctorId")
 	private Doctor doctor;
+
+	@ManyToOne
+	@JoinColumn(name = "expedientId")
+	private Expedient expedient;
 
 	public Visit(String description, Prescription prescription, Doctor doctor) {
 		date = new Date();

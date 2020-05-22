@@ -1,15 +1,19 @@
 package cat.institutmarianao.domain;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "employeeId")
 @Table(name = "auxiliar")
-public class Auxiliar extends Employee {
+public class Auxiliar extends Employee implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public Auxiliar(String dni, String name, String mediCard, Calendar bornDate, String gender, String email,
 			String psswd, String shift) {
