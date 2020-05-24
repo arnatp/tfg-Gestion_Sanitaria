@@ -6,7 +6,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="container-fluid ">
     <div class="col-lg-8">
-        <h2><spring:message code= "navMenu.title"/></h2>
+        <h2><span class="glyphicon glyphicon-heart-empty"></span> <spring:message code= "navMenu.title"/></h2>
     </div>
     <div class="col-lg-4 text-right">
         <div class="btn-group ">
