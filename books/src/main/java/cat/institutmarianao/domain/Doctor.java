@@ -1,7 +1,6 @@
 package cat.institutmarianao.domain;
 
 import java.io.Serializable;
-import java.util.Calendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,9 +20,9 @@ public class Doctor extends Employee implements Serializable {
 	@OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
 	private Visit visit;
 
-	public Doctor(String dni, String name, String mediCard, Calendar bornDate, String gender, String email,
-			String psswd, String shift) {
-		super(dni, name, mediCard, bornDate, gender, email, psswd, shift);
+	public Doctor(String dni, String name, String mediCard, int bornYear, int bornMonth, int bornDate, String gender,
+			String email, String psswd, String shift) {
+		super(dni, name, mediCard, bornYear, bornMonth, bornDate, gender, email, psswd, shift);
 	}
 
 	public Doctor() {

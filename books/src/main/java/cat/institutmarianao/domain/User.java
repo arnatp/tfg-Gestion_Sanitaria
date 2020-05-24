@@ -1,7 +1,8 @@
 package cat.institutmarianao.domain;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -48,9 +47,9 @@ public abstract class User implements Serializable {
 	private String mediCard;
 
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	@Column(name = "borndate", nullable = false)
-	private Calendar bornDate;
+	// @Temporal(TemporalType.DATE)
+	@Column(name = "borndate", nullable = false, columnDefinition = "DATE")
+	private LocalDate bornDate;
 
 	@NotNull
 	@Size(max = 1)
@@ -69,12 +68,12 @@ public abstract class User implements Serializable {
 	@Column(name = "password", nullable = false, length = 30)
 	private String psswd;
 
-	public User(String dni, String name, String mediCard, Calendar bornDate, String gender, String email,
-			String psswd) {
+	public User(String dni, String name, String mediCard, int bornYear, int bornMonth, int bornDay, String gender,
+			String email, String psswd) {
 		this.dni = dni;
 		this.name = name;
 		this.mediCard = mediCard;
-		this.bornDate = bornDate;
+		this.bornDate = LocalDate.of(bornYear, Month.of(bornMonth), bornDay);
 		this.gender = gender;
 		this.email = email;
 		this.psswd = psswd;
@@ -108,11 +107,11 @@ public abstract class User implements Serializable {
 		this.mediCard = mediCard;
 	}
 
-	public Calendar getBornDate() {
+	public LocalDate getBornDate() {
 		return bornDate;
 	}
 
-	public void setBornDate(Calendar bornDate) {
+	public void setBornDate(LocalDate bornDate) {
 		this.bornDate = bornDate;
 	}
 

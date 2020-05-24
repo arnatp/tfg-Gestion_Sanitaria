@@ -32,6 +32,10 @@ public class Visit implements Serializable {
 	private int visitId;
 
 	@NotNull
+	@Column(name = "completed", nullable = false)
+	private Boolean completed = false;
+
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date", nullable = false)
 	private Date date;

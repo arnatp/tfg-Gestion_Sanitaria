@@ -4,53 +4,57 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
-import cat.institutmarianao.domain.User;
-import cat.institutmarianao.domain.repository.UserRepository;
+import cat.institutmarianao.domain.Doctor;
+import cat.institutmarianao.domain.repository.DoctorRepository;
 
 @Stateless
-public class DoctorRepositoryImpl implements UserRepository {
+public class DoctorRepositoryImpl implements DoctorRepository {
+	@PersistenceContext
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserPersistenceUnit");
+	private EntityManager entityManager = emf.createEntityManager();
 
-	public EntityManager entityManager;
-
-	@Override
 	@SuppressWarnings("unchecked")
-	public List<User> getAll() {
-		return entityManager.createQuery("select u from User u ").getResultList();
+	@Override
+	public List<Doctor> getAll() {
+		return entityManager.createQuery("select u from Doctor u").getResultList();
 	}
 
 	@Override
-	public void add(User user) {
-		entityManager.persist(user);
+	public void add(Doctor doctor) {
+		entityManager.persist(doctor);
 	}
 
 	@Override
-	public void update(User user) {
-		entityManager.merge(user);
+	public void update(Doctor doctor) {
+		entityManager.merge(doctor);
 	}
 
 	@Override
-	public void delete(User user) {
+	public void delete(Doctor doctor) {
 
-		User user1 = entityManager.merge(user);
-		entityManager.remove(user1);
+		Doctor doctor1 = entityManager.merge(doctor);
+		entityManager.remove(doctor1);
 	}
 
 	@Override
-	public User getUserByDni(String dni) {
+	public Doctor getUserByDni(String dni) {
 		try {
-			return (User) entityManager.createQuery("select u from User u where u.dni = :dni").setParameter("dni", dni)
-					.getSingleResult();
+			return (Doctor) entityManager.createQuery("select u from Doctor u where u.dni = :dni")
+					.setParameter("dni", dni).getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
 	}
 
 	@Override
-	public User getuserByMediCard(String mediCard) {
+	public Doctor getuserByMediCard(String mediCard) {
 		try {
-			return (User) entityManager.createQuery("select u from User u where u.mediCard = :mediCard")
+			return (Doctor) entityManager.createQuery("select u from Doctor u where u.mediCard = :mediCard")
 					.setParameter("mediCard", mediCard).getSingleResult();
 		} catch (NoResultException e) {
 			return null;

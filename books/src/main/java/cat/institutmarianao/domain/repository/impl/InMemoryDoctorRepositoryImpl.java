@@ -1,8 +1,6 @@
 package cat.institutmarianao.domain.repository.impl;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,20 +20,16 @@ public class InMemoryDoctorRepositoryImpl implements DoctorRepository {
 
 	public InMemoryDoctorRepositoryImpl() {
 
-		Calendar albertoBornDate = new GregorianCalendar(1997, 7, 31);
-		Doctor doctor1 = new Doctor("12345678T", "Alberto", "BEMA12345", albertoBornDate, "Male", "alberto@hotmail.com",
+		Doctor doctor1 = new Doctor("12345678T", "Alberto", "BEMA12345", 1997, 07, 31, "Male", "alberto@hotmail.com",
 				"alberto123", "morning");
 
-		Calendar ArnauBornDate = new GregorianCalendar(2000, 2, 21);
-		Doctor doctor2 = new Doctor("95716847P", "Arnau", "ARNY77456", ArnauBornDate, "Male", "arny@hotmail.com",
+		Doctor doctor2 = new Doctor("95716847P", "Arnau", "ARNY77456", 2000, 02, 21, "Male", "arny@hotmail.com",
 				"11458874", "afternoon");
 
-		Calendar AngelBornDate = new GregorianCalendar(1997, 2, 12);
-		Doctor doctor3 = new Doctor("79411247P", "Angel", "MOCO56748", AngelBornDate, "Male",
+		Doctor doctor3 = new Doctor("79411247P", "Angel", "MOCO56748", 1997, 02, 12, "Male",
 				"angelon.megalodon@gmail.com", "angel321", "night");
 
-		Calendar SandraBornDate = new GregorianCalendar(1992, 9, 26);
-		Doctor doctor4 = new Doctor("95479321R", "Sandra", "MIRI87348", SandraBornDate, "Female",
+		Doctor doctor4 = new Doctor("95479321R", "Sandra", "MIRI87348", 1992, 12, 26, "Female",
 				"sandra123.321@gmail.com", "sandrita", "morning");
 
 		listOfDoctors.put("12345678T", doctor1);

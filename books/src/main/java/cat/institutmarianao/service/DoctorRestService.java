@@ -3,7 +3,7 @@ package cat.institutmarianao.service;
 import java.net.URI;
 import java.util.List;
 
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -24,7 +24,7 @@ import cat.institutmarianao.domain.repository.DoctorRepository;
 import cat.institutmarianao.domain.repository.impl.InMemoryDoctorRepositoryImpl;
 
 @Path("/doctors")
-@Singleton // Solo se utiliza esta etiqueta porque usamos datos in memory
+@Singleton // Esta linea se utiliza cuando usamos repositorio en memoria
 public class DoctorRestService {
 	@Context
 	private UriInfo uriInfo;

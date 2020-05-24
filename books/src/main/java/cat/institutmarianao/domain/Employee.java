@@ -1,11 +1,11 @@
 package cat.institutmarianao.domain;
 
 import java.io.Serializable;
-import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 public abstract class Employee extends User implements Serializable {
@@ -15,12 +15,13 @@ public abstract class Employee extends User implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@NotNull
-	@Column(name = "shift", nullable = false)
+	@Size(max = 15)
+	@Column(name = "shift", nullable = false, length = 15)
 	private String shift;
 
-	public Employee(String dni, String name, String mediCard, Calendar bornDate, String gender, String email,
-			String psswd, String shift) {
-		super(dni, name, mediCard, bornDate, gender, email, psswd);
+	public Employee(String dni, String name, String mediCard, int bornYear, int bornMonth, int bornDate, String gender,
+			String email, String psswd, String shift) {
+		super(dni, name, mediCard, bornYear, bornMonth, bornDate, gender, email, psswd);
 		this.shift = shift;
 	}
 

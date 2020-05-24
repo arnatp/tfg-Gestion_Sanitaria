@@ -1,7 +1,6 @@
 package cat.institutmarianao.domain;
 
 import java.io.Serializable;
-import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,9 +31,9 @@ public class Patient extends User implements Serializable {
 	@Column(name = "weigth", nullable = false)
 	private float weigth;
 
-	public Patient(String dni, String name, String mediCard, Calendar bornDate, String gender, String email,
-			String psswd, float height, float weigth) {
-		super(dni, name, mediCard, bornDate, gender, email, psswd);
+	public Patient(String dni, String name, String mediCard, int bornYear, int bornMonth, int bornDate, String gender,
+			String email, String psswd, float height, float weigth) {
+		super(dni, name, mediCard, bornYear, bornMonth, bornDate, gender, email, psswd);
 		expedient = new Expedient();
 		this.height = height;
 		this.weigth = weigth;
