@@ -72,4 +72,27 @@ public class VisitRepositoryImpl implements VisitRepository {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Visit> getVisitsByDoctorId(String doctorId) {
+		try {
+			return entityManager.createQuery(
+					"select u from Visit u where u.doctor IN (Select x.id from Doctor x where x.dni =: doctorId)")
+					.setParameter("doctorId", doctorId).getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Visit> getVisitsByDoctorIdAndDate(String doctorId, LocalDate date) {
+		try {
+			return entityManager.createQuery("select u from Visit u where u.doctorId = :doctorId and u.date =:date")
+					.setParameter("doctorId", doctorId).setParameter("date", date).getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
 }

@@ -40,7 +40,7 @@ public class PrescriptionRestService {
 	@GET
 	@Path("findByPrescriptionId/{prescriptionId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Prescription findByPrescriptionId(@PathParam("visitId") int prescriptionId) {
+	public Prescription findByPrescriptionId(@PathParam("prescriptionId") int prescriptionId) {
 		return prescriptionRepository.getPrescriptionByPrescriptionId(prescriptionId);
 	}
 
