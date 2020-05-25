@@ -2,7 +2,7 @@ package es.institutmarianao.service;
 
 import java.util.List;
 
-import cat.institutmarianao.domain.Expedient;
+import es.institutmarianao.domain.Expedient;
 
 public interface ExpedientService {
 

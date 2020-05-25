@@ -2,8 +2,11 @@ package cat.institutmarianao.domain.repository;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import cat.institutmarianao.domain.Expedient;
 
+@Local
 public interface ExpedientRepository {
 
 	List<Expedient> getAll();

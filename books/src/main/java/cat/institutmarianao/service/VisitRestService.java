@@ -1,7 +1,6 @@
 package cat.institutmarianao.service;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.ejb.Singleton;
@@ -52,12 +51,34 @@ public class VisitRestService {
 		return visitRepository.getVisitsByExpedientId(expedientId);
 	}
 
+	/*
+	 * @GET
+	 * 
+	 * @Path("findByDate/{date}")
+	 * 
+	 * @Produces(MediaType.APPLICATION_JSON) public List<Visit>
+	 * findByDate(@PathParam("date") LocalDate date) { return
+	 * visitRepository.getVisitsByDate(date); }
+	 */
+
 	@GET
-	@Path("findByDate/{date}")
+	@Path("findByDoctorId/{doctorId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Visit> findByDate(@PathParam("date") LocalDate date) {
-		return visitRepository.getVisitsByDate(date);
+	public List<Visit> findByDoctorId(@PathParam("doctorId") String doctorId) {
+		return visitRepository.getVisitsByDoctorId(doctorId);
 	}
+
+	/*
+	 * @GET
+	 * 
+	 * @Path("findByDoctorId/{doctorId}/date/{date}")
+	 * 
+	 * @Produces(MediaType.APPLICATION_JSON) public List<Visit>
+	 * findByDoctorIdAndDate(@PathParam("doctorId") String doctorId,
+	 * 
+	 * @PathParam("date") LocalDate date) { return
+	 * visitRepository.getVisitsByDoctorIdAndDate(doctorId, date); }
+	 */
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
