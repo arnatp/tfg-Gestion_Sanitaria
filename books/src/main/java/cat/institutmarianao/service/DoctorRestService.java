@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.ejb.Singleton;
+import javax.inject.Inject;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -21,14 +22,15 @@ import javax.ws.rs.core.UriInfo;
 import cat.institutmarianao.domain.Doctor;
 import cat.institutmarianao.domain.User;
 import cat.institutmarianao.domain.repository.DoctorRepository;
-import cat.institutmarianao.domain.repository.impl.InMemoryDoctorRepositoryImpl;
 
 @Path("/doctors")
-@Singleton // Esta linea se utiliza cuando usamos repositorio en memoria
+@Singleton
 public class DoctorRestService {
 	@Context
 	private UriInfo uriInfo;
-	private DoctorRepository doctorRepository = new InMemoryDoctorRepositoryImpl();
+
+	@Inject
+	private DoctorRepository doctorRepository;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

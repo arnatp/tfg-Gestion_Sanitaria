@@ -4,19 +4,18 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import cat.institutmarianao.domain.Doctor;
 import cat.institutmarianao.domain.repository.DoctorRepository;
 
+/*TODO añadir named querys*/
 @Stateless
 public class DoctorRepositoryImpl implements DoctorRepository {
+
 	@PersistenceContext
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserPersistenceUnit");
-	private EntityManager entityManager = emf.createEntityManager();
+	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -36,7 +35,6 @@ public class DoctorRepositoryImpl implements DoctorRepository {
 
 	@Override
 	public void delete(Doctor doctor) {
-
 		Doctor doctor1 = entityManager.merge(doctor);
 		entityManager.remove(doctor1);
 	}

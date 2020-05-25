@@ -47,7 +47,6 @@ public abstract class User implements Serializable {
 	private String mediCard;
 
 	@NotNull
-	// @Temporal(TemporalType.DATE)
 	@Column(name = "borndate", nullable = false, columnDefinition = "DATE")
 	private LocalDate bornDate;
 
@@ -81,6 +80,14 @@ public abstract class User implements Serializable {
 
 	public User() {
 		// Constructor para poder crear las tablas con JPA
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getDni() {

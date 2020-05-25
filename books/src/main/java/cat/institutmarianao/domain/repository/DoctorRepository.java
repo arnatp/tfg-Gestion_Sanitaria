@@ -2,8 +2,11 @@ package cat.institutmarianao.domain.repository;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import cat.institutmarianao.domain.Doctor;
 
+@Local
 public interface DoctorRepository {
 
 	List<Doctor> getAll();

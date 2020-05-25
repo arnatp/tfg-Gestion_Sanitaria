@@ -17,7 +17,7 @@ public class Doctor extends Employee implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	@OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
 	private Visit visit;
 
 	public Doctor(String dni, String name, String mediCard, int bornYear, int bornMonth, int bornDate, String gender,
