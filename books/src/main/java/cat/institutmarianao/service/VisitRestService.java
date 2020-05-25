@@ -79,7 +79,7 @@ public class VisitRestService {
 
 	@DELETE
 	@Path("deleteById/{visitId}")
-	public void remove(@PathParam("dni") int visitId) {
+	public void remove(@PathParam("visitId") int visitId) {
 		visitRepository.delete(visitRepository.getVisitByVisitId(visitId));
 	}
 }

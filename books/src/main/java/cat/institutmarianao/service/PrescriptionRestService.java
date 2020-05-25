@@ -64,7 +64,7 @@ public class PrescriptionRestService {
 
 	@DELETE
 	@Path("deleteByPrescriptionId/{prescriptionId}")
-	public void remove(@PathParam("dni") int prescriptionId) {
+	public void remove(@PathParam("prescriptionId") int prescriptionId) {
 		prescriptionRepository.delete(prescriptionRepository.getPrescriptionByPrescriptionId(prescriptionId));
 	}
 }

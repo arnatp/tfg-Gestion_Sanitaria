@@ -40,7 +40,7 @@ public class ExpedientRestService {
 	@GET
 	@Path("findByExpedientId/{expedientId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Expedient findByExpedientId(@PathParam("ExpedientId") int expedientId) {
+	public Expedient findByExpedientId(@PathParam("expedientId") int expedientId) {
 		return expedientRepository.getExpedientByExpedientId(expedientId);
 	}
 
@@ -64,7 +64,7 @@ public class ExpedientRestService {
 
 	@DELETE
 	@Path("deleteExpedientId/{expedientId}")
-	public void remove(@PathParam("dni") int expedientId) {
+	public void remove(@PathParam("expedientId") int expedientId) {
 		expedientRepository.delete(expedientRepository.getExpedientByExpedientId(expedientId));
 	}
 }
