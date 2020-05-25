@@ -19,6 +19,6 @@ public interface DoctorRepository {
 
 	Doctor getUserByDni(String dni);
 
-	Doctor getuserByMediCard(String mediCard);
+	Doctor getUserByMediCard(String mediCard);
 
 }

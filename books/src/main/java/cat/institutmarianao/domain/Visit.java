@@ -1,7 +1,7 @@
 package cat.institutmarianao.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -36,9 +34,8 @@ public class Visit implements Serializable {
 	private Boolean completed = false;
 
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	@Column(name = "date", nullable = false)
-	private Date date;
+	@Column(name = "date", nullable = false, columnDefinition = "DATE")
+	private LocalDate date;
 
 	@NotNull
 	@Column(name = "description", nullable = false)
@@ -57,7 +54,7 @@ public class Visit implements Serializable {
 	private Expedient expedient;
 
 	public Visit(String description, Prescription prescription, Doctor doctor) {
-		date = new Date();
+		date = LocalDate.now();
 		this.description = description;
 		this.prescription = prescription;
 		this.doctor = doctor;
@@ -75,11 +72,11 @@ public class Visit implements Serializable {
 		this.visitId = visitId;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -105,5 +102,13 @@ public class Visit implements Serializable {
 
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
+	}
+
+	public Boolean getCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(Boolean completed) {
+		this.completed = completed;
 	}
 }

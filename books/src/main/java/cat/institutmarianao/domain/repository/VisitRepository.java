@@ -1,11 +1,13 @@
 package cat.institutmarianao.domain.repository;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
-import cat.institutmarianao.domain.Expedient;
+import javax.ejb.Local;
+
 import cat.institutmarianao.domain.Visit;
 
+@Local
 public interface VisitRepository {
 
 	List<Visit> getAll();
@@ -16,7 +18,9 @@ public interface VisitRepository {
 
 	void delete(Visit visit);
 
-	List<Visit> getVisitByExpedient(Expedient expedient);
+	Visit getVisitByVisitId(int visitId);
 
-	List<Visit> getVisitByDate(Date date);
+	List<Visit> getVisitsByExpedientId(int expedientId);
+
+	List<Visit> getVisitsByDate(LocalDate date);
 }

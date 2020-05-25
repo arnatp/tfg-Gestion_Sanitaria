@@ -19,60 +19,60 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import cat.institutmarianao.domain.Doctor;
+import cat.institutmarianao.domain.Patient;
 import cat.institutmarianao.domain.User;
-import cat.institutmarianao.domain.repository.DoctorRepository;
+import cat.institutmarianao.domain.repository.PatientRepository;
 
-@Path("/doctors")
+@Path("/patients")
 @Singleton
-public class DoctorRestService {
+public class PatientRestService {
 	@Context
 	private UriInfo uriInfo;
 
 	@Inject
-	private DoctorRepository doctorRepository;
+	private PatientRepository patientRepository;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Doctor> getAll() {
-		return doctorRepository.getAll();
+	public List<Patient> getAll() {
+		return patientRepository.getAll();
 	}
 
 	@GET
 	@Path("findByDni/{dni}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User findByDni(@PathParam("dni") String dni) {
-		return doctorRepository.getUserByDni(dni);
+		return patientRepository.getUserByDni(dni);
 	}
 
 	@GET
 	@Path("findByMediCard/{mediCard}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User findByMediCard(@PathParam("mediCard") String mediCard) {
-		return doctorRepository.getUserByMediCard(mediCard);
+		return patientRepository.getUserByMediCard(mediCard);
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response create(Doctor doctor) {
-		if (doctor == null) {
+	public Response create(Patient patient) {
+		if (patient == null) {
 			throw new BadRequestException();
 		}
-		doctorRepository.add(doctor);
+		patientRepository.add(patient);
 
-		URI doctorUri = uriInfo.getAbsolutePathBuilder().path(doctor.getDni()).build();
+		URI doctorUri = uriInfo.getAbsolutePathBuilder().path(patient.getDni()).build();
 		return Response.ok(doctorUri).build();
 	}
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void edit(Doctor doctor) {
-		doctorRepository.update(doctor);
+	public void edit(Patient patient) {
+		patientRepository.update(patient);
 	}
 
 	@DELETE
 	@Path("deleteByDni/{dni}")
 	public void remove(@PathParam("dni") String dni) {
-		doctorRepository.delete(doctorRepository.getUserByDni(dni));
+		patientRepository.delete(patientRepository.getUserByDni(dni));
 	}
 }

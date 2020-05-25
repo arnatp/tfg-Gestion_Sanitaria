@@ -72,7 +72,7 @@ public class InMemoryDoctorRepositoryImpl implements DoctorRepository {
 	}
 
 	@Override
-	public Doctor getuserByMediCard(String mediCard) {
+	public Doctor getUserByMediCard(String mediCard) {
 		for (Doctor item : listOfDoctors.values()) {
 			if (item.getMediCard().toUpperCase().contains(mediCard.toUpperCase())) {
 				return item;

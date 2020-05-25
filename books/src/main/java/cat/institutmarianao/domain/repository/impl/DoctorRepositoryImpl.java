@@ -50,7 +50,7 @@ public class DoctorRepositoryImpl implements DoctorRepository {
 	}
 
 	@Override
-	public Doctor getuserByMediCard(String mediCard) {
+	public Doctor getUserByMediCard(String mediCard) {
 		try {
 			return (Doctor) entityManager.createQuery("select u from Doctor u where u.mediCard = :mediCard")
 					.setParameter("mediCard", mediCard).getSingleResult();

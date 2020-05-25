@@ -14,4 +14,6 @@ public interface ExpedientRepository {
 
 	void delete(Expedient expedient);
 
+	Expedient getExpedientByExpedientId(int expedientId);
+
 }
