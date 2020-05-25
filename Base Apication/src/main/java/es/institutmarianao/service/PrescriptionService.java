@@ -2,7 +2,7 @@ package es.institutmarianao.service;
 
 import java.util.List;
 
-import cat.institutmarianao.domain.Prescription;
+import es.institutmarianao.domain.Prescription;
 
 public interface PrescriptionService {
 

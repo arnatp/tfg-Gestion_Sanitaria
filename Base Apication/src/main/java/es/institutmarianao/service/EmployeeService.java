@@ -2,7 +2,7 @@ package es.institutmarianao.service;
 
 import java.util.List;
 
-import cat.institutmarianao.domain.Employee;
+import es.institutmarianao.domain.Employee;
 
 public interface EmployeeService {
 
