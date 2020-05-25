@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     
     @Autowired
-    private UserRepository userRepository;
+    private UserService userRepository;
     
      public User getUserByUsername(final String username) {
             User user = userRepository.getUserByUsername(username);

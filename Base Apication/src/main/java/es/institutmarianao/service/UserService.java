@@ -1,18 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package es.institutmarianao.service;
 
- 
+import java.util.List;
+
 import es.institutmarianao.domain.User;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
- 
- 
+
 public interface UserService {
-     
-    public User getUserByUsername(String username) throws UsernameNotFoundException;
-    public void addUser(User user);
-    public void updateUser(User user);
+
+	List<User> getAll();
+
+	void addUser(User user);
+
+	void update(User user);
+
+	User getUserByDni(String dni);
+
+	User getuserByMediCard(String mediCard);
+
 }
