@@ -49,6 +49,9 @@ public abstract class User implements Serializable, UserDetails {
 		setPassword(psswd);
 	}
 
+	public User() {
+	}
+
 	public int getUserId() {
 		return userId;
 	}

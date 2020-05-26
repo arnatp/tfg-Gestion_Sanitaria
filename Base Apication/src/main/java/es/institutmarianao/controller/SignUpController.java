@@ -20,33 +20,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.institutmarianao.domain.Patient;
 import es.institutmarianao.domain.User;
-import es.institutmarianao.service.UserService;
+import es.institutmarianao.service.PatientService;
 
 @Controller
 public class SignUpController {
 	@Autowired
-	private UserService userService;
+	private PatientService patientService;
 	@Qualifier("customAuthenticationProvider")
 	private AuthenticationProvider authenticationProvider;
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
 	public ModelAndView signUp() throws ServletException, IOException {
 		ModelAndView modelview = new ModelAndView("user");
-		modelview.getModelMap().addAttribute("user", new User());
+		modelview.getModelMap().addAttribute("patient", new Patient());
 		return modelview;
 	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public String processSignUpForm(@ModelAttribute("user") User newUserToAdd, BindingResult result,
+	public String processSignUpForm(@ModelAttribute("patient") Patient newPatientToAdd, BindingResult result,
 			HttpServletRequest request) {
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("Intentat accedir amb camps no permesos: "
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-		userService.addUser(newUserToAdd);
-		loginUser(newUserToAdd, request);
+		patientService.addPatient(newPatientToAdd);
+		loginUser(newPatientToAdd, request);
 		return "redirect:/";
 	}
 

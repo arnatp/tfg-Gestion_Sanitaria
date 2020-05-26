@@ -26,8 +26,14 @@ public class UserController {
 
 	@Autowired
 
-	@RequestMapping(value = "/secured/orders", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/home", method = RequestMethod.GET)
 	public ModelAndView orders() throws ServletException, IOException {
+		ModelAndView modelview = new ModelAndView("orders");
+		return modelview;
+	}
+
+	@RequestMapping(value = "/doctor/home", method = RequestMethod.GET)
+	public ModelAndView orders1() throws ServletException, IOException {
 		ModelAndView modelview = new ModelAndView("orders");
 		return modelview;
 	}
@@ -35,7 +41,7 @@ public class UserController {
 	@RequestMapping(value = "/secured/updateUser", method = RequestMethod.GET)
 	public ModelAndView updateUser() throws ServletException, IOException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.getUserByUsername(auth.getName());
+		User user = userService.getUserByDni(auth.getName());
 		ModelAndView modelview = new ModelAndView("user");
 		modelview.getModelMap().addAttribute("user", user);
 		return modelview;
@@ -48,7 +54,7 @@ public class UserController {
 			throw new RuntimeException("Intentat accedir amb camps no permesos: "
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-		userService.updateUser(newUserToAdd);
+		userService.update(newUserToAdd);
 		return "redirect:/";
 	}
 
