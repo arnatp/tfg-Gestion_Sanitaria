@@ -20,7 +20,7 @@ public class PrescriptionRepositoryImpl implements PrescriptionRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Prescription> getAll() {
-		return entityManager.createQuery("select u from Prescription u").getResultList();
+		return entityManager.createNamedQuery("Prescription.findAll").getResultList();
 	}
 
 	@Override
@@ -45,8 +45,7 @@ public class PrescriptionRepositoryImpl implements PrescriptionRepository {
 	@Override
 	public Prescription getPrescriptionByPrescriptionId(int prescriptionId) {
 		try {
-			return (Prescription) entityManager
-					.createQuery("select u from Prescription u where u.prescriptionId = :prescriptionId")
+			return (Prescription) entityManager.createNamedQuery("Prescription.findByPrescriptionId")
 					.setParameter("prescriptionId", prescriptionId).getSingleResult();
 		} catch (NoResultException e) {
 			return null;

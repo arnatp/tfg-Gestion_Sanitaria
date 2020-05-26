@@ -20,7 +20,7 @@ public class ExpedientRepositoryImpl implements ExpedientRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Expedient> getAll() {
-		return entityManager.createQuery("select u from Expedient u").getResultList();
+		return entityManager.createNamedQuery("Expedient.findAll").getResultList();
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class ExpedientRepositoryImpl implements ExpedientRepository {
 	@Override
 	public Expedient getExpedientByExpedientId(int expedientId) {
 		try {
-			return (Expedient) entityManager.createQuery("select u from Expedient u where u.expedientId = :expedientId")
+			return (Expedient) entityManager.createNamedQuery("Expedient.findByExpedientId")
 					.setParameter("expedientId", expedientId).getSingleResult();
 		} catch (NoResultException e) {
 			return null;

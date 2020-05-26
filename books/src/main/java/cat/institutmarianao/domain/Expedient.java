@@ -11,12 +11,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "expedient")
+@NamedQueries({ @NamedQuery(name = "Expedient.findAll", query = "select u from Expedient u"),
+		@NamedQuery(name = "Expedient.findByExpedientId", query = "select u from Expedient u where u.expedientId = :expedientId") })
 public class Expedient implements Serializable {
 
 	/**

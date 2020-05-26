@@ -20,7 +20,7 @@ public class PatientRepositoryImpl implements PatientRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Patient> getAll() {
-		return entityManager.createQuery("select u from Patient u").getResultList();
+		return entityManager.createNamedQuery("Patient.findAll").getResultList();
 	}
 
 	@Override
@@ -42,8 +42,8 @@ public class PatientRepositoryImpl implements PatientRepository {
 	@Override
 	public Patient getUserByDni(String dni) {
 		try {
-			return (Patient) entityManager.createQuery("select u from Patient u where u.dni = :dni")
-					.setParameter("dni", dni).getSingleResult();
+			return (Patient) entityManager.createNamedQuery("Patient.findByDni").setParameter("dni", dni)
+					.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
@@ -52,8 +52,8 @@ public class PatientRepositoryImpl implements PatientRepository {
 	@Override
 	public Patient getUserByMediCard(String mediCard) {
 		try {
-			return (Patient) entityManager.createQuery("select u from Patient u where u.mediCard = :mediCard")
-					.setParameter("mediCard", mediCard).getSingleResult();
+			return (Patient) entityManager.createNamedQuery("Patient.findByMediCard").setParameter("mediCard", mediCard)
+					.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}

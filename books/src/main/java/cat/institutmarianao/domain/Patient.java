@@ -6,12 +6,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "patient")
+@NamedQueries({ @NamedQuery(name = "Patient.findAll", query = "select u from Patient u"),
+		@NamedQuery(name = "Patient.findByDni", query = "select u from Patient u where u.dni = :dni"),
+		@NamedQuery(name = "Patient.findByMediCard", query = "select u from Patient u where u.mediCard = :mediCard") })
 public class Patient extends User implements Serializable {
 
 	/**
@@ -30,14 +35,6 @@ public class Patient extends User implements Serializable {
 	@NotNull
 	@Column(name = "weigth", nullable = false)
 	private float weigth;
-
-	public Patient(String dni, String name, String mediCard, int bornYear, int bornMonth, int bornDate, String gender,
-			String email, String psswd, float height, float weigth) {
-		super(dni, name, mediCard, bornYear, bornMonth, bornDate, gender, email, psswd);
-		expedient = new Expedient();
-		this.height = height;
-		this.weigth = weigth;
-	}
 
 	public Patient() {
 		// Constructor vacio para poder crear las tablas en JPA

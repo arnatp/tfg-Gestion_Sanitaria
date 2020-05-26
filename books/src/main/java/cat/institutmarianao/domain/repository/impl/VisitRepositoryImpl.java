@@ -21,7 +21,7 @@ public class VisitRepositoryImpl implements VisitRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Visit> getAll() {
-		return entityManager.createQuery("select u from Visit u").getResultList();
+		return entityManager.createNamedQuery("Visit.findAll").getResultList();
 	}
 
 	@Override
@@ -42,20 +42,14 @@ public class VisitRepositoryImpl implements VisitRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Visit> getVisitsByExpedientId(int expedientId) {
+	public List<Visit> getVisitsByDate(String date) {
 		try {
-			return entityManager.createQuery("select u from Visit u where u.expedientId = :expedientId")
-					.setParameter("expedientId", expedientId).getResultList();
-		} catch (NoResultException e) {
-			return null;
-		}
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Visit> getVisitsByDate(LocalDate date) {
-		try {
-			return entityManager.createQuery("select u from Visit u where u.date = :date").setParameter("date", date)
+			String[] dataSplited = date.split("-");
+			int year = Integer.parseInt(dataSplited[0]);
+			int month = Integer.parseInt(dataSplited[1]);
+			int day = Integer.parseInt(dataSplited[2]);
+			LocalDate dateFormatted = LocalDate.of(year, month, day);
+			return entityManager.createNamedQuery("Visit.findByDate").setParameter("date", dateFormatted)
 					.getResultList();
 		} catch (NoResultException e) {
 			return null;
@@ -65,8 +59,8 @@ public class VisitRepositoryImpl implements VisitRepository {
 	@Override
 	public Visit getVisitByVisitId(int visitId) {
 		try {
-			return (Visit) entityManager.createQuery("select u from Visit u where u.visitId = :visitId")
-					.setParameter("visitId", visitId).getSingleResult();
+			return (Visit) entityManager.createNamedQuery("Visit.findByVisitId").setParameter("visitId", visitId)
+					.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
@@ -74,11 +68,10 @@ public class VisitRepositoryImpl implements VisitRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Visit> getVisitsByDoctorId(String doctorId) {
+	public List<Visit> getVisitsByDoctorId(int doctorId) {
 		try {
-			return entityManager.createQuery(
-					"select u from Visit u where u.doctor IN (Select x.id from Doctor x where x.dni =: doctorId)")
-					.setParameter("doctorId", doctorId).getResultList();
+			return entityManager.createNamedQuery("Visit.findByDoctorId").setParameter("doctorId", doctorId)
+					.getResultList();
 		} catch (NoResultException e) {
 			return null;
 		}
@@ -86,10 +79,15 @@ public class VisitRepositoryImpl implements VisitRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Visit> getVisitsByDoctorIdAndDate(String doctorId, LocalDate date) {
+	public List<Visit> getVisitsByDoctorIdAndDate(int doctorId, String date) {
 		try {
-			return entityManager.createQuery("select u from Visit u where u.doctorId = :doctorId and u.date =:date")
-					.setParameter("doctorId", doctorId).setParameter("date", date).getResultList();
+			String[] dataSplited = date.split("-");
+			int year = Integer.parseInt(dataSplited[0]);
+			int month = Integer.parseInt(dataSplited[1]);
+			int day = Integer.parseInt(dataSplited[2]);
+			LocalDate dateFormatted = LocalDate.of(year, month, day);
+			return entityManager.createNamedQuery("Visit.findByDoctorIdAndDate").setParameter("doctorId", doctorId)
+					.setParameter("date", dateFormatted).getResultList();
 		} catch (NoResultException e) {
 			return null;
 		}

@@ -11,12 +11,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "visit")
+@NamedQueries({ @NamedQuery(name = "Visit.findAll", query = "select u from Visit u"),
+		@NamedQuery(name = "Visit.findByDate", query = "select u from Visit u where u.date = :date"),
+		@NamedQuery(name = "Visit.findByVisitId", query = "select u from Visit u where u.visitId = :visitId"),
+		@NamedQuery(name = "Visit.findByDoctorId", query = "select u from Visit u where u.doctor = (select doc from Doctor doc where doc.userId = :doctorId)"),
+		@NamedQuery(name = "Visit.findByDoctorIdAndDate", query = "select u from Visit u where u.doctor = (Select doc from Doctor doc where doc.userId = :doctorId) and u.date = :date") })
 public class Visit implements Serializable {
 
 	/**
@@ -38,8 +45,11 @@ public class Visit implements Serializable {
 	private LocalDate date;
 
 	@NotNull
-	@Column(name = "description", nullable = false)
-	private String description;
+	@Column(name = "initialDescription", nullable = false)
+	private String initialDescription;
+
+	@Column(name = "resolution", nullable = true)
+	private String resolution;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prescriptionId")
@@ -52,13 +62,6 @@ public class Visit implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "expedientId")
 	private Expedient expedient;
-
-	public Visit(String description, Prescription prescription, Doctor doctor) {
-		date = LocalDate.now();
-		this.description = description;
-		this.prescription = prescription;
-		this.doctor = doctor;
-	}
 
 	public Visit() {
 		// Constructor vacío para poder crear la tabla mediante JPA
@@ -78,14 +81,6 @@ public class Visit implements Serializable {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public Prescription getPrescription() {
@@ -110,5 +105,21 @@ public class Visit implements Serializable {
 
 	public void setCompleted(Boolean completed) {
 		this.completed = completed;
+	}
+
+	public String getInitialDescription() {
+		return initialDescription;
+	}
+
+	public void setInitialDescription(String initialDescription) {
+		this.initialDescription = initialDescription;
+	}
+
+	public String getResolution() {
+		return resolution;
+	}
+
+	public void setResolution(String resolution) {
+		this.resolution = resolution;
 	}
 }

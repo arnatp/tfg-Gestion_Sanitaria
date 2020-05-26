@@ -1,6 +1,5 @@
 package cat.institutmarianao.domain.repository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -20,11 +19,9 @@ public interface VisitRepository {
 
 	Visit getVisitByVisitId(int visitId);
 
-	List<Visit> getVisitsByExpedientId(int expedientId);
+	List<Visit> getVisitsByDate(String date);
 
-	List<Visit> getVisitsByDate(LocalDate date);
+	List<Visit> getVisitsByDoctorId(int doctorId);
 
-	List<Visit> getVisitsByDoctorId(String doctorId);
-
-	List<Visit> getVisitsByDoctorIdAndDate(String doctorId, LocalDate date);
+	List<Visit> getVisitsByDoctorIdAndDate(int doctorId, String date);
 }

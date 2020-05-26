@@ -2,7 +2,6 @@ package cat.institutmarianao.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -66,17 +65,6 @@ public abstract class User implements Serializable {
 	@Size(max = 30, min = 5)
 	@Column(name = "password", nullable = false, length = 30)
 	private String psswd;
-
-	public User(String dni, String name, String mediCard, int bornYear, int bornMonth, int bornDay, String gender,
-			String email, String psswd) {
-		this.dni = dni;
-		this.name = name;
-		this.mediCard = mediCard;
-		this.bornDate = LocalDate.of(bornYear, Month.of(bornMonth), bornDay);
-		this.gender = gender;
-		this.email = email;
-		this.psswd = psswd;
-	}
 
 	public User() {
 		// Constructor para poder crear las tablas con JPA

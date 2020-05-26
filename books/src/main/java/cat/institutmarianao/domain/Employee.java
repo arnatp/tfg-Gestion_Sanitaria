@@ -19,12 +19,6 @@ public abstract class Employee extends User implements Serializable {
 	@Column(name = "shift", nullable = false, length = 15)
 	private String shift;
 
-	public Employee(String dni, String name, String mediCard, int bornYear, int bornMonth, int bornDate, String gender,
-			String email, String psswd, String shift) {
-		super(dni, name, mediCard, bornYear, bornMonth, bornDate, gender, email, psswd);
-		this.shift = shift;
-	}
-
 	public Employee() {
 		// TODO Auto-generated constructor stub
 	}

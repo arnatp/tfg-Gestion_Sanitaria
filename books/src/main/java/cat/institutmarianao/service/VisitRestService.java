@@ -45,40 +45,25 @@ public class VisitRestService {
 	}
 
 	@GET
-	@Path("findByExpedientId/{expedientId}")
+	@Path("findByDate/{date}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Visit> findByExpedientId(@PathParam("expedientId") int expedientId) {
-		return visitRepository.getVisitsByExpedientId(expedientId);
+	public List<Visit> findByDate(@PathParam("date") String date) {
+		return visitRepository.getVisitsByDate(date);
 	}
-
-	/*
-	 * @GET
-	 * 
-	 * @Path("findByDate/{date}")
-	 * 
-	 * @Produces(MediaType.APPLICATION_JSON) public List<Visit>
-	 * findByDate(@PathParam("date") LocalDate date) { return
-	 * visitRepository.getVisitsByDate(date); }
-	 */
 
 	@GET
 	@Path("findByDoctorId/{doctorId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Visit> findByDoctorId(@PathParam("doctorId") String doctorId) {
+	public List<Visit> findByDoctorId(@PathParam("doctorId") int doctorId) {
 		return visitRepository.getVisitsByDoctorId(doctorId);
 	}
 
-	/*
-	 * @GET
-	 * 
-	 * @Path("findByDoctorId/{doctorId}/date/{date}")
-	 * 
-	 * @Produces(MediaType.APPLICATION_JSON) public List<Visit>
-	 * findByDoctorIdAndDate(@PathParam("doctorId") String doctorId,
-	 * 
-	 * @PathParam("date") LocalDate date) { return
-	 * visitRepository.getVisitsByDoctorIdAndDate(doctorId, date); }
-	 */
+	@GET
+	@Path("findByDoctorId/{doctorId}/date/{date}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Visit> findByDoctorIdAndDate(@PathParam("doctorId") int doctorId, @PathParam("date") String date) {
+		return visitRepository.getVisitsByDoctorIdAndDate(doctorId, date);
+	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

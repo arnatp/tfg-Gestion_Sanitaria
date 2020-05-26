@@ -9,12 +9,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "prescription")
+@NamedQueries({ @NamedQuery(name = "Prescription.findAll", query = "select u from Prescription u"),
+		@NamedQuery(name = "Prescription.findByPrescriptionId", query = "select u from Prescription u where u.prescriptionId = :prescriptionId") })
 public class Prescription implements Serializable {
 
 	/**
@@ -41,12 +45,6 @@ public class Prescription implements Serializable {
 
 	@OneToOne(mappedBy = "prescription", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
 	private Visit visit;
-
-	public Prescription(String medicamentName, int quantity, String schedule) {
-		this.medicamentName = medicamentName;
-		this.quantity = quantity;
-		this.schedule = schedule;
-	}
 
 	public Prescription() {
 		// Constructor vacío para poder crear la tabla mediante JPA

@@ -20,22 +20,25 @@ public class InMemoryDoctorRepositoryImpl implements DoctorRepository {
 
 	public InMemoryDoctorRepositoryImpl() {
 
-		Doctor doctor1 = new Doctor("12345678T", "Alberto", "BEMA12345", 1997, 07, 31, "Male", "alberto@hotmail.com",
-				"alberto123", "morning");
+		/*
+		 * Doctor doctor1 = new Doctor("12345678T", "Alberto", "BEMA12345", 1997, 07,
+		 * 31, "Male", "alberto@hotmail.com", "alberto123", "morning");
+		 * 
+		 * Doctor doctor2 = new Doctor("95716847P", "Arnau", "ARNY77456", 2000, 02, 21,
+		 * "Male", "arny@hotmail.com", "11458874", "afternoon");
+		 * 
+		 * Doctor doctor3 = new Doctor("79411247P", "Angel", "MOCO56748", 1997, 02, 12,
+		 * "Male", "angelon.megalodon@gmail.com", "angel321", "night");
+		 * 
+		 * Doctor doctor4 = new Doctor("95479321R", "Sandra", "MIRI87348", 1992, 12, 26,
+		 * "Female", "sandra123.321@gmail.com", "sandrita", "morning");
+		 */
 
-		Doctor doctor2 = new Doctor("95716847P", "Arnau", "ARNY77456", 2000, 02, 21, "Male", "arny@hotmail.com",
-				"11458874", "afternoon");
-
-		Doctor doctor3 = new Doctor("79411247P", "Angel", "MOCO56748", 1997, 02, 12, "Male",
-				"angelon.megalodon@gmail.com", "angel321", "night");
-
-		Doctor doctor4 = new Doctor("95479321R", "Sandra", "MIRI87348", 1992, 12, 26, "Female",
-				"sandra123.321@gmail.com", "sandrita", "morning");
-
-		listOfDoctors.put("12345678T", doctor1);
-		listOfDoctors.put("95716847P", doctor2);
-		listOfDoctors.put("79411247P", doctor3);
-		listOfDoctors.put("95479321R", doctor4);
+		/*
+		 * listOfDoctors.put("12345678T", doctor1); listOfDoctors.put("95716847P",
+		 * doctor2); listOfDoctors.put("79411247P", doctor3);
+		 * listOfDoctors.put("95479321R", doctor4);
+		 */
 	}
 
 	@Override
