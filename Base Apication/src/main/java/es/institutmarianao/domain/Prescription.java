@@ -10,11 +10,8 @@ public class Prescription implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int prescriptionId;
-
 	private String medicamentName;
-
 	private int quantity;
-
 	private String schedule;
 
 	public Prescription(String medicamentName, int quantity, String schedule) {
