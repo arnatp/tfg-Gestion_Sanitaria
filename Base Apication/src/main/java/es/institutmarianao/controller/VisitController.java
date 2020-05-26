@@ -22,4 +22,22 @@ public class VisitController {
 		ModelAndView modelview = new ModelAndView("orders");
 		return modelview;
 	}
+
+	@RequestMapping(value = "/doctor/visits", method = RequestMethod.GET)
+	public ModelAndView orders() throws ServletException, IOException {
+		ModelAndView modelview = new ModelAndView("orders");
+		return modelview;
+	}
+
+	@RequestMapping(value = "/doctor/visit", method = RequestMethod.GET)
+	public ModelAndView orders() throws ServletException, IOException {
+		ModelAndView modelview = new ModelAndView("orders");
+		return modelview;
+	}
+
+	@RequestMapping(value = "/doctor/visit", method = RequestMethod.POST)
+	public ModelAndView orders() throws ServletException, IOException {
+		ModelAndView modelview = new ModelAndView("orders");
+		return modelview;
+	}
 }

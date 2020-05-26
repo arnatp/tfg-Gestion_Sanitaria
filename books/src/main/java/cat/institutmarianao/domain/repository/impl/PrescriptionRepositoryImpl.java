@@ -46,8 +46,8 @@ public class PrescriptionRepositoryImpl implements PrescriptionRepository {
 	public Prescription getPrescriptionByPrescriptionId(int prescriptionId) {
 		try {
 			return (Prescription) entityManager
-					.createQuery("select u from Visit u where u.prescriptionId = :prescriptionId")
-					.setParameter("idPrescription", prescriptionId).getSingleResult();
+					.createQuery("select u from Prescription u where u.prescriptionId = :prescriptionId")
+					.setParameter("prescriptionId", prescriptionId).getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}

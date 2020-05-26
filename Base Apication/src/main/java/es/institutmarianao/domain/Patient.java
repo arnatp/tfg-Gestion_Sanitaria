@@ -23,6 +23,9 @@ public class Patient extends User implements Serializable {
 		this.weigth = weigth;
 	}
 
+	public Patient() {
+	}
+
 	public Expedient getExpedient() {
 		return expedient;
 	}
