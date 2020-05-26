@@ -4,38 +4,52 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <jsp:include page="sections/head.jsp"/>
-    </head>
-    <body>
-        <jsp:include page="sections/navMenu.jsp"/>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><spring:message code="login.give.credentials"/></h3>
-                        </div>
-                        <div class="panel-body">
-                            <c:if test="${not empty error}">
-                                <div class="alert alert-danger">
-                                    <spring:message code="login.credentials.failure"/>
-                                </div>
-                            </c:if>
-                            <form action="<c:url value= "/j_spring_security_check"> </c:url>" method="post">
-                                <fieldset>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="<spring:message code="login.user.email"/>" name='j_username' type="text">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="<spring:message code="login.user.password"/>" name='j_password' type="password">
-                                    </div>
-                                    <input class="btn btn-lg btn-success btn-block" type="submit" value="<spring:message code="login.submit"/>">
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+<head>
+    <jsp:include page="sections/head.jsp" />
+</head>
+
+<body>
+    <jsp:include page="sections/navMenu.jsp" />
+    <div class="container col-6" style="border: 1px solid black; box-shadow: 4px 4px 8px grey; margin-top: 3%;">
+        <div class="d-flex justify-content-center" style="margin-top: 3%;">
+            <h1><i class="fa fa-user-circle"></i></h1>
         </div>
-    </body>
+        <div class="d-flex justify-content-center">
+            <h3>Login</h3>
+        </div>
+        <c:if test="${not empty error}">
+            <div class="alert alert-danger">
+                <spring:message code="login.credentials.failure" />
+            </div>
+        </c:if>
+        <form action="<c:url value= " /j_spring_security_check">
+            </c:url>" method="post" style="margin-top: 3%;">
+            <div class="form-group row d-flex justify-content-center">
+                <label for="dni" class="col-4 col-form-label">
+                    <b>DNI/NIE</b>
+                    <input class="form-control" type="text" placeholder="12345678X" id="dni">
+                </label>
+            </div>
+            <div class="form-group row d-flex justify-content-center">
+                <label for="password" class="col-4 col-form-label">
+                    <!-- Revisar los j_password y j_dni ?-->
+                    <b>Contraseña</b>
+                    <input class="form-control" type="password" id="password">
+                </label>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a href="#">¿Has olvidado la contraseña?</a>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a href="<c:url value='/signUp'/>">Registrarse</a>
+            </div>
+            <br>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-outline-success">Iniciar sesión</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

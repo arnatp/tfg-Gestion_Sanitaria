@@ -14,4 +14,8 @@ public class Doctor extends Employee implements Serializable {
 		super(dni, name, mediCard, bornYear, bornMonth, bornDate, gender, email, psswd, shift);
 	}
 
+	public Doctor() {
+		// TODO Auto-generated constructor stub
+	}
+
 }

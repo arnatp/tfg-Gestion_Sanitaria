@@ -28,6 +28,7 @@ import es.institutmarianao.service.PatientService;
 public class SignUpController {
 	@Autowired
 	private PatientService patientService;
+
 	@Qualifier("customAuthenticationProvider")
 	private AuthenticationProvider authenticationProvider;
 

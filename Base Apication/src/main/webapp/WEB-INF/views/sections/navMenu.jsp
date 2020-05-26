@@ -4,48 +4,49 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
-<div class="container-fluid ">
-    <div class="col-lg-8">
-        <h2><spring:message code= "navMenu.title"/></h2>
-    </div>
-    <div class="col-lg-4 text-right">
-        <div class="btn-group ">
-            <a href="?language=es" class="btn btn-default"><spring:message code= "navMenu.spanish"/></a>
-            <a href="?language=en" class="btn btn-default"><spring:message code= "navMenu.english"/></a>
-        </div> 
-    </div>
-</div>
-<div>
-    <nav class="navbar navbar-default" data-spy="affix" data-offset-top="75">
-        <ul class="nav navbar-nav">
-            <li class="${activeCatalog}"><a href="<spring:url value='/'/>"><spring:message code= "navMenu.catalog"/></a></li>
-        </ul>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="<spring:url value='/'/>"><i class="fa fa-plus"></i>
+            <spring:message code="navMenu.title" />
+        </a>
         <sec:authorize access="hasAnyRole('ROLE_USER')">
             <sec:authentication var="user" property="principal" />
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <div class="dropdown" style="margin:10px">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>${user}
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li class="${activeUserData}"><a href="<spring:url value='/secured/updateUser'/>"><spring:message code= "navMenu.userData"/></a></li>
-                            <li class="${activeOrders}"><a href="<spring:url value='/secured/orders'/>"><spring:message code= "navMenu.orders"/></a></li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="<spring:url value='/logout'/>"><span class="glyphicon glyphicon-log-out"></span> <spring:message code= "navMenu.logout"/> </a>
-                            </li>
-                        </ul>
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value='/newVisit'/>"><i class="fa fa-calendar-plus-o"></i>
+                        Solicitar visita</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value='/showHistory'/>"><i class="fa fa-history"></i>
+                        Ver historial</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                class="fa fa-user-circle"></i> Ramoncin
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="<c:url value='/secured/updateUser'/>"><i
+                                    class="fa fa-id-card-o"></i> Mis datos</a>
+                            <a class="dropdown-item" href="<c:url value='/logout'/>"><i class="fa fa-sign-out"></i>
+                                Cerrar sesión</a>
+                        </div>
                     </div>
                 </li>
             </ul>
         </sec:authorize>
-        <sec:authorize access="!hasAnyRole('ROLE_USER')" >
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="<spring:url value='/signUp'/>"><span class="glyphicon glyphicon-user"></span> <spring:message code= "navMenu.signUp"/> </a></li>
-                <li>
-                    <a href="<spring:url value='/login'/>"><span class="glyphicon glyphicon-log-in"></span> <spring:message code= "navMenu.login"/> </a>
+        <sec:authorize access="!hasAnyRole('ROLE_USER')">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value='/signUp'/>"><i class="fa fa-arrow-up"></i>
+                        Registrarse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value='/login'/>"><i class="fa fa-sign-in"></i> Login</a>
                 </li>
             </ul>
         </sec:authorize>
-    </nav>
-</div>
+    </div>
+</nav>

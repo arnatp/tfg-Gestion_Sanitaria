@@ -17,6 +17,10 @@ public abstract class Employee extends User implements Serializable {
 		this.shift = shift;
 	}
 
+	public Employee() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getShift() {
 		return shift;
 	}

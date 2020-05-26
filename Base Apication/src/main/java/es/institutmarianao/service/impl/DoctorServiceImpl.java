@@ -12,9 +12,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
+import org.springframework.stereotype.Component;
+
 import es.institutmarianao.domain.Doctor;
 import es.institutmarianao.service.DoctorService;
 
+@Component
 public class DoctorServiceImpl implements DoctorService {
 	private static final Client client = ClientBuilder.newClient();
 
