@@ -28,14 +28,14 @@
             <div class="form-group row d-flex justify-content-center">
                 <label for="dni" class="col-4 col-form-label">
                     <b>DNI/NIE</b>
-                    <input class="form-control" type="text" placeholder="12345678X" id="dni">
+                    <input class="form-control" type="text" placeholder="12345678X" name="j_username">
                 </label>
             </div>
             <div class="form-group row d-flex justify-content-center">
                 <label for="password" class="col-4 col-form-label">
                     <!-- Revisar los j_password y j_dni ?-->
                     <b>Contraseña</b>
-                    <input class="form-control" type="password" id="password">
+                    <input class="form-control" type="password" id="password" name="j_password" >
                 </label>
             </div>
             <div class="d-flex justify-content-center">
