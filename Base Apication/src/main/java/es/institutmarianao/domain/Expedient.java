@@ -13,7 +13,11 @@ public class Expedient implements Serializable {
 
 	private int expedientId;
 
-	private List<Visit> history = new ArrayList<Visit>();
+	private List<Visit> history;
+
+	public Expedient() {
+		history = new ArrayList<Visit>();
+	}
 
 	public int getExpedientId() {
 		return expedientId;

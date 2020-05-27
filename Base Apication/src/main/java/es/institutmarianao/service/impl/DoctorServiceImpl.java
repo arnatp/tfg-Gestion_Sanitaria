@@ -24,20 +24,11 @@ public class DoctorServiceImpl implements DoctorService {
 	@Override
 	public List<Doctor> getAll() {
 		URI uri = UriBuilder.fromUri("http://localhost/books/rest/doctors").port(8080).build();
-		// Prepare the web target to invoke, from the uri
 		WebTarget target = client.target(uri);
-
-		// Prepare an invocation of the web target, accepting JSON responses for the
-		// request, using GET HTTP method
 		Invocation invocation = target.request(MediaType.APPLICATION_JSON).buildGet();
-
-		/* Act */
-		// Do the invocation and get the response
 		Response res = invocation.invoke();
-		// Read the entity from the response in a list
 		List<Doctor> returnedDoctors = res.readEntity(new GenericType<List<Doctor>>() {
 		});
-
 		return returnedDoctors;
 
 	}

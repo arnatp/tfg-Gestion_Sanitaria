@@ -28,4 +28,10 @@ public class PatientServiceImpl implements PatientService {
 		invocation.invoke();
 	}
 
+	@Override
+	public Patient getUserByDni(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

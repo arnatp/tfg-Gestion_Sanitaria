@@ -24,8 +24,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-
 	@RequestMapping(value = "/patient/home", method = RequestMethod.GET)
 	public ModelAndView orders() throws ServletException, IOException {
 		ModelAndView modelview = new ModelAndView("orders");

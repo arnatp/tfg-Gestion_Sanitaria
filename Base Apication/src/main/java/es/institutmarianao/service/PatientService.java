@@ -6,4 +6,6 @@ public interface PatientService {
 
 	void addPatient(Patient newPatientToAdd);
 
+	Patient getUserByDni(String username);
+
 }

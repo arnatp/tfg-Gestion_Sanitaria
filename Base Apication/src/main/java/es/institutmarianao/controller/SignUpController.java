@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.institutmarianao.domain.Expedient;
 import es.institutmarianao.domain.Patient;
 import es.institutmarianao.domain.User;
 import es.institutmarianao.service.PatientService;
@@ -47,6 +48,9 @@ public class SignUpController {
 			throw new RuntimeException("Intentat accedir amb camps no permesos: "
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
+		Expedient expedient = new Expedient();
+		newPatientToAdd.setExpedient(expedient);
+
 		patientService.addPatient(newPatientToAdd);
 		loginUser(newPatientToAdd, request);
 		return "redirect:/";

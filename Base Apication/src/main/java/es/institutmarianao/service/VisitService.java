@@ -19,4 +19,5 @@ public interface VisitService {
 	List<Visit> getVisitByExpedient(Expedient expedient);
 
 	List<Visit> getVisitByDate(Date date);
+
 }

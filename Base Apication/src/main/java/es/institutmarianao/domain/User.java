@@ -6,6 +6,7 @@ import java.time.Month;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public abstract class User implements Serializable, UserDetails {
@@ -23,6 +24,7 @@ public abstract class User implements Serializable, UserDetails {
 
 	private String mediCard;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate bornDate;
 
 	private String gender;

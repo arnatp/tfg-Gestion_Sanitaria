@@ -29,6 +29,9 @@ public class Visit implements Serializable {
 		this.doctor = doctor;
 	}
 
+	public Visit() {
+	}
+
 	public int getVisitId() {
 		return visitId;
 	}

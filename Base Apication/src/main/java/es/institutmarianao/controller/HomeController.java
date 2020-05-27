@@ -9,9 +9,6 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login() {
-
-		// ModelAndView modelview = new ModelAndView("welcomePage");
-
 		return "welcomePage";
 	}
 }
