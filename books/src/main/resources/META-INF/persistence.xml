@@ -9,7 +9,6 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
         <class>cat.institutmarianao.domain.Nurse</class>
         <class>cat.institutmarianao.domain.Patient</class>
         <class>cat.institutmarianao.domain.Auxiliar</class>
-        <class>cat.institutmarianao.domain.Expedient</class>
         <class>cat.institutmarianao.domain.Visit</class>
         <class>cat.institutmarianao.domain.Prescription</class>
         <properties>

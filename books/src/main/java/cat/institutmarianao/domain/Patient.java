@@ -4,11 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -24,10 +21,6 @@ public class Patient extends User implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "expedientId")
-	private Expedient expedient;
-
 	@NotNull
 	@Column(name = "height", nullable = false)
 	private float height;
@@ -38,14 +31,6 @@ public class Patient extends User implements Serializable {
 
 	public Patient() {
 		// Constructor vacio para poder crear las tablas en JPA
-	}
-
-	public Expedient getExpedient() {
-		return expedient;
-	}
-
-	public void setExpedient(Expedient expedient) {
-		this.expedient = expedient;
 	}
 
 	public float getHeight() {
@@ -63,5 +48,4 @@ public class Patient extends User implements Serializable {
 	public void setWeigth(float weigth) {
 		this.weigth = weigth;
 	}
-
 }

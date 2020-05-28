@@ -40,6 +40,27 @@ public class VisitRepositoryImpl implements VisitRepository {
 		entityManager.remove(visit1);
 	}
 
+	@Override
+	public Visit getVisitByVisitId(int visitId) {
+		try {
+			return (Visit) entityManager.createNamedQuery("Visit.findByVisitId").setParameter("visitId", visitId)
+					.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Visit> getVisitsByPatientId(int patientId) {
+		try {
+			return entityManager.createNamedQuery("Visit.findByPatientId").setParameter("patientId", patientId)
+					.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Visit> getVisitsByDate(String date) {
@@ -51,16 +72,6 @@ public class VisitRepositoryImpl implements VisitRepository {
 			LocalDate dateFormatted = LocalDate.of(year, month, day);
 			return entityManager.createNamedQuery("Visit.findByDate").setParameter("date", dateFormatted)
 					.getResultList();
-		} catch (NoResultException e) {
-			return null;
-		}
-	}
-
-	@Override
-	public Visit getVisitByVisitId(int visitId) {
-		try {
-			return (Visit) entityManager.createNamedQuery("Visit.findByVisitId").setParameter("visitId", visitId)
-					.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}

@@ -3,6 +3,7 @@ package cat.institutmarianao.domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,6 +23,7 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({ @NamedQuery(name = "Visit.findAll", query = "select u from Visit u"),
 		@NamedQuery(name = "Visit.findByDate", query = "select u from Visit u where u.date = :date"),
 		@NamedQuery(name = "Visit.findByVisitId", query = "select u from Visit u where u.visitId = :visitId"),
+		@NamedQuery(name = "Visit.findByPatientId", query = "select u from Visit u where u.patient = (select pat from Patient pat where pat.userId = :patientId)"),
 		@NamedQuery(name = "Visit.findByDoctorId", query = "select u from Visit u where u.doctor = (select doc from Doctor doc where doc.userId = :doctorId)"),
 		@NamedQuery(name = "Visit.findByDoctorIdAndDate", query = "select u from Visit u where u.doctor = (Select doc from Doctor doc where doc.userId = :doctorId) and u.date = :date") })
 public class Visit implements Serializable {
@@ -59,9 +61,9 @@ public class Visit implements Serializable {
 	@JoinColumn(name = "doctorId")
 	private Doctor doctor;
 
-	@ManyToOne
-	@JoinColumn(name = "expedientId")
-	private Expedient expedient;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "patientId")
+	private Patient patient;
 
 	public Visit() {
 		// Constructor vacío para poder crear la tabla mediante JPA
@@ -121,5 +123,13 @@ public class Visit implements Serializable {
 
 	public void setResolution(String resolution) {
 		this.resolution = resolution;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 }
