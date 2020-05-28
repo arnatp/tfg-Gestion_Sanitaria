@@ -21,7 +21,8 @@
     <context:component-scan base-package="  es.institutmarianao.controller
                                             es.institutmarianao.domain.repository 
                                             es.institutmarianao.service
-                                            es.institutmarianao.security" />
+                                            es.institutmarianao.security
+                                            es.institutmarianao.serviceweb"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/" />

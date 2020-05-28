@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.institutmarianao.domain.User;
-import es.institutmarianao.service.UserService;
+import es.institutmarianao.service.UserWebService;
 
 @Controller
 public class UserController {
 
 	@Autowired
-	private UserService userService;
+	private UserWebService userService;
 
 	@RequestMapping(value = "/patient/home", method = RequestMethod.GET)
 	public ModelAndView orders() throws ServletException, IOException {

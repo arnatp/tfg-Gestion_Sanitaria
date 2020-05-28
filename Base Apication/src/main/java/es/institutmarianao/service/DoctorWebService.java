@@ -4,7 +4,7 @@ import java.util.List;
 
 import es.institutmarianao.domain.Doctor;
 
-public interface DoctorService {
+public interface DoctorWebService {
 
 	List<Doctor> getAll();
 

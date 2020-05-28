@@ -3,13 +3,13 @@ package es.institutmarianao.service.impl;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import es.institutmarianao.domain.User;
-import es.institutmarianao.service.UserService;
+import es.institutmarianao.service.UserWebService;
 
-@Service
-public class UserServiceImpl implements UserService {
+@Component
+public class UserWebServiceImpl implements UserWebService {
 	private static final Client client = ClientBuilder.newClient();
 
 	@Override

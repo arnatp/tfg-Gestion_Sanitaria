@@ -20,19 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.institutmarianao.domain.Expedient;
 import es.institutmarianao.domain.Patient;
 import es.institutmarianao.domain.User;
-import es.institutmarianao.service.ExpedientService;
 import es.institutmarianao.service.PatientService;
 
 @Controller
 public class SignUpController {
 	@Autowired
 	private PatientService patientService;
-
-	@Autowired
-	private ExpedientService expedientService;
 
 	@Qualifier("customAuthenticationProvider")
 	private AuthenticationProvider authenticationProvider;
@@ -52,11 +47,6 @@ public class SignUpController {
 			throw new RuntimeException("Intentat accedir amb camps no permesos: "
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-		Expedient newExpedient = new Expedient();
-		expedientService.add(newExpedient);
-		Expedient lastExpedient = expedientService.getAll().get(expedientService.getAll().size() - 1);
-
-		newPatientToAdd.setExpedient(lastExpedient);
 
 		patientService.addPatient(newPatientToAdd);
 		loginUser(newPatientToAdd, request);

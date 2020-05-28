@@ -15,10 +15,10 @@ import javax.ws.rs.core.UriBuilder;
 import org.springframework.stereotype.Component;
 
 import es.institutmarianao.domain.Doctor;
-import es.institutmarianao.service.DoctorService;
+import es.institutmarianao.service.DoctorWebService;
 
 @Component
-public class DoctorServiceImpl implements DoctorService {
+public class DoctorWebServiceImpl implements DoctorWebService {
 	private static final String PATH_DOCTOR = "http://localhost/TFGRestService/rest/doctors";
 	private static final Client client = ClientBuilder.newClient();
 

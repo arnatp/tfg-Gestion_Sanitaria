@@ -7,32 +7,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import es.institutmarianao.domain.Role;
 import es.institutmarianao.domain.User;
-import es.institutmarianao.service.DoctorService;
-import es.institutmarianao.service.PatientService;
+import es.institutmarianao.service.DoctorWebService;
+import es.institutmarianao.service.PatientWebService;
 
-@Service
+@Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private PatientService patientService;
+	private PatientWebService patientWebService;
 	@Autowired
-	private DoctorService doctorService;
+	private DoctorWebService doctorWebService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		List<Role> roles = new ArrayList<Role>();
 
-		User user = patientService.getUserByDni(username);
+		User user = patientWebService.getUserByDni(username);
 		if (user != null) {
 			roles.add(new Role("ROLE_PATIENT"));
 			user.setAuthorities(roles);
 			return user;
 		}
-		user = doctorService.getUserByDni(username);
+		user = doctorWebService.getUserByDni(username);
 		if (user != null) {
 			roles.add(new Role("ROLE_EMPLOYEE"));
 			user.setAuthorities(roles);

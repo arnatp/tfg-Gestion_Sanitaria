@@ -17,23 +17,17 @@ public abstract class User implements Serializable, UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	private int userId;
-
 	private String dni;
-
 	private String name;
-
 	private String mediCard;
-
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate bornDate;
-
 	private String gender;
-
 	private String email;
-
 	private String password;
 
 	/* Spring Security related fields */
+
 	private List<Role> authorities;
 	private boolean accountNonExpired = true;
 	private boolean accountNonLocked = true;
@@ -59,7 +53,7 @@ public abstract class User implements Serializable, UserDetails {
 	}
 
 	public void setUserId(int userId) {
-		this.userId = userId;
+		this.userId = 0;
 	}
 
 	public String getDni() {

@@ -4,7 +4,7 @@ import java.util.List;
 
 import es.institutmarianao.domain.Prescription;
 
-public interface PrescriptionService {
+public interface PrescriptionWebService {
 
 	List<Prescription> getAll();
 
@@ -13,5 +13,7 @@ public interface PrescriptionService {
 	void update(Prescription prescription);
 
 	void delete(Prescription prescription);
+
+	Prescription getPrescriptionByPrescriptionId(int prescriptionId);
 
 }
