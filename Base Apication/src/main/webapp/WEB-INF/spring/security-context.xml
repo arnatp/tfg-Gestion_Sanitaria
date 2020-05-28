@@ -18,11 +18,14 @@
         <security:intercept-url pattern="/patient/*" access="hasAnyRole('ROLE_PATIENT')" />
 		<security:intercept-url pattern="/employee/*" access="hasAnyRole('ROLE_EMPLOYEE')" />   
 		<security:intercept-url pattern="/check" access="hasAnyRole('ROLE_PATIENT','ROLE_EMPLOYEE')" />
+        
         <security:form-login login-page="/login" login-processing-url="/j_spring_security_check"
         	username-parameter="j_username" password-parameter="j_password" authentication-failure-url="/loginfailed"/>
         <security:logout logout-success-url="/logout" />
     </security:http>
     <security:authentication-manager>
-        <security:authentication-provider ref="customAuthenticationProvider"/>
+        <security:authentication-provider user-service-ref="userDetailsServiceImpl">
+        <!-- <security:password-encoder hash="bcrypt"/>-->
+        </security:authentication-provider>
     </security:authentication-manager>
 </beans>

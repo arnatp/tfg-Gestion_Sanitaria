@@ -23,7 +23,7 @@
                 <spring:message code="login.credentials.failure" />
             </div>
         </c:if>
-        <form action="<c:url value= " /j_spring_security_check">
+        <form action="<c:url value= "/j_spring_security_check">
             </c:url>" method="post" style="margin-top: 3%;">
             <div class="form-group row d-flex justify-content-center">
                 <label for="dni" class="col-4 col-form-label">

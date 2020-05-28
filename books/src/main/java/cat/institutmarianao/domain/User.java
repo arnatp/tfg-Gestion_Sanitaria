@@ -64,7 +64,7 @@ public abstract class User implements Serializable {
 	@NotNull
 	@Size(max = 30, min = 5)
 	@Column(name = "password", nullable = false, length = 30)
-	private String psswd;
+	private String password;
 
 	public User() {
 		// Constructor para poder crear las tablas con JPA
@@ -126,12 +126,12 @@ public abstract class User implements Serializable {
 		this.email = email;
 	}
 
-	public String getPsswd() {
-		return psswd;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPsswd(String psswd) {
-		this.psswd = psswd;
+	public void setPassword(String psswd) {
+		this.password = psswd;
 	}
 
 	@Override
