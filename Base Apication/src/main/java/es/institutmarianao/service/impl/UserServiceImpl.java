@@ -3,12 +3,12 @@ package es.institutmarianao.service.impl;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import es.institutmarianao.domain.User;
 import es.institutmarianao.service.UserService;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService {
 	private static final Client client = ClientBuilder.newClient();
 

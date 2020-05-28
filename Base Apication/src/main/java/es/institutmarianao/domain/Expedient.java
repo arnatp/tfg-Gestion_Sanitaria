@@ -16,6 +16,7 @@ public class Expedient implements Serializable {
 	private List<Visit> history;
 
 	public Expedient() {
+		this.expedientId = 0;
 		history = new ArrayList<Visit>();
 	}
 

@@ -43,8 +43,7 @@
 					</div>
 					<div class="form-group row">
 						<label for="bornDate" class="col-8 col-form-label"> <b>Fecha
-								de nacimiento</b> <form:input class="form-control" type="date"
-								value="*{date}" id="bornDate" path="bornDate"
+								de nacimiento</b> <form:input class="form-control" type="date" id="bornDate" path="bornDate" value="${date}"
 								disabled="${hasRoleUser}" />
 						</label>
 					</div>

@@ -20,6 +20,10 @@ public class Prescription implements Serializable {
 		this.schedule = schedule;
 	}
 
+	public Prescription() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getPrescriptionId() {
 		return prescriptionId;
 	}

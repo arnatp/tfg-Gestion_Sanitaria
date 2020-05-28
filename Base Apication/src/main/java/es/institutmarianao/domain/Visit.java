@@ -1,7 +1,9 @@
 package es.institutmarianao.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Visit implements Serializable {
 
@@ -14,7 +16,8 @@ public class Visit implements Serializable {
 
 	private Boolean completed = false;
 
-	private Date date;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate date;
 
 	private String description;
 
@@ -22,12 +25,11 @@ public class Visit implements Serializable {
 
 	private Doctor doctor;
 
-	public Visit(String description, Prescription prescription, Doctor doctor) {
-		date = new Date();
-		this.description = description;
-		this.prescription = prescription;
-		this.doctor = doctor;
-	}
+	/*
+	 * public Visit(String description, Prescription prescription, Doctor doctor) {
+	 * date = new Date(); this.description = description; this.prescription =
+	 * prescription; this.doctor = doctor; }
+	 */
 
 	public Visit() {
 	}
@@ -48,11 +50,11 @@ public class Visit implements Serializable {
 		this.completed = completed;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

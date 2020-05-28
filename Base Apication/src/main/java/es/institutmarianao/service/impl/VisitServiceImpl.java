@@ -3,12 +3,13 @@ package es.institutmarianao.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import es.institutmarianao.domain.Expedient;
 import es.institutmarianao.domain.Visit;
 import es.institutmarianao.service.VisitService;
-@Component
+
+@Service
 public class VisitServiceImpl implements VisitService {
 
 	@Override
