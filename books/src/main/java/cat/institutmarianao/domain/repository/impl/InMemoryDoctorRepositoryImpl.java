@@ -57,7 +57,7 @@ public class InMemoryDoctorRepositoryImpl implements DoctorRepository {
 		if (this.listOfDoctors.containsKey(doctor.getDni())) {
 			User toUpdate = this.listOfDoctors.get(doctor.getDni());
 			toUpdate.setEmail(doctor.getEmail());
-			toUpdate.setPsswd(doctor.getPsswd());
+			toUpdate.setPassword(doctor.getPassword());
 		}
 	}
 

@@ -19,11 +19,12 @@ import es.institutmarianao.service.DoctorService;
 
 @Component
 public class DoctorServiceImpl implements DoctorService {
+	private static final String PATH_DOCTOR = "http://localhost/TFGRestService/rest/doctors";
 	private static final Client client = ClientBuilder.newClient();
 
 	@Override
 	public List<Doctor> getAll() {
-		URI uri = UriBuilder.fromUri("http://localhost/books/rest/doctors").port(8080).build();
+		URI uri = UriBuilder.fromUri(PATH_DOCTOR).port(8080).build();
 		WebTarget target = client.target(uri);
 		Invocation invocation = target.request(MediaType.APPLICATION_JSON).buildGet();
 		Response res = invocation.invoke();
@@ -53,8 +54,13 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public Doctor getUserByDni(String dni) {
-		// TODO Auto-generated method stub
-		return null;
+		URI uri = UriBuilder.fromUri(PATH_DOCTOR).path("findByDni").path(dni).port(8080).build();
+		WebTarget target = client.target(uri);
+		Invocation invocation = target.request(MediaType.APPLICATION_JSON).buildGet();
+		Response res = invocation.invoke();
+		Doctor returnedDoctor = res.readEntity(new GenericType<Doctor>() {
+		});
+		return returnedDoctor;
 	}
 
 	@Override
