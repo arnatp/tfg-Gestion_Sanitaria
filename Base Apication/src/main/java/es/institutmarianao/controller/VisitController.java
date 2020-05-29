@@ -16,8 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.institutmarianao.domain.Doctor;
 import es.institutmarianao.domain.Visit;
-import es.institutmarianao.service.DoctorWebService;
-import es.institutmarianao.service.VisitWebService;
+import es.institutmarianao.serviceweb.DoctorWebService;
+import es.institutmarianao.serviceweb.VisitWebService;
 
 @Controller
 public class VisitController {

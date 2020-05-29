@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import es.institutmarianao.domain.Role;
 import es.institutmarianao.domain.User;
-import es.institutmarianao.service.DoctorWebService;
-import es.institutmarianao.service.PatientWebService;
+import es.institutmarianao.serviceweb.DoctorWebService;
+import es.institutmarianao.serviceweb.PatientWebService;
 
-@Component
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired

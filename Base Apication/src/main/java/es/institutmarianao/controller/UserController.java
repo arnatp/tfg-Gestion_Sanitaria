@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.institutmarianao.domain.User;
-import es.institutmarianao.service.UserWebService;
+import es.institutmarianao.serviceweb.UserWebService;
 
 @Controller
 public class UserController {

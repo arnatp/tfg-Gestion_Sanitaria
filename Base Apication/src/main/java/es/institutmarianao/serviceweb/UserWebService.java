@@ -1,4 +1,4 @@
-package es.institutmarianao.service;
+package es.institutmarianao.serviceweb;
 
 import es.institutmarianao.domain.User;
 

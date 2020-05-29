@@ -1,4 +1,4 @@
-package es.institutmarianao.service.impl;
+package es.institutmarianao.serviceweb.impl;
 
 import java.net.URI;
 import java.util.List;
@@ -12,12 +12,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import es.institutmarianao.domain.Doctor;
-import es.institutmarianao.service.DoctorWebService;
+import es.institutmarianao.serviceweb.DoctorWebService;
 
-@Component
+@Service
 public class DoctorWebServiceImpl implements DoctorWebService {
 	private static final String PATH_DOCTOR = "http://localhost/TFGRestService/rest/doctors";
 	private static final Client client = ClientBuilder.newClient();

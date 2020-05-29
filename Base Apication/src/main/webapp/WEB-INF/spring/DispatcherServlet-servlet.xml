@@ -19,9 +19,7 @@
         </bean>
     </mvc:interceptors>
     <context:component-scan base-package="  es.institutmarianao.controller
-                                            es.institutmarianao.domain.repository 
                                             es.institutmarianao.service
-                                            es.institutmarianao.security
                                             es.institutmarianao.serviceweb"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

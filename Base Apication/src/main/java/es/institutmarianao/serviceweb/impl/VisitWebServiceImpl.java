@@ -1,13 +1,13 @@
-package es.institutmarianao.service.impl;
+package es.institutmarianao.serviceweb.impl;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import es.institutmarianao.domain.Visit;
-import es.institutmarianao.service.VisitWebService;
+import es.institutmarianao.serviceweb.VisitWebService;
 
-@Component
+@Service
 public class VisitWebServiceImpl implements VisitWebService {
 
 	@Override

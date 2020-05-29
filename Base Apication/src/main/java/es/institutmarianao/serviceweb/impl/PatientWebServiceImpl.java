@@ -1,4 +1,4 @@
-package es.institutmarianao.service.impl;
+package es.institutmarianao.serviceweb.impl;
 
 import java.net.URI;
 import java.util.List;
@@ -16,12 +16,12 @@ import javax.ws.rs.core.UriBuilder;
 import org.springframework.stereotype.Component;
 
 import es.institutmarianao.domain.Patient;
-import es.institutmarianao.service.PatientWebService;
+import es.institutmarianao.serviceweb.PatientWebService;
 
 @Component
 public class PatientWebServiceImpl implements PatientWebService {
 	private static final Client client = ClientBuilder.newClient();
-	private static final String PATH_DOCTOR = "http://localhost/TFGRestService/rest/patients";
+	private static final String PATH_PATIENTS = "http://localhost/TFGRestService/rest/patients";
 
 	@Override
 	public List<Patient> getAll() {
@@ -31,7 +31,7 @@ public class PatientWebServiceImpl implements PatientWebService {
 
 	@Override
 	public void add(Patient patient) {
-		URI uri = UriBuilder.fromUri("http://localhost/books/rest/patients").port(8080).build();
+		URI uri = UriBuilder.fromUri(PATH_PATIENTS).port(8080).build();
 		WebTarget target = client.target(uri);
 		Invocation invocation = target.request(MediaType.APPLICATION_JSON)
 				.buildPost(Entity.entity(patient, MediaType.APPLICATION_JSON));
@@ -41,18 +41,16 @@ public class PatientWebServiceImpl implements PatientWebService {
 	@Override
 	public void update(Patient patient) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void delete(Patient patient) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public Patient getUserByDni(String username) {
-		URI uri = UriBuilder.fromUri(PATH_DOCTOR).path("findByDni").path(username).port(8080).build();
+		URI uri = UriBuilder.fromUri(PATH_PATIENTS).path("findByDni").path(username).port(8080).build();
 		WebTarget target = client.target(uri);
 		Invocation invocation = target.request(MediaType.APPLICATION_JSON).buildGet();
 		Response res = invocation.invoke();

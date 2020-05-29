@@ -12,7 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import es.institutmarianao.domain.User;
-import es.institutmarianao.service.UserWebService;
+import es.institutmarianao.serviceweb.UserWebService;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
