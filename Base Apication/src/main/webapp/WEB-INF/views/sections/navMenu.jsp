@@ -10,22 +10,22 @@
         <a class="navbar-brand" href="<spring:url value='/'/>"><i class="fa fa-plus"></i>
             <spring:message code="navMenu.title" />
         </a>
-        <sec:authorize access="hasAnyRole('ROLE_USER')">
+        <sec:authorize access="hasAnyRole('ROLE_PATIENT','ROLE_EMPLOYEE')">
             <sec:authentication var="user" property="principal" />
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item">
+             <!--    <li class="nav-item">
                     <a class="nav-link" href="<c:url value='/newVisit'/>"><i class="fa fa-calendar-plus-o"></i>
                         Solicitar visita</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value='/showHistory'/>"><i class="fa fa-history"></i>
                         Ver historial</a>
-                </li>
+                </li>-->
                 <li class="nav-item">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                class="fa fa-user-circle"></i> Ramoncin
+                                class="fa fa-user-circle"></i> <c:out value="${sessionScope.user.name}"/>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="<c:url value='/secured/updateUser'/>"><i
@@ -37,7 +37,7 @@
                 </li>
             </ul>
         </sec:authorize>
-        <sec:authorize access="!hasAnyRole('ROLE_USER')">
+        <sec:authorize access="!hasAnyRole('ROLE_PATIENT','ROLE_EMPLOYEE')">
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value='/signUp'/>"><i class="fa fa-arrow-up"></i>

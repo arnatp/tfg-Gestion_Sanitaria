@@ -97,7 +97,7 @@
 					</div>
 					<div class="form-group row">
 						<label for="password2" class="col-8 col-form-label"> <b>Repetir
-								Contraseña</b> <input type="input" class="form-control"
+								Contraseña</b> <input type="password" class="form-control"
 							type="password" id="password2" disabled="${hasRoleUser}" />
 						</label>
 					</div>

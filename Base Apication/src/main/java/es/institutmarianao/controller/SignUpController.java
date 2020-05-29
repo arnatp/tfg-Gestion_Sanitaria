@@ -50,7 +50,7 @@ public class SignUpController {
 
 		patientService.addPatient(newPatientToAdd);
 		loginUser(newPatientToAdd, request);
-		return "redirect:/";
+		return "redirect:/check";
 	}
 
 	private void loginUser(User user, HttpServletRequest request) {
