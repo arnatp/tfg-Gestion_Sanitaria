@@ -12,6 +12,7 @@ public class VisitWebServiceImpl implements VisitWebService {
 
 	@Override
 	public List<Visit> getAll() {
+
 		// TODO Auto-generated method stub
 		return null;
 	}

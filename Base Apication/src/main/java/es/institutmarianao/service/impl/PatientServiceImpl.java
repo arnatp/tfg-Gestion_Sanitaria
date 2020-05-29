@@ -18,7 +18,7 @@ import es.institutmarianao.service.PatientService;
 @Component
 public class PatientServiceImpl implements PatientService {
 	private static final Client client = ClientBuilder.newClient();
-	private static final String PATH_DOCTOR = "http://localhost/TFGRestService/rest/patients";
+	private static final String PATH_PATIENT = "http://localhost/TFGRestService/rest/patients";
 
 	/*
 	 * @Autowired private PatientWebService patientWebService;
@@ -28,7 +28,7 @@ public class PatientServiceImpl implements PatientService {
 	public void addPatient(Patient patient) {
 		// patientWebService.add(patient);
 
-		URI uri = UriBuilder.fromUri("http://localhost/TFGRestService/rest/patients").port(8080).build();
+		URI uri = UriBuilder.fromUri(PATH_PATIENT).port(8080).build();
 		WebTarget target = client.target(uri);
 		Invocation invocation = target.request(MediaType.APPLICATION_JSON)
 				.buildPost(Entity.entity(patient, MediaType.APPLICATION_JSON));
