@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.institutmarianao.domain.User;
-import es.institutmarianao.serviceweb.UserWebService;
+import es.institutmarianao.service.UserService;
 
 @Controller
 public class UserController {
 
 	@Autowired
-	private UserWebService userService;
+	private UserService userService;
 
 	@RequestMapping(value = "/patient/home", method = RequestMethod.GET)
 	public ModelAndView orders() throws ServletException, IOException {
@@ -52,7 +52,7 @@ public class UserController {
 			throw new RuntimeException("Intentat accedir amb camps no permesos: "
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-		userService.update(newUserToAdd);
+		// userService.update(newUserToAdd);
 		return "redirect:/";
 	}
 

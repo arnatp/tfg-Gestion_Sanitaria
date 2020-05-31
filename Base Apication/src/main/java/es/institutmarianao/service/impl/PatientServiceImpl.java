@@ -19,4 +19,9 @@ public class PatientServiceImpl implements PatientService {
 
 	}
 
+	@Override
+	public Patient getUserByDni(String name) {
+		return patientWebService.getUserByDni(name);
+	}
+
 }

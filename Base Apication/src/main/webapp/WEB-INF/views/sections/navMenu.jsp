@@ -28,11 +28,18 @@
                                 class="fa fa-user-circle"></i> <c:out value="${sessionScope.user.name}"/>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="<c:url value='/secured/updateUser'/>"><i
+                        <sec:authorize access="hasAnyRole('ROLE_PATIENT')">
+                            <a class="dropdown-item" href="<c:url value='/patient/updateUser'/>"><i
                                     class="fa fa-id-card-o"></i> Mis datos</a>
+						</sec:authorize>
+						<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
+                            <a class="dropdown-item" href="<c:url value='/doctor/updateUser'/>"><i
+                                    class="fa fa-id-card-o"></i> Mis datos</a>
+						</sec:authorize>
                             <a class="dropdown-item" href="<c:url value='/logout'/>"><i class="fa fa-sign-out"></i>
                                 Cerrar sesión</a>
                         </div>
+                        
                     </div>
                 </li>
             </ul>

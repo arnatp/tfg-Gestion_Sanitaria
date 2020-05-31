@@ -13,7 +13,7 @@
     <jsp:include page="sections/navMenu.jsp" />
         
         <div class="col-12" style="margin-top: 3%;">
-            <h1>Bienveido: <c:out value="${sessionScope.user.name}"/></h1>
+            <h1>Bienvenido: <c:out value="${sessionScope.user.name}"/></h1>
             <hr>
         </div>
 </body>

@@ -18,54 +18,55 @@
 	<div class="container"
 		style="border: 1px solid black; box-shadow: 4px 4px 8px grey; margin-top: 3%;">
 		<h3>
-			<i class="fa fa-user"></i> Datos de usuario
+			<sec:authorize access="hasAnyRole('ROLE_PATIENT')">
+				<c:set var="hasRoleUser" value="1" scope="request" />
+				<spring:message code="user.patientData" />
+			</sec:authorize>
+			<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
+				<c:set var="hasRoleUser" value="2" scope="request" />
+				<spring:message code="user.doctorData" />
+			</sec:authorize>
+			<sec:authorize access="!hasAnyRole('ROLE_PATIENT','ROLE_EMPLOYEE')">
+				<c:set var="hasRoleUser" value="3" scope="request" />
+				<spring:message code="user.signUp" />
+			</sec:authorize>
 		</h3>
 		<hr style="background-color: hsl(120, 60%, 50%)">
-		<form:form modelAttribute="patient" style="margin-top: 3%;">
-			<legend>
-				<sec:authorize access="hasAnyRole('ROLE_USER')">
-					<c:set var="hasRoleUser" value="true" scope="request" />
-					<spring:message code="user.userData" />
-				</sec:authorize>
-				<sec:authorize access="!hasAnyRole('ROLE_USER')">
-					<c:set var="hasRoleUser" value="false" scope="request" />
-					<spring:message code="user.signUp" />
-				</sec:authorize>
-			</legend>
+		<form:form modelAttribute="user" style="margin-top: 3%;">
 			<div class="row">
 				<div class="col">
 					<div class="form-group row">
 						<label for="name" class="col-8 col-form-label"> <b>Nombre
 								completo</b> <form:input class="form-control" type="text"
 								placeholder="Arny The Critical" path="name" id="name"
-								disabled="${hasRoleUser}" />
+								disabled="${hasRoleUser!=3}" />
 						</label>
 					</div>
 					<div class="form-group row">
 						<label for="bornDate" class="col-8 col-form-label"> <b>Fecha
 								de nacimiento</b> <form:input class="form-control" type="date" id="bornDate" path="bornDate" value="${date}"
-								disabled="${hasRoleUser}" />
+								disabled="${hasRoleUser!=3}" />
 						</label>
 					</div>
 					<div class="form-group row">
 						<label for="dni" class="col-8 col-form-label"> <b>DNI</b>
 							<form:input class="form-control" type="text"
 								placeholder="12345678X" id="dni" path="dni"
-								disabled="${hasRoleUser}" />
+								disabled="${hasRoleUser!=3}" />
 						</label>
 					</div>
 					<div class="form-group row">
 						<label for="mediCard" class="col-8 col-form-label"> <b>Tarjeta
 								sanitaria</b> <form:input class="form-control" type="text"
 								placeholder="12345678X" id="mediCard" path="mediCard"
-								disabled="${hasRoleUser}" />
+								disabled="${hasRoleUser!=3}" />
 						</label>
 					</div>
 					<div class="form-group row">
 						<div class="form-group col-md-8">
 							<label for="gender"><b>Sexo</b></label>
 							<form:select id="gender" class="form-control" path="gender"
-								disabled="${hasRoleUser}">
+								disabled="${hasRoleUser!=3}">
 								<option value="M">Hombre</option>
 								<option value="F">Mujer</option>
 								<option value="N">Otro</option>
@@ -81,14 +82,16 @@
 								placeholder="patient@example.com" id="email" path="email" />
 						</label>
 					</div>
-					<div class="form-group row">
-						<label for="" class="col-4 col-form-label"> <b>Peso (kg)</b> 
-						<form:input class="form-control" type="number" step="0.01" min="0" id="height" path="height"/>
-						</label>
-						<label for="email" class="col-4 col-form-label"> <b>Altura (cm)</b> 
-						<form:input class="form-control" type="number" step="0.01" min="0" id="weight" path="weigth"/>
-						</label>
-					</div>
+					<sec:authorize access="!hasAnyRole('ROLE_EMPLOYEE')">
+						<div class="form-group row">
+							<label class="col-4 col-form-label"> <b>Peso (kg)</b> 
+								<form:input class="form-control" type="number" step="0.01" min="0" id="height" path="height"/>
+							</label>
+							<label class="col-4 col-form-label"> <b>Altura (cm)</b> 
+								<form:input class="form-control" type="number" step="0.01" min="0" id="weight" path="weigth"/>
+							</label>
+						</div>
+					</sec:authorize>
 					<div class="form-group row">
 						<label for="password1" class="col-8 col-form-label"> <b>Contraseña</b>
 							<form:input class="form-control" type="password" id="password1"
@@ -98,10 +101,17 @@
 					<div class="form-group row">
 						<label for="password2" class="col-8 col-form-label"> <b>Repetir
 								Contraseña</b> <input type="password" class="form-control"
-							type="password" id="password2" disabled="${hasRoleUser}" />
+							type="password" id="password2" />
 						</label>
 					</div>
-					<button type="submit" class="btn btn-outline-success">Registrarse</button>
+					<c:choose>
+	                    <c:when test="${hasRoleUser==3}">
+	                            <input type="submit" id="btnAdd" class="btn btn-primary"value ="Crear Usuario"/>
+	                    </c:when>
+	                    <c:otherwise>
+	                            <input type="submit" id="btnAdd" class="btn btn-primary"value ="Modificar Datos"/>
+	                    </c:otherwise>
+            		</c:choose>
 				</div>
 			</div>
 		</form:form>

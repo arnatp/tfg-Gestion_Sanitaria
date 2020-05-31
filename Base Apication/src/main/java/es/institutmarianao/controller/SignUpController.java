@@ -35,12 +35,12 @@ public class SignUpController {
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
 	public ModelAndView signUp() throws ServletException, IOException {
 		ModelAndView modelview = new ModelAndView("user");
-		modelview.getModelMap().addAttribute("patient", new Patient());
+		modelview.getModelMap().addAttribute("user", new Patient());
 		return modelview;
 	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public String processSignUpForm(@ModelAttribute("patient") Patient newPatientToAdd, BindingResult result,
+	public String processSignUpForm(@ModelAttribute("user") Patient newPatientToAdd, BindingResult result,
 			HttpServletRequest request) {
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
