@@ -30,7 +30,7 @@ public class VisitController {
 
 	@RequestMapping(value = "patient/visit", method = RequestMethod.GET)
 	public ModelAndView requestVisit() throws ServletException, IOException {
-		ModelAndView modelview = new ModelAndView("newVisit");
+		ModelAndView modelview = new ModelAndView("visit");
 		modelview.getModelMap().addAttribute("visit", new Visit());
 		List<Doctor> doctors = doctorService.getAll();
 		modelview.getModelMap().addAttribute("doctor", doctors);
@@ -48,22 +48,31 @@ public class VisitController {
 		visitService.add(newVisitToAdd);
 		return "redirect:/patient/";
 	}
-//
-//	@RequestMapping(value = "/doctor/visits", method = RequestMethod.GET)
-//	public ModelAndView orders() throws ServletException, IOException {
-//		ModelAndView modelview = new ModelAndView("orders");
-//		return modelview;
-//	}
-//
-//	@RequestMapping(value = "/doctor/visit", method = RequestMethod.GET)
-//	public ModelAndView orders() throws ServletException, IOException {
-//		ModelAndView modelview = new ModelAndView("orders");
-//		return modelview;
-//	}
-//
-//	@RequestMapping(value = "/doctor/visit", method = RequestMethod.POST)
-//	public ModelAndView orders() throws ServletException, IOException {
-//		ModelAndView modelview = new ModelAndView("orders");
-//		return modelview;
-//	}
+
+	@RequestMapping(value = "/doctor/visits", method = RequestMethod.GET)
+	public ModelAndView getAllVisits(HttpServletRequest request) throws ServletException, IOException {
+		ModelAndView modelview = new ModelAndView("allVisits");
+		Doctor doctor = (Doctor) request.getSession().getAttribute("user");
+		List<Visit> visits = visitService.getVisitsByDoctorId(doctor.getUserId());
+		modelview.getModelMap().addAttribute("visits", visits);
+
+		return modelview;
+	}
+
+	@RequestMapping(value = "/doctor/visit", method = RequestMethod.GET)
+	public ModelAndView seeVisit(@RequestParam("visitId") int visitId) throws ServletException, IOException {
+		ModelAndView modelview = new ModelAndView("visit");
+		Visit visit = visitService.getVisitByVisitId(visitId);
+		modelview.getModelMap().addAttribute("visit", visit);
+		List<Doctor> doctors = doctorService.getAll();
+		modelview.getModelMap().addAttribute("doctor", doctors);
+
+		return modelview;
+	}
+
+	@RequestMapping(value = "/doctor/visit", method = RequestMethod.POST)
+	public String updateVisit(@ModelAttribute("visit") Visit visitModified) throws ServletException, IOException {
+		visitService.update(visitModified);
+		return "redirect:/doctor/";
+	}
 }
