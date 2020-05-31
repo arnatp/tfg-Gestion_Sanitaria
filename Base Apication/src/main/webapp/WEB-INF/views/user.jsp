@@ -84,11 +84,11 @@
 					</div>
 					<sec:authorize access="!hasAnyRole('ROLE_EMPLOYEE')">
 						<div class="form-group row">
-							<label class="col-4 col-form-label"> <b>Peso (kg)</b> 
+							<label class="col-4 col-form-label"> <b>Altura (cm)</b> 
 								<form:input class="form-control" type="number" step="0.01" min="0" id="height" path="height"/>
 							</label>
-							<label class="col-4 col-form-label"> <b>Altura (cm)</b> 
-								<form:input class="form-control" type="number" step="0.01" min="0" id="weight" path="weigth"/>
+							<label class="col-4 col-form-label"> <b>Peso (kg)</b> 
+								<form:input class="form-control" type="number" step="0.01" min="0" id="weigth" path="weigth"/>
 							</label>
 						</div>
 					</sec:authorize>
@@ -96,12 +96,6 @@
 						<label for="password1" class="col-8 col-form-label"> <b>Contraseña</b>
 							<form:input class="form-control" type="password" id="password1"
 								path="password" />
-						</label>
-					</div>
-					<div class="form-group row">
-						<label for="password2" class="col-8 col-form-label"> <b>Repetir
-								Contraseña</b> <input type="password" class="form-control"
-							type="password" id="password2" />
 						</label>
 					</div>
 					<c:choose>

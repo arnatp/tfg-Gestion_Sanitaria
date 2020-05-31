@@ -21,7 +21,7 @@ public abstract class User implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final String DNIREGEXP = "\\d{8}[A-HJ-NP-TV-Z]";
-	private static final String GENDERREGEXP = "[H,M]";
+	private static final String GENDERREGEXP = "[M,F,N]";
 	private static final String EMAILREGEXP = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
 
 	@Id

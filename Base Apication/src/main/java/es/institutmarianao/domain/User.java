@@ -105,6 +105,11 @@ public abstract class User implements Serializable, UserDetails {
 	}
 
 	@Override
+	public String getUsername() {
+		return getDni();
+	}
+
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -175,8 +180,4 @@ public abstract class User implements Serializable, UserDetails {
 		this.enabled = enabled;
 	}
 
-	@Override
-	public String getUsername() {
-		return getDni();
-	}
 }
