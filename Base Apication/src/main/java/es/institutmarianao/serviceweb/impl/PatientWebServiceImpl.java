@@ -13,20 +13,25 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import es.institutmarianao.domain.Patient;
 import es.institutmarianao.serviceweb.PatientWebService;
 
-@Component
+@Service
 public class PatientWebServiceImpl implements PatientWebService {
 	private static final Client client = ClientBuilder.newClient();
 	private static final String PATH_PATIENTS = "http://localhost/TFGRestService/rest/patients";
 
 	@Override
 	public List<Patient> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		URI uri = UriBuilder.fromUri(PATH_PATIENTS).port(8080).build();
+		WebTarget target = client.target(uri);
+		Invocation invocation = target.request(MediaType.APPLICATION_JSON).buildGet();
+		Response res = invocation.invoke();
+		List<Patient> returnedPatients = res.readEntity(new GenericType<List<Patient>>() {
+		});
+		return returnedPatients;
 	}
 
 	@Override
@@ -40,12 +45,20 @@ public class PatientWebServiceImpl implements PatientWebService {
 
 	@Override
 	public void update(Patient patient) {
-		// TODO Auto-generated method stub
+		URI uri = UriBuilder.fromUri(PATH_PATIENTS).port(8080).build();
+		WebTarget target = client.target(uri);
+		Invocation invocation = target.request(MediaType.APPLICATION_JSON)
+				.buildPut(Entity.entity(patient, MediaType.APPLICATION_JSON));
+		invocation.invoke();
 	}
 
 	@Override
 	public void delete(Patient patient) {
-		// TODO Auto-generated method stub
+//		URI uri = UriBuilder.fromUri(PATH_PATIENTS).port(8080).build();
+//		WebTarget target = client.target(uri);
+//		Invocation invocation = target.request(MediaType.APPLICATION_JSON)
+//				.buildDelete(Entity.entity(patient, MediaType.APPLICATION_JSON));
+//		invocation.invoke();
 	}
 
 	@Override
@@ -61,8 +74,13 @@ public class PatientWebServiceImpl implements PatientWebService {
 
 	@Override
 	public Patient getUserByMediCard(String mediCard) {
-		// TODO Auto-generated method stub
-		return null;
+		URI uri = UriBuilder.fromUri(PATH_PATIENTS).path("findByMediCard").path(mediCard).port(8080).build();
+		WebTarget target = client.target(uri);
+		Invocation invocation = target.request(MediaType.APPLICATION_JSON).buildGet();
+		Response res = invocation.invoke();
+		Patient returnedPatient = res.readEntity(new GenericType<Patient>() {
+		});
+		return returnedPatient;
 	}
 
 }

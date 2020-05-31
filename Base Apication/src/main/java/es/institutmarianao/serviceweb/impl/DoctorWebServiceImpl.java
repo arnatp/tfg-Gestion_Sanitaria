@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
@@ -31,25 +32,33 @@ public class DoctorWebServiceImpl implements DoctorWebService {
 		List<Doctor> returnedDoctors = res.readEntity(new GenericType<List<Doctor>>() {
 		});
 		return returnedDoctors;
-
 	}
 
 	@Override
 	public void add(Doctor doctor) {
-		// TODO Auto-generated method stub
-
+		URI uri = UriBuilder.fromUri(PATH_DOCTOR).port(8080).build();
+		WebTarget target = client.target(uri);
+		Invocation invocation = target.request(MediaType.APPLICATION_JSON)
+				.buildPost(Entity.entity(doctor, MediaType.APPLICATION_JSON));
+		invocation.invoke();
 	}
 
 	@Override
 	public void update(Doctor doctor) {
-		// TODO Auto-generated method stub
-
+		URI uri = UriBuilder.fromUri(PATH_DOCTOR).port(8080).build();
+		WebTarget target = client.target(uri);
+		Invocation invocation = target.request(MediaType.APPLICATION_JSON)
+				.buildPut(Entity.entity(doctor, MediaType.APPLICATION_JSON));
+		invocation.invoke();
 	}
 
 	@Override
 	public void delete(Doctor doctor) {
-		// TODO Auto-generated method stub
-
+//		URI uri = UriBuilder.fromUri(PATH_DOCTOR).port(8080).build();
+//		WebTarget target = client.target(uri);
+//		Invocation invocation = target.request(MediaType.APPLICATION_JSON)
+//				.buildDelete(Entity.entity(doctor, MediaType.APPLICATION_JSON));
+//		invocation.invoke();
 	}
 
 	@Override
@@ -65,8 +74,13 @@ public class DoctorWebServiceImpl implements DoctorWebService {
 
 	@Override
 	public Doctor getuserByMediCard(String mediCard) {
-		// TODO Auto-generated method stub
-		return null;
+		URI uri = UriBuilder.fromUri(PATH_DOCTOR).path("findByMediCard").path(mediCard).port(8080).build();
+		WebTarget target = client.target(uri);
+		Invocation invocation = target.request(MediaType.APPLICATION_JSON).buildGet();
+		Response res = invocation.invoke();
+		Doctor returnedDoctor = res.readEntity(new GenericType<Doctor>() {
+		});
+		return returnedDoctor;
 	}
 
 }

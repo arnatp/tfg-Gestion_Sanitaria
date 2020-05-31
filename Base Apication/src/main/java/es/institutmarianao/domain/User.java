@@ -53,7 +53,7 @@ public abstract class User implements Serializable, UserDetails {
 	}
 
 	public void setUserId(int userId) {
-		this.userId = 0;
+		this.userId = userId;
 	}
 
 	public String getDni() {

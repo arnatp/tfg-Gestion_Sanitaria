@@ -1,11 +1,21 @@
 package es.institutmarianao.service;
 
+import java.util.List;
+
 import es.institutmarianao.domain.Patient;
 
 public interface PatientService {
 
-	void addPatient(Patient patient);
+	List<Patient> getAll();
 
-	Patient getUserByDni(String name);
+	void add(Patient patient);
+
+	void update(Patient patient);
+
+	void delete(Patient patient);
+
+	Patient getUserByDni(String dni);
+
+	Patient getUserByMediCard(String mediCard);
 
 }

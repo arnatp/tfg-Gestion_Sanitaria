@@ -48,7 +48,7 @@ public class SignUpController {
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
 
-		patientService.addPatient(newPatientToAdd);
+		patientService.add(newPatientToAdd);
 		loginUser(newPatientToAdd, request);
 		return "redirect:/check";
 	}

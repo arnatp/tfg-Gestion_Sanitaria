@@ -12,13 +12,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import es.institutmarianao.domain.User;
-import es.institutmarianao.serviceweb.UserWebService;
+import es.institutmarianao.service.UserService;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
-	private UserWebService userService;
+	private UserService userService;
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {

@@ -18,15 +18,15 @@ import org.springframework.web.servlet.ModelAndView;
 import es.institutmarianao.domain.Doctor;
 import es.institutmarianao.domain.Patient;
 import es.institutmarianao.domain.Visit;
-import es.institutmarianao.serviceweb.DoctorWebService;
-import es.institutmarianao.serviceweb.VisitWebService;
+import es.institutmarianao.service.DoctorService;
+import es.institutmarianao.service.VisitService;
 
 @Controller
 public class VisitController {
 	@Autowired
-	private VisitWebService visitService;
+	private VisitService visitService;
 	@Autowired
-	private DoctorWebService doctorService;
+	private DoctorService doctorService;
 
 	@RequestMapping(value = "patient/visit", method = RequestMethod.GET)
 	public ModelAndView requestVisit() throws ServletException, IOException {
