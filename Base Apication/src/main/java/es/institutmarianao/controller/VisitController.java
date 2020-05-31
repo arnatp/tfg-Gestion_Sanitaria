@@ -12,9 +12,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.institutmarianao.domain.Doctor;
+import es.institutmarianao.domain.Patient;
 import es.institutmarianao.domain.Visit;
 import es.institutmarianao.serviceweb.DoctorWebService;
 import es.institutmarianao.serviceweb.VisitWebService;
@@ -26,9 +28,9 @@ public class VisitController {
 	@Autowired
 	private DoctorWebService doctorService;
 
-	@RequestMapping(value = "/visit", method = RequestMethod.GET)
+	@RequestMapping(value = "patient/visit", method = RequestMethod.GET)
 	public ModelAndView requestVisit() throws ServletException, IOException {
-		ModelAndView modelview = new ModelAndView("visit");
+		ModelAndView modelview = new ModelAndView("newVisit");
 		modelview.getModelMap().addAttribute("visit", new Visit());
 		List<Doctor> doctors = doctorService.getAll();
 		modelview.getModelMap().addAttribute("doctor", doctors);
@@ -38,9 +40,13 @@ public class VisitController {
 
 	@RequestMapping(value = "/patient/visit", method = RequestMethod.POST)
 	public String processSignUpForm(@ModelAttribute("visit") Visit newVisitToAdd, BindingResult result,
-			HttpServletRequest request) {
+			HttpServletRequest request, @RequestParam("doctorDni") String dni) {
+
+		Patient patient = (Patient) request.getSession().getAttribute("user");
+		newVisitToAdd.setDoctor(doctorService.getUserByDni(dni));
+		newVisitToAdd.setPatient(patient);
 		visitService.add(newVisitToAdd);
-		return "redirect:/";
+		return "redirect:/patient/";
 	}
 //
 //	@RequestMapping(value = "/doctor/visits", method = RequestMethod.GET)

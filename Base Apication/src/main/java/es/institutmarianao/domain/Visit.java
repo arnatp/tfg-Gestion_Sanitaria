@@ -19,11 +19,15 @@ public class Visit implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 
-	private String description;
+	private String initialDescription;
+
+	private String resolution;
 
 	private Prescription prescription = null;
 
 	private Doctor doctor;
+
+	private Patient patient;
 
 	/*
 	 * public Visit(String description, Prescription prescription, Doctor doctor) {
@@ -58,12 +62,20 @@ public class Visit implements Serializable {
 		this.date = date;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getInitialDescription() {
+		return initialDescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setInitialDescription(String description) {
+		initialDescription = description;
+	}
+
+	public String getResolution() {
+		return resolution;
+	}
+
+	public void setResolution(String resolution) {
+		this.resolution = resolution;
 	}
 
 	public Prescription getPrescription() {
@@ -80,5 +92,13 @@ public class Visit implements Serializable {
 
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 }
