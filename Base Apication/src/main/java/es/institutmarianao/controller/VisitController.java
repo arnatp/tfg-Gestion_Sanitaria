@@ -64,9 +64,6 @@ public class VisitController {
 		ModelAndView modelview = new ModelAndView("visit");
 		Visit visit = visitService.getVisitByVisitId(visitId);
 		modelview.getModelMap().addAttribute("visit", visit);
-		List<Doctor> doctors = doctorService.getAll();
-		modelview.getModelMap().addAttribute("doctor", doctors);
-
 		return modelview;
 	}
 

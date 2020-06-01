@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -47,7 +48,8 @@ public class SignUpController {
 			throw new RuntimeException("Intentat accedir amb camps no permesos: "
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		newPatientToAdd.setPassword(encoder.encode(newPatientToAdd.getPassword()));
 		patientService.add(newPatientToAdd);
 		loginUser(newPatientToAdd, request);
 		return "redirect:/check";
