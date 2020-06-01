@@ -62,8 +62,8 @@ public abstract class User implements Serializable {
 	private String email;
 
 	@NotNull
-	@Size(max = 30, min = 5)
-	@Column(name = "password", nullable = false, length = 30)
+	@Size(max = 30)
+	@Column(name = "password", nullable = false, length = 60)
 	private String password;
 
 	public User() {
