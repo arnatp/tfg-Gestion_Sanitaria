@@ -59,6 +59,20 @@ public class VisitRestService {
 	}
 
 	@GET
+	@Path("findByPatientId/{patientId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Visit> findByPatientId(@PathParam("patientId") int patientId) {
+		return visitRepository.getVisitsByPatientId(patientId);
+	}
+
+	@GET
+	@Path("findByPatientIdCompleted/{patientId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Visit> findByPatientIdCompleted(@PathParam("patientId") int patientId) {
+		return visitRepository.getVisitsCompletedByPatientId(patientId);
+	}
+
+	@GET
 	@Path("findByDoctorId/{doctorId}/date/{date}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Visit> findByDoctorIdAndDate(@PathParam("doctorId") int doctorId, @PathParam("date") String date) {

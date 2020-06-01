@@ -121,4 +121,16 @@ public class VisitWebServiceImpl implements VisitWebService {
 		return returnedVisit;
 	}
 
+	@Override
+	public List<Visit> getVisitsCompletedByPatientId(int patientId) {
+		URI uri = UriBuilder.fromUri(PATH_VISITS).path("findByPatientIdCompleted").path(String.valueOf(patientId))
+				.port(8080).build();
+		WebTarget target = client.target(uri);
+		Invocation invocation = target.request(MediaType.APPLICATION_JSON).buildGet();
+		Response res = invocation.invoke();
+		List<Visit> returnedVisit = res.readEntity(new GenericType<List<Visit>>() {
+		});
+		return returnedVisit;
+	}
+
 }
