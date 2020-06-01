@@ -35,38 +35,41 @@
 		<form:form modelAttribute="user" style="margin-top: 3%;">
 			<div class="row">
 				<div class="col">
+						 <form:input class="form-control" type="text"
+								placeholder="0001" path="userId" id="userId"
+								hidden="true" readonly="true"/>
 					<div class="form-group row">
 						<label for="name" class="col-8 col-form-label"> <b>Nombre
 								completo</b> <form:input class="form-control" type="text"
 								placeholder="Arny The Critical" path="name" id="name"
-								disabled="${hasRoleUser!=3}" />
+								readonly="${hasRoleUser!=3}" />
 						</label>
 					</div>
 					<div class="form-group row">
 						<label for="bornDate" class="col-8 col-form-label"> <b>Fecha
 								de nacimiento</b> <form:input class="form-control" type="date" id="bornDate" path="bornDate" value="${date}"
-								disabled="${hasRoleUser!=3}" />
+								readonly="${hasRoleUser!=3}" />
 						</label>
 					</div>
 					<div class="form-group row">
 						<label for="dni" class="col-8 col-form-label"> <b>DNI</b>
 							<form:input class="form-control" type="text"
 								placeholder="12345678X" id="dni" path="dni"
-								disabled="${hasRoleUser!=3}" />
+								readonly="${hasRoleUser!=3}" />
 						</label>
 					</div>
 					<div class="form-group row">
 						<label for="mediCard" class="col-8 col-form-label"> <b>Tarjeta
 								sanitaria</b> <form:input class="form-control" type="text"
 								placeholder="12345678X" id="mediCard" path="mediCard"
-								disabled="${hasRoleUser!=3}" />
+								readonly="${hasRoleUser!=3}" />
 						</label>
 					</div>
 					<div class="form-group row">
 						<div class="form-group col-md-8">
 							<label for="gender"><b>Sexo</b></label>
 							<form:select id="gender" class="form-control" path="gender"
-								disabled="${hasRoleUser!=3}">
+								readonly="${hasRoleUser!=3}">
 								<option value="M">Hombre</option>
 								<option value="F">Mujer</option>
 								<option value="N">Otro</option>
