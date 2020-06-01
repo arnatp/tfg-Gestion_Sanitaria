@@ -50,10 +50,20 @@ public class VisitController {
 	}
 
 	@RequestMapping(value = "/doctor/visits", method = RequestMethod.GET)
-	public ModelAndView getAllVisits(HttpServletRequest request) throws ServletException, IOException {
+	public ModelAndView getAllDocotorVisits(HttpServletRequest request) throws ServletException, IOException {
 		ModelAndView modelview = new ModelAndView("allVisits");
 		Doctor doctor = (Doctor) request.getSession().getAttribute("user");
 		List<Visit> visits = visitService.getVisitsByDoctorId(doctor.getUserId());
+		modelview.getModelMap().addAttribute("visits", visits);
+
+		return modelview;
+	}
+
+	@RequestMapping(value = "/patient/visits", method = RequestMethod.GET)
+	public ModelAndView getAllPatientVisits(HttpServletRequest request) throws ServletException, IOException {
+		ModelAndView modelview = new ModelAndView("allVisits");
+		Patient patient = (Patient) request.getSession().getAttribute("user");
+		List<Visit> visits = visitService.getVisitsCompletedByPatientId(patient.getUserId());
 		modelview.getModelMap().addAttribute("visits", visits);
 
 		return modelview;

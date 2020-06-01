@@ -24,4 +24,6 @@ public interface VisitWebService {
 
 	List<Visit> getVisitsByDoctorIdAndDate(int doctorId, String date);
 
+	List<Visit> getVisitsCompletedByPatientId(int patientId);
+
 }

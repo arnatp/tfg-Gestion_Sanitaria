@@ -23,7 +23,8 @@ import javax.validation.constraints.NotNull;
 		@NamedQuery(name = "Visit.findByVisitId", query = "select u from Visit u where u.visitId = :visitId"),
 		@NamedQuery(name = "Visit.findByPatientId", query = "select u from Visit u where u.patient = (select pat from Patient pat where pat.userId = :patientId)"),
 		@NamedQuery(name = "Visit.findByDoctorId", query = "select u from Visit u where u.doctor = (select doc from Doctor doc where doc.userId = :doctorId)"),
-		@NamedQuery(name = "Visit.findByDoctorIdAndDate", query = "select u from Visit u where u.doctor = (Select doc from Doctor doc where doc.userId = :doctorId) and u.date = :date") })
+		@NamedQuery(name = "Visit.findByDoctorIdAndDate", query = "select u from Visit u where u.doctor = (Select doc from Doctor doc where doc.userId = :doctorId) and u.date = :date"),
+		@NamedQuery(name = "Visit.findByPatientIdCompleted", query = "select u from Visit u where u.patient = (select pat from Patient pat where pat.userId = :patientId) and u.completed = 1") })
 public class Visit implements Serializable {
 
 	/**
