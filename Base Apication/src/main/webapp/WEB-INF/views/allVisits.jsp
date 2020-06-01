@@ -12,9 +12,12 @@
 
 <body>
 	<jsp:include page="sections/navMenu.jsp" />
+	<div class="container">
+	<br>
 	<h3>
 		<i class="fa fa-calendar-plus-o">Todas las visitas:</i>
 	</h3>
+	
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
@@ -22,7 +25,7 @@
 				<th>Fecha</th>
 				<th>Nombre del Paciente</th>
 				<th>Descripcion de la visita</th>
-				<th>ver visita</th>
+				<th>Ver visita</th>
 			</tr>
 		</thead>
 		<c:forEach var="visit" items="${visits}">
@@ -33,9 +36,9 @@
 				<td><c:out value=" ${visit.initialDescription}"></c:out></td>
 				<td><a class="btn btn-secondary btn-sm"
 					href="<c:url value="/doctor/visit"><c:param name="visitId" value ="${visit.visitId}"/></c:url>"
-					role="button">Learn more </a></td>
+					role="button">Gestionar</a></td>
 			</tr>
 		</c:forEach>
-	</table>
+	</table></div>
 <body>
 </html>

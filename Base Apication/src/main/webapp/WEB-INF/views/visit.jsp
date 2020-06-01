@@ -60,8 +60,7 @@
 								de visita</b> </label>
 						<form:checkbox class="form-control" id="done" path="completed" />
 						<a href="" class="btn btn-default btn-rounded mb-4"
-				data-toggle="modal" data-target="#modalSubscriptionForm">Launch
-				Modal Subscription Form</a>
+				data-toggle="modal" data-target="#modalSubscriptionForm">Crear Receta</a>
 					</div>
 				</sec:authorize>
 			</div>
