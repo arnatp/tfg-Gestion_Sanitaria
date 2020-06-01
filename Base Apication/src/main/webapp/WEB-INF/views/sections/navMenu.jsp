@@ -7,9 +7,15 @@
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="<spring:url value='/'/>"><i class="fa fa-plus"></i>
+        <a class="navbar-brand" href="<spring:url value='/'/>">
+        <i class="fa fa-plus"></i>
+        
             <spring:message code="navMenu.title" />
+                 
         </a>
+        <a href="?language=es" class="btn btn-secondary">Spanish</a>
+		<a href="?language=en" class="btn btn-secondary">English</a>
+        
         <sec:authorize access="hasAnyRole('ROLE_PATIENT','ROLE_EMPLOYEE')">
             <sec:authentication var="user" property="principal" />
             <ul class="nav navbar-nav ml-auto">
@@ -21,6 +27,8 @@
                     <a class="nav-link" href="<c:url value='/showHistory'/>"><i class="fa fa-history"></i>
                         Ver historial</a>
                 </li>-->
+                
+                
                 <li class="nav-item">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
