@@ -28,4 +28,6 @@ public interface VisitRepository {
 	List<Visit> getVisitsByDoctorIdAndDate(int doctorId, String date);
 
 	List<Visit> getVisitsCompletedByPatientId(int patientId);
+
+	List<Visit> getVisitsIncompletedByPatientId(int patientId);
 }

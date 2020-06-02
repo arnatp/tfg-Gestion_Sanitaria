@@ -53,13 +53,11 @@ public class VisitWebServiceImpl implements VisitWebService {
 	}
 
 	@Override
-	public void delete(Visit visit) {
-//		URI uri = UriBuilder.fromUri(PATH_VISITS).port(8080).build();
-//		WebTarget target = client.target(uri);
-//		Invocation invocation = target.request(MediaType.APPLICATION_JSON)
-//				.buildDelete(Entity.entity(visit, MediaType.APPLICATION_JSON));
-//		invocation.invoke();
-
+	public void delete(int visitId) {
+		URI uri = UriBuilder.fromUri(PATH_VISITS).path("deleteById").path(String.valueOf(visitId)).port(8080).build();
+		WebTarget target = client.target(uri);
+		Invocation invocation = target.request(MediaType.APPLICATION_JSON).buildDelete();
+		invocation.invoke();
 	}
 
 	@Override
@@ -124,6 +122,18 @@ public class VisitWebServiceImpl implements VisitWebService {
 	@Override
 	public List<Visit> getVisitsCompletedByPatientId(int patientId) {
 		URI uri = UriBuilder.fromUri(PATH_VISITS).path("findByPatientIdCompleted").path(String.valueOf(patientId))
+				.port(8080).build();
+		WebTarget target = client.target(uri);
+		Invocation invocation = target.request(MediaType.APPLICATION_JSON).buildGet();
+		Response res = invocation.invoke();
+		List<Visit> returnedVisit = res.readEntity(new GenericType<List<Visit>>() {
+		});
+		return returnedVisit;
+	}
+
+	@Override
+	public List<Visit> getIncompletedVisitsByPatientId(int patientId) {
+		URI uri = UriBuilder.fromUri(PATH_VISITS).path("findByPatientIdIncompleted").path(String.valueOf(patientId))
 				.port(8080).build();
 		WebTarget target = client.target(uri);
 		Invocation invocation = target.request(MediaType.APPLICATION_JSON).buildGet();

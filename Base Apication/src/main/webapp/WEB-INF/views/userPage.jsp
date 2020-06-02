@@ -14,6 +14,13 @@
 <body>
 	<jsp:include page="sections/navMenu.jsp" />
 
+	<sec:authorize access="hasAnyRole('ROLE_PATIENT')">
+		<c:set var="hasRoleUser" value="1" scope="request" />
+	</sec:authorize>
+	<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
+		<c:set var="hasRoleUser" value="2" scope="request" />
+	</sec:authorize>
+
 	<div class="container" style="margin-top: 3%;">
 		<sec:authorize access="hasAnyRole('ROLE_PATIENT')">
 			<h2>
@@ -32,7 +39,7 @@
 		<table class="table" style="margin-top: 5%;">
 			<sec:authorize access="hasAnyRole('ROLE_PATIENT')">
 				<tr>
-					<td><a href="#" style="text-decoration: none; color: black;">
+					<td><a href="<c:url value='/patient/visits'/>" style="text-decoration: none; color: black;">
 							<div class="d-flex justify-content-center">
 								<i class="fa fa-history fa-3x"></i>
 							</div>
@@ -63,7 +70,8 @@
 								<b style="margin-top: 1%;">Ver historial de visitas</b>
 							</div>
 					</a></td>
-					<td><a href="#" style="text-decoration: none; color: black;">
+					<td><a href=""
+				data-toggle="modal" data-target="#modalSubscriptionForm">
 							<div class="d-flex justify-content-center">
 								<i class="fa fa-search fa-3x"></i>
 							</div>
@@ -80,25 +88,92 @@
 						<tr>
 							<th scope="row">IdVisita</th>
 							<th>Fecha</th>
-							<th>Nombre del Paciente</th>
+							<c:choose>
+								<c:when test="${hasRoleUser==1}">
+									<th>Nombre del Doctor</th>
+								</c:when>
+								<c:otherwise>
+									<th>Nombre del Paciente</th>
+								</c:otherwise>
+							</c:choose>
 							<th>Descripcion de la visita</th>
-							<th>Ver visita</th>
+							<c:choose>
+								<c:when test="${hasRoleUser==1}">
+									<th>Cancelar Visita</th>
+								</c:when>
+								<c:otherwise>
+									<th>ver visita</th>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 					</thead>
+					<c:if test="${visits.size()==0}">
+						<tr>
+							<c:choose>
+								<c:when test="${hasRoleUser==1}">
+									<td colspan="5">No has solicitado ninguna visita</td>
+								</c:when>
+								<c:otherwise>
+									<td colspan="5">No tienes visitas pendientes para hoy</td>
+								</c:otherwise>
+							</c:choose>
+						</tr>
+					</c:if>
 					<c:forEach var="visit" items="${visits}">
 						<tr>
 							<td scope="row"><c:out value=" ${visit.visitId}"></c:out></td>
 							<td><c:out value=" ${visit.date}"></c:out></td>
-							<td><c:out value=" ${visit.patient.name}"></c:out></td>
+							<td><c:choose>
+									<c:when test="${hasRoleUser==1}">
+										<c:out value=" ${visit.doctor.name}"></c:out>
+									</c:when>
+									<c:otherwise>
+										<c:out value=" ${visit.patient.name}"></c:out>
+									</c:otherwise>
+								</c:choose></td>
 							<td><c:out value=" ${visit.initialDescription}"></c:out></td>
-							<td><a class="btn btn-secondary btn-sm"
-								href="<c:url value="/doctor/visit"><c:param name="visitId" value ="${visit.visitId}"/></c:url>"
-								role="button">Gestionar</a></td>
+							<td><c:choose>
+									<c:when test="${hasRoleUser==1}">
+										<a class="btn btn-secondary btn-sm"
+											href="<c:url value="/patient/cancelVisit"><c:param name="visitId" value ="${visit.visitId}"/></c:url>"
+											role="button">Cancelar</a>
+									</c:when>
+									<c:otherwise>
+										<a class="btn btn-secondary btn-sm"
+											href="<c:url value="/doctor/visit"><c:param name="visitId" value ="${visit.visitId}"/></c:url>"
+											role="button">Gestionar</a>
+									</c:otherwise>
+								</c:choose></td>
 						</tr>
 					</c:forEach>
 				</table>
 			</tr>
 		</table>
+	</div>
+
+<div class="modal fade" id="modalSubscriptionForm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				
+			<form action="<c:url value= "/doctor/visits/findAllByDni">
+            </c:url>" method="post" style="margin-top: 3%;">
+            
+            <div class="form-group row d-flex justify-content-center">
+                <label for="dni" class="col-4 col-form-label">
+                    <b>DNI/NIE</b>
+                    <input class="form-control" type="text" placeholder="12345678X" name="patientDNI">
+                </label>
+            </div>
+            
+            
+            <div class="d-flex justify-content-center" style="margin-bottom: 4%;">
+                <button type="submit" class="btn btn-outline-success">Buscar por Dni</button>
+            </div>
+        </form>
+				
+			</div>
+		</div>
 	</div>
 
 </body>

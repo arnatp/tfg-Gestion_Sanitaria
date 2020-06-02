@@ -37,9 +37,11 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/patient/", method = RequestMethod.GET)
-	public ModelAndView welcomePatient() {
+	public ModelAndView welcomePatient(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("userPage");
-
+		User user = (User) request.getSession().getAttribute("user");
+		List<Visit> visits = visitService.getIncompletedVisitsByPatientId(user.getUserId());
+		modelAndView.getModelMap().addAttribute("visits", visits);
 		return modelAndView;
 	}
 }

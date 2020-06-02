@@ -115,4 +115,15 @@ public class VisitRepositoryImpl implements VisitRepository {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Visit> getVisitsIncompletedByPatientId(int patientId) {
+		try {
+			return entityManager.createNamedQuery("Visit.findByPatientIdIncompleted")
+					.setParameter("patientId", patientId).getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
 }
