@@ -8,6 +8,15 @@
 
 <head>
 <jsp:include page="sections/head.jsp" />
+<script type="text/javascript">
+function inici() {
+	submitBothForms = function(){
+	    document.getElementById("form1").submit();
+	    document.getElementById("form2").submit();
+	}
+}
+window.onload = inici;
+</script>
 </head>
 
 <body>
@@ -18,7 +27,7 @@
 			<i class="fa fa-calendar-plus-o"></i> Solicitar nueva visita
 		</h3>
 		<hr style="background-color: hsl(120, 60%, 50%)">
-		<form:form modelAttribute="visit" style="margin-top: 3%;">
+		<form:form modelAttribute="visit" style="margin-top: 3%;" id="form1">
 			<div class="row">
 				<div class="col">
 					<div class="form-group row">
@@ -35,113 +44,77 @@
 						<div class="col-6">
 							<label for="visitDate" class="col-form-label"><b>Fecha
 									de visita</b> </label>
-							<form:input class="form-control" type="date" value="2011-08-19"
+							<form:input class="form-control" type="date" value="2020-06-01"
 								id="date" path="date" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="description col-12"><b>Motivo de visita</b></label>
+						<label for="description "><b>Motivo de visita</b></label>
 						<form:textarea class="form-control col-12" id="description"
 							rows="3" path="initialDescription" />
 					</div>
+
+					<!-- Added Employee inputs -->
+					<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
+						<div class="form-group">
+							<label for="description col-12"><b>Resolucion de la
+									visita</b></label>
+							<form:textarea class="form-control col-12" id="description"
+								rows="3" path="resolution" />
+						</div>
+						<div class="col-12">
+							<a href="" class="btn btn-outline-secondary col-12"
+								data-toggle="modal" data-target="#modalSubscriptionForm">Crear
+								Receta</a>
+						</div>
+						<br>
+					</sec:authorize>
 					<div class="d-flex justify-content-center">
-						<button type="submit" class="btn btn-outline-success">Solicitar</button>
+
+						<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
+							<button type="button" class="btn btn-outline-success" onclick="submitBothForms()"> Modificar </button>
+						</sec:authorize>
+						<sec:authorize access="hasAnyRole('ROLE_PATIENT')">
+							<button type="submit" class="btn btn-outline-success"> Solicitar </button>
+						</sec:authorize>
+
 					</div>
 				</div>
-				<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
-					<div class="form-group">
-						<label for="description col-12"><b>Resolucion de la
-								visita</b></label>
-						<form:textarea class="form-control col-12" id="description"
-							rows="3" path="resolution" />
-					</div>
-					<div class="col-6">
-						<label for="visitDate" class="col-form-label"><b>Fecha
-								de visita</b> </label>
-						<form:checkbox class="form-control" id="done" path="completed" />
-						<a href="" class="btn btn-default btn-rounded mb-4"
-				data-toggle="modal" data-target="#modalSubscriptionForm">Crear Receta</a>
-					</div>
-				</sec:authorize>
 			</div>
 		</form:form>
 	</div>
+
+	<!-- Modal for prescription creation -->
 	<div class="modal fade" id="modalSubscriptionForm" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header text-center">
-					<h4 class="modal-title w-100 font-weight-bold">Subscribe</h4>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body mx-3">
-					<div class="md-form mb-5">
-						<i class="fas fa-user prefix grey-text"></i> <input type="text"
-							id="form3" class="form-control validate"> <label
-							data-error="wrong" data-success="right" for="form3">Your
-							name</label>
+				<form:form modelAttribute="prescription" style="margin-top: 3%;" id="form2">
+					<div class="col-12">
+						<label for="visitDate" class="col-form-label"><b>Nombre
+								del medicamento:</b> </label>
+						<form:input class="form-control" type="text" value="" id=""
+							path="medicamentName" />
 					</div>
-
-					<div class="md-form mb-4">
-						<i class="fas fa-envelope prefix grey-text"></i> <input
-							type="email" id="form2" class="form-control validate"> <label
-							data-error="wrong" data-success="right" for="form2">Your
-							email</label>
+					<div class="col-12">
+						<label for="visitDate" class="col-form-label"><b>Nombre
+								del medicamento:</b> </label>
+						<form:input class="form-control" type="number" value="" id=""
+							path="quantity" />
 					</div>
-
-				</div>
-				<div class="modal-footer d-flex justify-content-center">
-					<button class="btn btn-indigo">
-						Send <i class="fas fa-paper-plane-o ml-1"></i>
-					</button>
-				</div>
+					<div class="col-12">
+						<label for="description" class="col-form-label"><b>Pauta:</b></label>
+						<form:textarea class="form-control" id="" rows="3" path="schedule" />
+					</div>
+					<br>
+					<div class="col-12 d-flex justify-content-center">
+						<button class="btn btn-outline-success" data-dismiss="modal">Crear
+							Receta</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
-
-	<div class="text-center">
-		<div class="modal fade" id="modalSubscriptionForm" tabindex="-1"
-			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header text-center">
-						<h4 class="modal-title w-100 font-weight-bold">Subscribe</h4>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body mx-3">
-						<div class="md-form mb-5">
-							<i class="fas fa-user prefix grey-text"></i> <input type="text"
-								id="form3" class="form-control validate"> <label
-								data-error="wrong" data-success="right" for="form3">Your
-								name</label>
-						</div>
-
-						<div class="md-form mb-4">
-							<i class="fas fa-envelope prefix grey-text"></i> <input
-								type="email" id="form2" class="form-control validate"> <label
-								data-error="wrong" data-success="right" for="form2">Your
-								email</label>
-						</div>
-
-					</div>
-					<div class="modal-footer d-flex justify-content-center">
-						<button class="btn btn-indigo">
-							Send <i class="fas fa-paper-plane-o ml-1"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="text-center">
-			
-		</div>
-	</div>
+	<!-- End of prescription creation modal -->
 <body>
 </html>
