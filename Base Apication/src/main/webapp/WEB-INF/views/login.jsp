@@ -45,7 +45,7 @@
                 <a href="<c:url value='/signUp'/>">Registrarse</a>
             </div>
             <br>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center" style="margin-bottom: 4%;">
                 <button type="submit" class="btn btn-outline-success">Iniciar sesión</button>
             </div>
         </form>
