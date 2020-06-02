@@ -71,7 +71,7 @@
 							</div>
 					</a></td>
 					<td><a href=""
-				data-toggle="modal" data-target="#modalSubscriptionForm">
+				data-toggle="modal" data-target="#modalSubscriptionForm" style="text-decoration: none; color: black;">
 							<div class="d-flex justify-content-center">
 								<i class="fa fa-search fa-3x"></i>
 							</div>

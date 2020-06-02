@@ -47,6 +47,18 @@
 	                </c:choose>
 				</tr>
 			</thead>
+			<c:if test="${visits.size()==0}">
+						<tr>
+							<c:choose>
+								<c:when test="${hasRoleUser==1}">
+									<td colspan="5">No te ha visitado ningún doctor</td>
+								</c:when>
+								<c:otherwise>
+									<td colspan="5">Nunca has atendido a ningún paciente</td>
+								</c:otherwise>
+							</c:choose>
+						</tr>
+					</c:if>
 			<c:forEach var="visit" items="${visits}">
 				<tr>
 					<td scope="row"><c:out value=" ${visit.visitId}"></c:out></td>
