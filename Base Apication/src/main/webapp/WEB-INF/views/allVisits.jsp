@@ -41,6 +41,7 @@
 		                	<th>Resoulción de visita</th>
 		                </c:when>
 		                <c:otherwise>
+		                	<th>Resoulción de visita</th>
 		                	<th>ver visita</th>
 		                </c:otherwise>
 	                </c:choose>
@@ -61,10 +62,10 @@
 	                </c:choose>
 					</td>
 					<td><c:out value=" ${visit.initialDescription}"></c:out></td>
+					<td><c:out value=" ${visit.resolution}"></c:out></td>
 					<td>
 					<c:choose>
 		                <c:when test="${hasRoleUser==1}">
-		                	<c:out value=" ${visit.resolution}"></c:out>
 		                </c:when>
 		                <c:otherwise>
 		                	<a class="btn btn-secondary btn-sm"

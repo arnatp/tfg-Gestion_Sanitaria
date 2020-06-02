@@ -19,6 +19,7 @@ import es.institutmarianao.domain.Doctor;
 import es.institutmarianao.domain.Patient;
 import es.institutmarianao.domain.Visit;
 import es.institutmarianao.service.DoctorService;
+import es.institutmarianao.service.PatientService;
 import es.institutmarianao.service.VisitService;
 
 @Controller
@@ -27,6 +28,8 @@ public class VisitController {
 	private VisitService visitService;
 	@Autowired
 	private DoctorService doctorService;
+	@Autowired
+	private PatientService patientService;
 
 	@RequestMapping(value = "patient/visit", method = RequestMethod.GET)
 	public ModelAndView requestVisit() throws ServletException, IOException {
@@ -81,5 +84,21 @@ public class VisitController {
 	public String updateVisit(@ModelAttribute("visit") Visit visitModified) throws ServletException, IOException {
 		visitService.update(visitModified);
 		return "redirect:/doctor/";
+	}
+
+	@RequestMapping(value = "/patient/cancelVisit", method = RequestMethod.GET)
+	public String cancelVisit(@RequestParam("visitId") int visitId) throws ServletException, IOException {
+		visitService.delete(visitId);
+		return "redirect:/patient/";
+	}
+
+	@RequestMapping(value = "/doctor/visits/findAllByDni", method = RequestMethod.POST)
+	public ModelAndView getAllVisitsByPatientId(@RequestParam("patientDNI") String patientDNI)
+			throws ServletException, IOException {
+		ModelAndView modelview = new ModelAndView("allVisits");
+		List<Visit> visits = visitService.getVisitsByPatientId(patientService.getUserByDni(patientDNI).getUserId());
+		modelview.getModelMap().addAttribute("visits", visits);
+
+		return modelview;
 	}
 }

@@ -12,7 +12,7 @@ public interface VisitWebService {
 
 	void update(Visit visit);
 
-	void delete(Visit visit);
+	void delete(int visitId);
 
 	Visit getVisitByVisitId(int visitId);
 
@@ -25,5 +25,7 @@ public interface VisitWebService {
 	List<Visit> getVisitsByDoctorIdAndDate(int doctorId, String date);
 
 	List<Visit> getVisitsCompletedByPatientId(int patientId);
+
+	List<Visit> getIncompletedVisitsByPatientId(int patientId);
 
 }

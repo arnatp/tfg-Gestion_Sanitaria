@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,8 @@ public class PatientController {
 
 	@Autowired
 	private PatientService patientService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@RequestMapping(value = "/patient/updateUser", method = RequestMethod.GET)
 	public ModelAndView updateUser() throws ServletException, IOException {
@@ -40,6 +43,10 @@ public class PatientController {
 			throw new RuntimeException("Intentat accedir amb camps no permesos: "
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
+
+		// encode password
+		updatePatient.setPassword(passwordEncoder.encode(updatePatient.getPassword()));
+
 		patientService.update(updatePatient);
 		return "redirect:/patient/";
 	}

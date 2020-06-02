@@ -32,8 +32,8 @@ public class VisitServiceImpl implements VisitService {
 	}
 
 	@Override
-	public void delete(Visit visit) {
-		visitWebService.delete(visit);
+	public void delete(int visitId) {
+		visitWebService.delete(visitId);
 	}
 
 	@Override
@@ -64,6 +64,11 @@ public class VisitServiceImpl implements VisitService {
 	@Override
 	public List<Visit> getVisitsCompletedByPatientId(int patientId) {
 		return visitWebService.getVisitsCompletedByPatientId(patientId);
+	}
+
+	@Override
+	public List<Visit> getIncompletedVisitsByPatientId(int patientId) {
+		return visitWebService.getIncompletedVisitsByPatientId(patientId);
 	}
 
 }
