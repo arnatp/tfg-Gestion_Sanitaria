@@ -119,4 +119,15 @@ public class VisitController {
 
 		return modelview;
 	}
+
+	@RequestMapping(value = "patient/printHistory", method = RequestMethod.GET)
+	public ModelAndView downloadExcel(HttpServletRequest request) {
+
+		// create some sample data
+		Patient patient = (Patient) request.getSession().getAttribute("user");
+		List<Visit> visits = visitService.getVisitsCompletedByPatientId(patient.getUserId());
+
+		// return a view which will be resolved by an excel view resolver
+		return new ModelAndView("pdfView", "visits", visits);
+	}
 }

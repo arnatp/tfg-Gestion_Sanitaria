@@ -18,74 +18,85 @@
 		<c:set var="hasRoleUser" value="2" scope="request" />
 	</sec:authorize>
 	<div class="container">
-	<br>
-	<h3>
-		<i class="fa fa-calendar-plus-o">Todas las visitas:</i>
-	</h3>
+		<br>
+		<h3>
+			<i class="fa fa-calendar-plus-o">Todas las visitas:</i>
+		</h3>
+		<h3>
+			<c:choose>
+				<c:when test="${hasRoleUser==1}">
+					<a
+				href="<c:url value="printHistory"></c:url>">Imprimir mi
+				historial</a>
+				</c:when>
+				<c:otherwise>
+					<a
+				href="<c:url value="printHistory"></c:url>">Imprimir el
+				historial del paciente</a>
+				</c:otherwise>
+			</c:choose>
+			
+		</h3>
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="row">IdVisita</th>
 					<th>Fecha</th>
 					<c:choose>
-		                <c:when test="${hasRoleUser==1}">
-		                	<th>Nombre del Doctor</th>
-		                </c:when>
-		                <c:otherwise>
-		                	<th>Nombre del Paciente</th>
-		                </c:otherwise>
-	                </c:choose>
+						<c:when test="${hasRoleUser==1}">
+							<th>Nombre del Doctor</th>
+						</c:when>
+						<c:otherwise>
+							<th>Nombre del Paciente</th>
+						</c:otherwise>
+					</c:choose>
 					<th>Descripcion de la visita</th>
 					<c:choose>
-		                <c:when test="${hasRoleUser==1}">
-		                	<th>Resoulción de visita</th>
-		                </c:when>
-		                <c:otherwise>
-		                	<th>Resoulción de visita</th>
-		                	<th>ver visita</th>
-		                </c:otherwise>
-	                </c:choose>
+						<c:when test="${hasRoleUser==1}">
+							<th>Resoulción de visita</th>
+						</c:when>
+						<c:otherwise>
+							<th>Resoulción de visita</th>
+							<th>ver visita</th>
+						</c:otherwise>
+					</c:choose>
 				</tr>
 			</thead>
 			<c:if test="${visits.size()==0}">
-						<tr>
-							<c:choose>
-								<c:when test="${hasRoleUser==1}">
-									<td colspan="5">No te ha visitado ningún doctor</td>
-								</c:when>
-								<c:otherwise>
-									<td colspan="5">Nunca has atendido a ningún paciente</td>
-								</c:otherwise>
-							</c:choose>
-						</tr>
-					</c:if>
+				<tr>
+					<c:choose>
+						<c:when test="${hasRoleUser==1}">
+							<td colspan="5">No te ha visitado ningún doctor</td>
+						</c:when>
+						<c:otherwise>
+							<td colspan="5">Nunca has atendido a ningún paciente</td>
+						</c:otherwise>
+					</c:choose>
+				</tr>
+			</c:if>
 			<c:forEach var="visit" items="${visits}">
 				<tr>
 					<td scope="row"><c:out value=" ${visit.visitId}"></c:out></td>
 					<td><c:out value=" ${visit.date}"></c:out></td>
-					<td>
-					<c:choose>
-		                <c:when test="${hasRoleUser==1}">
-		                	<c:out value=" ${visit.doctor.name}"></c:out>
-		                </c:when>
-		                <c:otherwise>
-		                	<c:out value=" ${visit.patient.name}"></c:out>
-		                </c:otherwise>
-	                </c:choose>
-					</td>
+					<td><c:choose>
+							<c:when test="${hasRoleUser==1}">
+								<c:out value=" ${visit.doctor.name}"></c:out>
+							</c:when>
+							<c:otherwise>
+								<c:out value=" ${visit.patient.name}"></c:out>
+							</c:otherwise>
+						</c:choose></td>
 					<td><c:out value=" ${visit.initialDescription}"></c:out></td>
 					<td><c:out value=" ${visit.resolution}"></c:out></td>
-					<td>
-					<c:choose>
-		                <c:when test="${hasRoleUser==1}">
-		                </c:when>
-		                <c:otherwise>
-		                	<a class="btn btn-secondary btn-sm"
-							href="<c:url value="/doctor/visit"><c:param name="visitId" value ="${visit.visitId}"/></c:url>"
-							role="button">Gestionar</a>
-		                </c:otherwise>
-	                </c:choose>
-					</td>
+					<td><c:choose>
+							<c:when test="${hasRoleUser==1}">
+							</c:when>
+							<c:otherwise>
+								<a class="btn btn-secondary btn-sm"
+									href="<c:url value="/doctor/visit"><c:param name="visitId" value ="${visit.visitId}"/></c:url>"
+									role="button">Gestionar</a>
+							</c:otherwise>
+						</c:choose></td>
 				</tr>
 			</c:forEach>
 		</table>
