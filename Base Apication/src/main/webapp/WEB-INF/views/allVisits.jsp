@@ -69,7 +69,7 @@
 		                <c:otherwise>
 		                	<a class="btn btn-secondary btn-sm"
 							href="<c:url value="/doctor/visit"><c:param name="visitId" value ="${visit.visitId}"/></c:url>"
-							role="button">Learn more </a>
+							role="button">Gestionar</a>
 		                </c:otherwise>
 	                </c:choose>
 					</td>

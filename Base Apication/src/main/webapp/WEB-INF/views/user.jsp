@@ -67,25 +67,14 @@
 					</div>
 					<div class="form-group row">
 						<div class="form-group col-md-8">
-							<label for="gender"><b>Sexo</b>
-								<c:choose>
-				                    <c:when test="${hasRoleUser==3}">
-										<form:select id="gender" class="form-control" path="gender">
-											<option value="M">Hombre</option>
-											<option value="F">Mujer</option>
-											<option value="N">Otro</option>
-										</form:select>
-				                    </c:when>
-				                    <c:otherwise>
-			                            <form:select id="gender" class="form-control" path="gender" readonly="true">
-											<option value="M">Hombre</option>
-											<option value="F">Mujer</option>
-											<option value="N">Otro</option>
-										</form:select>
-				                    </c:otherwise>
-			            		</c:choose>
-		            		</label>
-                    	</div>
+							<label for="gender"><b>Sexo</b></label>
+							<form:select id="gender" class="form-control" path="gender"
+								readonly="${hasRoleUser!=3}">
+								<option value="M">Hombre</option>
+								<option value="F">Mujer</option>
+								<option value="N">Otro</option>
+							</form:select>
+						</div>
 					</div>
 				</div>
 				<!-- | -->
@@ -99,19 +88,10 @@
 					<sec:authorize access="!hasAnyRole('ROLE_EMPLOYEE')">
 						<div class="form-group row">
 							<label class="col-4 col-form-label"> <b>Altura (cm)</b> 
-								<form:input class="form-control" type="number" step="0.01" min="0" id="height" path="height"/>
+								<form:input class="form-control" type="number" step="0.1" min="0" id="height" path="height"/>
 							</label>
 							<label class="col-4 col-form-label"> <b>Peso (kg)</b> 
-								<form:input class="form-control" type="number" step="0.01" min="0" id="weigth" path="weigth"/>
-							</label>
-						</div>
-					</sec:authorize>
-					<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
-						<div class="form-group row">
-							<label class="col-4 col-form-label"> <b>Turno</b> 
-								<form:input class="form-control" type="text"
-								placeholder="afternoon" id="shift" path="shift"
-								readonly="true" />
+								<form:input class="form-control" type="number" step="0.2" min="0" id="weigth" path="weigth"/>
 							</label>
 						</div>
 					</sec:authorize>
@@ -123,10 +103,11 @@
 					</div>
 					<c:choose>
 	                    <c:when test="${hasRoleUser==3}">
-	                            <input type="submit" id="btnAdd" class="btn btn-primary"value ="Crear Usuario"/>
+	                            <input type="submit" id="btnAdd" class="btn btn-outline-success" value ="Crear Usuario"/>
+	                            <input type="reset" class="btn btn-outline-secondary" value ="Limpiar"/>
 	                    </c:when>
 	                    <c:otherwise>
-	                            <input type="submit" id="btnAdd" class="btn btn-primary"value ="Modificar Datos"/>
+	                            <input type="submit" id="btnAdd" class="btn btn-outline-success" value ="Modificar Datos"/>
 	                    </c:otherwise>
             		</c:choose>
 				</div>

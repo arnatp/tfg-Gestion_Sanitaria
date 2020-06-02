@@ -11,7 +11,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -29,6 +29,8 @@ import es.institutmarianao.service.PatientService;
 public class SignUpController {
 	@Autowired
 	private PatientService patientService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Qualifier("customAuthenticationProvider")
 	private AuthenticationProvider authenticationProvider;
@@ -48,8 +50,9 @@ public class SignUpController {
 			throw new RuntimeException("Intentat accedir amb camps no permesos: "
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		newPatientToAdd.setPassword(encoder.encode(newPatientToAdd.getPassword()));
+		// encode password
+		newPatientToAdd.setPassword(passwordEncoder.encode(newPatientToAdd.getPassword()));
+
 		patientService.add(newPatientToAdd);
 		loginUser(newPatientToAdd, request);
 		return "redirect:/check";
