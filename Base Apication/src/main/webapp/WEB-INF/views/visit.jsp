@@ -9,13 +9,13 @@
 <head>
 <jsp:include page="sections/head.jsp" />
 <script type="text/javascript">
-function inici() {
-	submitBothForms = function(){
-	    document.getElementById("form1").submit();
-	    document.getElementById("form2").submit();
+	function inici() {
+		submitBothForms = function() {
+			document.getElementById("form1").submit();
+			document.getElementById("form2").submit();
+		}
 	}
-}
-window.onload = inici;
+	window.onload = inici;
 </script>
 </head>
 
@@ -63,19 +63,45 @@ window.onload = inici;
 								rows="3" path="resolution" />
 						</div>
 						<div class="col-12">
-							<a href="" class="btn btn-outline-secondary col-12"
-								data-toggle="modal" data-target="#modalSubscriptionForm">Crear
-								Receta</a>
+							<c:if test="${!visit.completed}">
+								<button class="btn btn-outline-secondary col-12" type="button"
+									data-toggle="collapse" data-target="#multiCollapseExample2"
+									aria-expanded="false" aria-controls="multiCollapseExample2">Receta:</button>
+							</c:if>
 						</div>
 						<br>
+						<!--  -->
+						<div class="collapse multi-collapse" id="multiCollapseExample2">
+							<div class="col">
+								<label for="visitDate" class="col-form-label"><b>Nombre
+										del medicamento:</b> </label>
+								<form:input class="form-control" type="text" value="" id=""
+									path="prescription.medicamentName" />
+							</div>
+							<div class="col-12">
+								<label for="visitDate" class="col-form-label"><b>Nombre
+										del medicamento:</b> </label>
+								<form:input class="form-control" type="number" value="" id=""
+									path="prescription.quantity" />
+							</div>
+							<div class="col-12">
+								<label for="description" class="col-form-label"><b>Pauta:</b></label>
+								<form:textarea class="form-control" id="" rows="3"
+									path="prescription.schedule" />
+							</div>
+							<br>
+						</div>
+						<!--  -->
 					</sec:authorize>
 					<div class="d-flex justify-content-center">
 
 						<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
-							<button type="button" class="btn btn-outline-success" onclick="submitBothForms()"> Modificar </button>
+							<button type="button" class="btn btn-outline-success"
+								onclick="submitBothForms()">Modificar</button>
 						</sec:authorize>
 						<sec:authorize access="hasAnyRole('ROLE_PATIENT')">
-							<button type="submit" class="btn btn-outline-success"> Solicitar </button>
+							<button type="submit" class="btn btn-outline-success">
+								Solicitar</button>
 						</sec:authorize>
 
 					</div>
@@ -83,38 +109,5 @@ window.onload = inici;
 			</div>
 		</form:form>
 	</div>
-
-	<!-- Modal for prescription creation -->
-	<div class="modal fade" id="modalSubscriptionForm" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<form:form modelAttribute="prescription" style="margin-top: 3%;" id="form2">
-					<div class="col-12">
-						<label for="visitDate" class="col-form-label"><b>Nombre
-								del medicamento:</b> </label>
-						<form:input class="form-control" type="text" value="" id=""
-							path="medicamentName" />
-					</div>
-					<div class="col-12">
-						<label for="visitDate" class="col-form-label"><b>Nombre
-								del medicamento:</b> </label>
-						<form:input class="form-control" type="number" value="" id=""
-							path="quantity" />
-					</div>
-					<div class="col-12">
-						<label for="description" class="col-form-label"><b>Pauta:</b></label>
-						<form:textarea class="form-control" id="" rows="3" path="schedule" />
-					</div>
-					<br>
-					<div class="col-12 d-flex justify-content-center">
-						<button class="btn btn-outline-success" data-dismiss="modal">Crear
-							Receta</button>
-					</div>
-				</form:form>
-			</div>
-		</div>
-	</div>
-	<!-- End of prescription creation modal -->
 <body>
 </html>
