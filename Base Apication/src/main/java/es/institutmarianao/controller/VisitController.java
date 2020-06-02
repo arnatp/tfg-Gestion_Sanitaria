@@ -21,7 +21,6 @@ import es.institutmarianao.domain.Prescription;
 import es.institutmarianao.domain.Visit;
 import es.institutmarianao.service.DoctorService;
 import es.institutmarianao.service.PatientService;
-import es.institutmarianao.service.PrescriptionService;
 import es.institutmarianao.service.VisitService;
 
 @Controller
@@ -30,8 +29,6 @@ public class VisitController {
 	private VisitService visitService;
 	@Autowired
 	private DoctorService doctorService;
-	@Autowired
-	private PrescriptionService prescriptionService;
 	@Autowired
 	private PatientService patientService;
 
@@ -82,22 +79,15 @@ public class VisitController {
 		Visit visit = visitService.getVisitByVisitId(visitId);
 		modelview.getModelMap().addAttribute("visit", visit);
 		modelview.getModelMap().addAttribute("doctor", doctorService.getAll());
-		Prescription prescription = new Prescription();
-		if (visit.getPrescription() != null) {
-			prescription = visit.getPrescription();
-		}
-		modelview.getModelMap().addAttribute("prescription", prescription);
+		new Prescription();
+
 		return modelview;
 	}
 
 	@RequestMapping(value = "/doctor/visit", method = RequestMethod.POST)
-	public String updateVisit(@ModelAttribute("visit") Visit visitModified,
-			@ModelAttribute("prescription") Prescription prescription, @RequestParam("doctorDni") String dni)
+	public String updateVisit(@ModelAttribute("visit") Visit visitModified, @RequestParam("doctorDni") String dni)
 			throws ServletException, IOException {
 
-		if (prescription != null) {
-			prescriptionService.add(prescription);
-		}
 		visitModified.setCompleted(true);
 		visitModified.setDoctor(doctorService.getUserByDni(dni));
 		visitService.update(visitModified);
