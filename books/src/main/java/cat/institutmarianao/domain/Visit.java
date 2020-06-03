@@ -14,7 +14,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "visit")
@@ -38,15 +37,12 @@ public class Visit implements Serializable {
 	@Column(name = "visitId")
 	private int visitId;
 
-	@NotNull
 	@Column(name = "completed", nullable = false)
 	private Boolean completed = false;
 
-	@NotNull
 	@Column(name = "date", nullable = false, columnDefinition = "DATE")
 	private LocalDate date;
 
-	@NotNull
 	@Column(name = "initialDescription", nullable = false)
 	private String initialDescription;
 

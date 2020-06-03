@@ -6,13 +6,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 
 import cat.institutmarianao.domain.Patient;
 import cat.institutmarianao.domain.repository.PatientRepository;
 
-/*TODO añadir named querys*/
 @Stateless
 public class PatientRepositoryImpl implements PatientRepository {
 
@@ -27,14 +24,7 @@ public class PatientRepositoryImpl implements PatientRepository {
 
 	@Override
 	public void add(Patient patient) {
-		try {
-			entityManager.persist(patient);
-		} catch (ConstraintViolationException e) {
-			// Aqui tira los errores de constraint
-			for (ConstraintViolation actual : e.getConstraintViolations()) {
-				System.out.println(actual.toString());
-			}
-		}
+		entityManager.persist(patient);
 	}
 
 	@Override

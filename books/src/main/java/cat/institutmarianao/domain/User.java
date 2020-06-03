@@ -9,9 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 @MappedSuperclass
 public abstract class User implements Serializable {
@@ -29,40 +27,27 @@ public abstract class User implements Serializable {
 	@Column(name = "id")
 	private int userId;
 
-	@NotNull
-	@Size(max = 9)
 	@Pattern(regexp = DNIREGEXP)
 	@Column(name = "dni", nullable = false, length = 9)
 	private String dni;
 
-	@NotNull
-	@Size(max = 25)
 	@Column(name = "name", nullable = false, length = 25)
 	private String name;
 
-	@NotNull
-	@Size(max = 9)
 	@Column(name = "medicard", nullable = false, length = 9)
 	private String mediCard;
 
-	@NotNull
 	@Column(name = "borndate", nullable = false, columnDefinition = "DATE")
 	private LocalDate bornDate;
 
-	@NotNull
-	@Size(max = 1)
 	@Pattern(regexp = GENDERREGEXP)
 	@Column(name = "gender", nullable = false, length = 1)
 	private String gender;
 
-	@NotNull
-	@Size(max = 30)
 	@Pattern(regexp = EMAILREGEXP)
 	@Column(name = "email", nullable = false, length = 30)
 	private String email;
 
-	@NotNull
-	@Size(max = 60)
 	@Column(name = "password", nullable = false, length = 60)
 	private String password;
 
