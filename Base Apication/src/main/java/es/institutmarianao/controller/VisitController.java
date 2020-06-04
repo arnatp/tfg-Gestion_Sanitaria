@@ -111,12 +111,13 @@ public class VisitController {
 		ModelAndView modelview = new ModelAndView("allVisits");
 		List<Visit> visits = visitService.getVisitsByPatientId(patientService.getUserByDni(patientDNI).getUserId());
 		modelview.getModelMap().addAttribute("visits", visits);
+		modelview.getModelMap().addAttribute("patientDni", patientDNI);
 
 		return modelview;
 	}
 
 	@RequestMapping(value = "patient/printHistory", method = RequestMethod.GET)
-	public ModelAndView downloadExcel(HttpServletRequest request) {
+	public ModelAndView download(HttpServletRequest request) {
 
 		// create some sample data
 		Patient patient = (Patient) request.getSession().getAttribute("user");
@@ -125,4 +126,16 @@ public class VisitController {
 		// return a view which will be resolved by an excel view resolver
 		return new ModelAndView("pdfView", "visits", visits);
 	}
+
+	@RequestMapping(value = "/doctor/visits/printHistory", method = RequestMethod.GET)
+	public ModelAndView downloadExcel(HttpServletRequest request, @RequestParam("patientDNI") String patientDNI) {
+
+		// create some sample data
+		Patient patient = patientService.getUserByDni(patientDNI);
+		List<Visit> visits = visitService.getVisitsCompletedByPatientId(patient.getUserId());
+
+		// return a view which will be resolved by an excel view resolver
+		return new ModelAndView("pdfView", "visits", visits);
+	}
+
 }

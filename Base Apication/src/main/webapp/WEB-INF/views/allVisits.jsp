@@ -23,18 +23,22 @@
 			<i class="fa fa-calendar-plus-o">Todas las visitas:</i>
 		</h3>
 		<h3>
-		<c:if test="${visits.size()!=0}">
-			<c:choose>
-				<c:when test="${hasRoleUser==1}">
-					<a
-				href="<c:url value="printHistory"></c:url>">Imprimir mi historial</a>
-				</c:when>
-				<c:otherwise>
-					<a href="<c:url value="printHistory"></c:url>">Imprimir el historial del paciente</a>
-				</c:otherwise>
-			</c:choose>
+			<c:if test="${visits.size()!=0}">
+				<c:choose>
+					<c:when test="${hasRoleUser==1}">
+						<a href="<c:url value="printHistory"></c:url>">Imprimir mi
+							historial</a>
+					</c:when>
+					<c:otherwise>
+						<c:if test="${patientDni != null}">
+							<a
+								href="<c:url value="printHistory"><c:param name="patientDNI" value="${patientDni}"/></c:url>">Imprimir
+								el historial del paciente</a>
+						</c:if>
+					</c:otherwise>
+				</c:choose>
 			</c:if>
-			
+
 		</h3>
 		<table class="table">
 			<thead class="thead-dark">

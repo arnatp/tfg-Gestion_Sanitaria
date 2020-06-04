@@ -3,6 +3,7 @@ package es.institutmarianao.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -32,18 +33,21 @@ public class DoctorController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Doctor doctor = doctorService.getUserByDni(auth.getName());
 		ModelAndView modelview = new ModelAndView("user");
+		doctor.setPassword(null);
 		modelview.getModelMap().addAttribute("user", doctor);
 		return modelview;
 	}
 
 	@RequestMapping(value = "/doctor/updateUser", method = RequestMethod.POST)
-	public String processUpdateUserForm(@ModelAttribute("user") Doctor updateDoctor, BindingResult result) {
+	public String processUpdateUserForm(@Valid @ModelAttribute("user") Doctor updateDoctor, BindingResult result) {
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("Intentat accedir amb camps no permesos: "
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-
+		if (result.hasErrors()) {
+			return "user";
+		}
 		// encode password
 		updateDoctor.setPassword(passwordEncoder.encode(updateDoctor.getPassword()));
 
