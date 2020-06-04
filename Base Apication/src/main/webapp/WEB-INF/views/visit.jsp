@@ -14,6 +14,9 @@
 
 <body>
 	<jsp:include page="sections/navMenu.jsp" />
+	<c:if test="${visit.completed == true}">
+		<c:set var="visitCompleted" scope="page" value="true" />
+	</c:if>
 	<div class="container col-4"
 		style="border: 1px solid black; box-shadow: 4px 4px 8px grey; margin-top: 3%;">
 		<h3>
@@ -62,15 +65,13 @@
 							<label for="description col-12"><b>Resolucion de la
 									visita</b></label>
 							<form:textarea class="form-control col-12" id="resolution"
-								rows="3" path="resolution" required="true" name="resolution"/>
-								<div id="caracteresResoulucion"></div>
+								rows="3" path="resolution" required="true" name="resolution" readonly="${visitCompleted}"/>
+								<div id="caracteresResoulucion" ></div>
 						</div>
 						<div class="col-12">
-							<c:if test="${!visit.completed}">
-								<button class="btn btn-outline-secondary col-12" type="button"
-									data-toggle="collapse" data-target="#multiCollapseExample2"
-									aria-expanded="false" aria-controls="multiCollapseExample2">Receta:</button>
-							</c:if>
+							<button class="btn btn-outline-secondary col-12" type="button"
+								data-toggle="collapse" data-target="#multiCollapseExample2"
+								aria-expanded="false" aria-controls="multiCollapseExample2">Receta:</button>
 						</div>
 						<br>
 						<!--  -->
@@ -79,17 +80,17 @@
 								<label for="visitDate" class="col-form-label"><b>Nombre
 										del medicamento:</b> </label>
 								<form:input class="form-control" type="text" value="" id=""
-									path="prescription.medicamentName" />
+									path="prescription.medicamentName" readonly="${visitCompleted}"/>
 							</div>
 							<div class="col-12">
 								<label for="visitDate" class="col-form-label"><b>Cantidad:</b> </label>
 								<form:input class="form-control" type="number" value="" id=""
-									path="prescription.quantity" />
+									path="prescription.quantity" readonly="${visitCompleted}"/>
 							</div>
 							<div class="col-12">
 								<label for="description" class="col-form-label"><b>Pauta:</b></label>
 								<form:textarea class="form-control" id="" rows="3"
-									path="prescription.schedule" />
+									path="prescription.schedule" readonly="${visitCompleted}"/>
 							</div>
 							<br>
 						</div>
