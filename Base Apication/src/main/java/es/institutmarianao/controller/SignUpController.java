@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -43,12 +44,15 @@ public class SignUpController {
 	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public String processSignUpForm(@ModelAttribute("user") Patient newPatientToAdd, BindingResult result,
+	public String processSignUpForm(@Valid @ModelAttribute("user") Patient newPatientToAdd, BindingResult result,
 			HttpServletRequest request) {
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("Intentat accedir amb camps no permesos: "
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
+		}
+		if (result.hasErrors()) {
+			return "user";
 		}
 		// encode password
 		newPatientToAdd.setPassword(passwordEncoder.encode(newPatientToAdd.getPassword()));

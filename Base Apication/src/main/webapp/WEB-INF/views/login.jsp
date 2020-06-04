@@ -7,6 +7,7 @@
 
 <head>
     <jsp:include page="sections/head.jsp" />
+    
 </head>
 
 <body>
