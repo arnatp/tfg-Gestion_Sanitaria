@@ -8,16 +8,8 @@
 
 <head>
 <jsp:include page="sections/head.jsp" />
-<script src="<c:url value="/resources/visitValidations.js"/>"></scrip
-<script type="text/javascript">
-	function inici() {
-		submitBothForms = function() {
-			document.getElementById("form1").submit();
-			document.getElementById("form2").submit();
-		}
-	}
-	window.onload = inici;
-</script>
+<script src="<c:url value="/resources/visitValidations.js"/>"></script>
+
 </head>
 
 <body>
@@ -104,8 +96,7 @@
 					</sec:authorize>
 					<div class="d-flex justify-content-center">
 						<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
-							<button type="button" class="btn btn-outline-success"
-								onclick="submitBothForms()">Modificar</button>
+							<button type="submit" class="btn btn-outline-success">Modificar</button>
 						</sec:authorize>
 						<sec:authorize access="hasAnyRole('ROLE_PATIENT')">
 							<button type="submit" class="btn btn-outline-success">
