@@ -32,12 +32,13 @@ function inici() {
     document.visit.visitDate.addEventListener("blur", verificarData);
     document.visit.description.addEventListener("input", funcionCaracteres);
     document.visit.description.addEventListener("blur", verificarObservations);
-    document.visit.resolution.addEventListener("input", funcionCaracteresResolution);
-    document.visit.resolution.addEventListener("blur", verificarObservationsResolution);
+//    document.visit.resolution.addEventListener("input", funcionCaracteresResolution);
+//    document.visit.resolution.addEventListener("blur", verificarObservationsResolution);
     
     function verificarData() {
         var data = this.value.split("-");
         var today = new Date();
+        today.setHours(0,0,0,0);
 
         if (data != "") {
             var date = new Date(data[0], data[1] - 1, data[2]);
@@ -45,7 +46,7 @@ function inici() {
             console.log(date.getTime());
             console.log(today.getTime());
             
-            if (date < today) {
+            if (date.getTime() < today.getTime()) {
                 tractaError(this, "No puedes hacer una visita con fecha anterior a la actual");
                 return 0;
             }
@@ -54,7 +55,7 @@ function inici() {
     }
     
     var textoObservaciones = document.getElementById("caracteres");
-    var textoResoluciones = document.getElementById("caracteresResoulucion");
+    //var textoResoluciones = document.getElementById("caracteresResoulucion");
     
     function funcionCaracteres() {
         observaciones = this.value;
@@ -74,32 +75,6 @@ function inici() {
 
     function verificarObservations() {
         textoObservaciones.classList.add("d-none");
-        if (this.value.length > 255) {
-            tractaError(this, "Longitud máxima de 255 carácteres");
-        }
-        else {
-            tractaCorrecte(this);
-        }
-    }
-    
-    function funcionCaracteresResolution() {
-        observaciones = this.value;
-        textoResoluciones.classList.remove("d-none");
-        textoResoluciones.innerHTML = observaciones.length + " caracteres";
-        if (observaciones.length > 0) {
-            if (observaciones.length > 255) {
-                textoResoluciones.classList.add("text-danger");
-                textoResoluciones.classList.remove("text-dark");
-            }
-            else {
-                textoResoluciones.classList.remove("text-danger");
-                textoResoluciones.classList.add("text-dark");
-            }
-        }
-    }
-
-    function verificarObservationsResolution() {
-        textoResoluciones.classList.add("d-none");
         if (this.value.length > 255) {
             tractaError(this, "Longitud máxima de 255 carácteres");
         }
