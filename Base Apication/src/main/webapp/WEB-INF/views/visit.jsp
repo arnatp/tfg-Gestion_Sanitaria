@@ -31,7 +31,7 @@
 					<div class="form-group row">
 						<div class="form-group col-6">
 							<label for="doctor"><b>Doctor</b></label> 
-							<select id="doctor" class="form-control" name="doctorDni" <sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')"> disabled </sec:authorize>>
+							<select id="doctor" class="form-control" name="doctorDni" readonly="${readOnly}">
 								<c:forEach var="doctor" items="${doctor}">
 									<option value="${doctor.dni}">
 										<c:out value="${doctor.name}" />

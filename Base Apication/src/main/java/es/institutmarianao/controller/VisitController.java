@@ -1,6 +1,7 @@
 package es.institutmarianao.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -79,7 +80,10 @@ public class VisitController {
 		Visit visit = visitService.getVisitByVisitId(visitId);
 		modelview.getModelMap().addAttribute("visit", visit);
 		modelview.getModelMap().addAttribute("patientDni", visit.getPatient().getDni());
-		modelview.getModelMap().addAttribute("doctor", doctorService.getAll());
+		List<Doctor> doctors = new ArrayList<Doctor>();
+
+		doctors.add(doctorService.getUserByDni(visit.getDoctor().getDni()));
+		modelview.getModelMap().addAttribute("doctor", doctors);
 		new Prescription();
 
 		return modelview;

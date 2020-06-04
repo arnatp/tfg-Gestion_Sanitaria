@@ -81,11 +81,8 @@
 										</form:select>
 				                    </c:when>
 				                    <c:otherwise>
-			                            <form:select id="gender" class="form-control" path="gender" readonly="true">
-											<option value="M">Hombre</option>
-											<option value="F">Mujer</option>
-											<option value="N">Otro</option>
-										</form:select>
+				                   <form:input path="gender" class="form-control"  readonly="true"/>
+			                            
 				                    </c:otherwise>
 			            		</c:choose>
 		            		</label>
