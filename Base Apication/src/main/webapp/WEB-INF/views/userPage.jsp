@@ -9,7 +9,7 @@
 
 <head>
 <jsp:include page="sections/head.jsp" />
-</head>
+<script src="/JS/JSs.js"></script>
 
 <body>
 	<jsp:include page="sections/navMenu.jsp" />
@@ -136,7 +136,7 @@
 									<c:when test="${hasRoleUser==1}">
 										<a class="btn btn-secondary btn-sm"
 											href="<c:url value="/patient/cancelVisit"><c:param name="visitId" value ="${visit.visitId}"/></c:url>"
-											role="button">Cancelar</a>
+											role="button" id="cancelVisit">Cancelar</a>
 									</c:when>
 									<c:otherwise>
 										<a class="btn btn-secondary btn-sm"

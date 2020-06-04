@@ -38,9 +38,7 @@
                     <input class="form-control" type="password" id="password" name="j_password" >
                 </label>
             </div>
-            <div class="d-flex justify-content-center">
-                <a href="#">¿Has olvidado la contraseña?</a>
-            </div>
+     
             <div class="d-flex justify-content-center">
                 <a href="<c:url value='/signUp'/>">Registrarse</a>
             </div>

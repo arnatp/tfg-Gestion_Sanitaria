@@ -6,6 +6,9 @@ import java.time.Month;
 import java.util.List;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,13 +20,21 @@ public abstract class User implements Serializable, UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	private int userId;
+	@NotNull
+	@Size(max = 9, min = 9)
 	private String dni;
+	@NotNull
 	private String name;
+	@NotNull
 	private String mediCard;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private LocalDate bornDate;
+	@NotNull
 	private String gender;
+	@NotNull
 	private String email;
+	@NotNull
 	private String password;
 
 	/* Spring Security related fields */

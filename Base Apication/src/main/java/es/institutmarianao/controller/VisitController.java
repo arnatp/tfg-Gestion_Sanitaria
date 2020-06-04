@@ -78,6 +78,7 @@ public class VisitController {
 		ModelAndView modelview = new ModelAndView("visit");
 		Visit visit = visitService.getVisitByVisitId(visitId);
 		modelview.getModelMap().addAttribute("visit", visit);
+		modelview.getModelMap().addAttribute("patientDni", visit.getPatient().getDni());
 		modelview.getModelMap().addAttribute("doctor", doctorService.getAll());
 		new Prescription();
 
@@ -85,11 +86,15 @@ public class VisitController {
 	}
 
 	@RequestMapping(value = "/doctor/visit", method = RequestMethod.POST)
-	public String updateVisit(@ModelAttribute("visit") Visit visitModified, @RequestParam("doctorDni") String dni)
-			throws ServletException, IOException {
+	public String updateVisit(@ModelAttribute("visit") Visit visitModified, @RequestParam("doctorDni") String dni,
+			@RequestParam("patientDni") String patientDni) throws ServletException, IOException {
 
 		visitModified.setCompleted(true);
+		visitModified.setPatient(patientService.getUserByDni(patientDni));
 		visitModified.setDoctor(doctorService.getUserByDni(dni));
+		if (visitModified.getPrescription().getMedicamentName().isEmpty()) {
+			visitModified.setPrescription(null);
+		}
 		visitService.update(visitModified);
 		return "redirect:/doctor/";
 	}

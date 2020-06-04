@@ -10,6 +10,7 @@
 
 <head>
 <jsp:include page="sections/head.jsp" />
+<script type="text/javascript" src="/Base_Apication/src/main/webapp/WEB-INF/JS/JSs.js"></script>
 </head>
 
 <body>
@@ -114,13 +115,14 @@
 								readonly="true" />
 							</label>
 						</div>
-					</sec:authorize>
+					
 					<div class="form-group row">
 						<label for="password1" class="col-8 col-form-label"> <b>Contraseña</b>
 							<form:input class="form-control" type="password" id="password1"
-								path="password" />
+								path="password" value="" />
 						</label>
 					</div>
+					</sec:authorize>
 					<c:choose>
 	                    <c:when test="${hasRoleUser==3}">
 	                            <input type="submit" id="btnAdd" class="btn btn-outline-success" value ="Crear Usuario"/>
