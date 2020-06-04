@@ -13,20 +13,13 @@ public class Visit implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int visitId;
-
 	private Boolean completed = false;
-
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
-
 	private String initialDescription;
-
 	private String resolution;
-
 	private Prescription prescription = null;
-
 	private Doctor doctor;
-
 	private Patient patient;
 
 	/*

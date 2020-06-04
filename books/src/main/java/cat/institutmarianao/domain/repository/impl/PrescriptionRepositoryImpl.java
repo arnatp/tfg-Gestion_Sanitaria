@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import cat.institutmarianao.domain.Prescription;
 import cat.institutmarianao.domain.repository.PrescriptionRepository;
 
-/*TODO añadir named querys*/
 @Stateless
 public class PrescriptionRepositoryImpl implements PrescriptionRepository {
 

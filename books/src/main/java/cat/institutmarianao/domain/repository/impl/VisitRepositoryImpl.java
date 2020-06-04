@@ -11,7 +11,6 @@ import javax.persistence.PersistenceContext;
 import cat.institutmarianao.domain.Visit;
 import cat.institutmarianao.domain.repository.VisitRepository;
 
-/*TODO añadir named querys*/
 @Stateless
 public class VisitRepositoryImpl implements VisitRepository {
 
