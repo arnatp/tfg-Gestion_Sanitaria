@@ -71,4 +71,9 @@ public class VisitServiceImpl implements VisitService {
 		return visitWebService.getIncompletedVisitsByPatientId(patientId);
 	}
 
+	@Override
+	public List<Visit> getIncompletedVisitsByDoctorIdAndDate(int doctorId, String date) {
+		return visitWebService.getIncompletedVisitsByDoctorIdAndDate(doctorId, date);
+	}
+
 }

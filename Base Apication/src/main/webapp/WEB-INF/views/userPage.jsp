@@ -9,13 +9,23 @@
 
 <head>
 <jsp:include page="sections/head.jsp" />
-<script src="/JS/JSs.js"></script>
+<script>
+		function inici(){
+			document.getElementById('cancelVisit').onclick = function(e){
+			    if( !confirm('Seguro que quieres borrar la visita?') ) {
+			        e.preventDefault();
+			    }
+			}
+		}
+		window.onload = inici;
+		</script>
 
 <body>
 	<jsp:include page="sections/navMenu.jsp" />
 
 	<sec:authorize access="hasAnyRole('ROLE_PATIENT')">
 		<c:set var="hasRoleUser" value="1" scope="request" />
+		
 	</sec:authorize>
 	<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
 		<c:set var="hasRoleUser" value="2" scope="request" />
@@ -135,7 +145,8 @@
 							<td><c:choose>
 									<c:when test="${hasRoleUser==1}">
 										<a class="btn btn-secondary btn-sm"
-											href="<c:url value="/patient/cancelVisit"><c:param name="visitId" value ="${visit.visitId}"/></c:url>"
+										href="<c:url value="/patient/cancelVisit">
+											<c:param name="visitId" value ="${visit.visitId}"/></c:url>"
 											role="button" id="cancelVisit">Cancelar</a>
 									</c:when>
 									<c:otherwise>

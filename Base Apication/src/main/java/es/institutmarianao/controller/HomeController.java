@@ -31,7 +31,7 @@ public class HomeController {
 		ModelAndView modelAndView = new ModelAndView("userPage");
 		User user = (User) request.getSession().getAttribute("user");
 		LocalDate today = LocalDate.now();
-		List<Visit> visits = visitService.getVisitsByDoctorIdAndDate(user.getUserId(), today.toString());
+		List<Visit> visits = visitService.getIncompletedVisitsByDoctorIdAndDate(user.getUserId(), today.toString());
 		modelAndView.getModelMap().addAttribute("visits", visits);
 		return modelAndView;
 	}

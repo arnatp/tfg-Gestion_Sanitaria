@@ -28,4 +28,6 @@ public interface VisitWebService {
 
 	List<Visit> getIncompletedVisitsByPatientId(int patientId);
 
+	List<Visit> getIncompletedVisitsByDoctorIdAndDate(int doctorId, String date);
+
 }

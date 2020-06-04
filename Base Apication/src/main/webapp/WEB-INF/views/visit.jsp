@@ -55,6 +55,7 @@
 
 					<!-- Added Employee inputs -->
 					<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
+						<script src="<c:url value="/resources/visitValidations2.js"/>"></script>
 						<input type="text" value="${patientDni}" id="" name="patientDni"
 							hidden="" />
 						<div class="form-group">

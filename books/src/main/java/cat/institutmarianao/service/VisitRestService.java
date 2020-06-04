@@ -109,4 +109,12 @@ public class VisitRestService {
 	public void remove(@PathParam("visitId") int visitId) {
 		visitRepository.delete(visitRepository.getVisitByVisitId(visitId));
 	}
+
+	@GET
+	@Path("findByDoctorIdIncompleted/{doctorId}/date/{date}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Visit> findByDoctorIdAndDateIncompleted(@PathParam("doctorId") int doctorId,
+			@PathParam("date") String date) {
+		return visitRepository.getIncompletedVisitsByDoctorIdAndDate(doctorId, date);
+	}
 }

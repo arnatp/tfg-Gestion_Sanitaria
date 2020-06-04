@@ -125,4 +125,20 @@ public class VisitRepositoryImpl implements VisitRepository {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Visit> getIncompletedVisitsByDoctorIdAndDate(int doctorId, String date) {
+		try {
+			String[] dataSplited = date.split("-");
+			int year = Integer.parseInt(dataSplited[0]);
+			int month = Integer.parseInt(dataSplited[1]);
+			int day = Integer.parseInt(dataSplited[2]);
+			LocalDate dateFormatted = LocalDate.of(year, month, day);
+			return entityManager.createNamedQuery("Visit.findByDoctorIdAndDateIncompleted")
+					.setParameter("doctorId", doctorId).setParameter("date", dateFormatted).getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
 }
