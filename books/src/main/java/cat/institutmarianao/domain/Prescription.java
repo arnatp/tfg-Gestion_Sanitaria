@@ -13,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "prescription")
@@ -30,12 +31,15 @@ public class Prescription implements Serializable {
 	@Column(name = "prescriptionId")
 	private int prescriptionId;
 
+	@NotNull
 	@Column(name = "medicamentName", nullable = false)
 	private String medicamentName;
 
+	@NotNull
 	@Column(name = "quantity", nullable = false)
 	private int quantity;
 
+	@NotNull
 	@Column(name = "schedule", nullable = false)
 	private String schedule;
 

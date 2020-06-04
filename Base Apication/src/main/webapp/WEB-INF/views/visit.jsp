@@ -8,6 +8,7 @@
 
 <head>
 <jsp:include page="sections/head.jsp" />
+<script src="<c:url value="/resources/visitValidations.js"/>"></scrip
 <script type="text/javascript">
 	function inici() {
 		submitBothForms = function() {
@@ -27,7 +28,7 @@
 			<i class="fa fa-calendar-plus-o"></i> Solicitar nueva visita
 		</h3>
 		<hr style="background-color: hsl(120, 60%, 50%)">
-		<form:form modelAttribute="visit" style="margin-top: 3%;" id="form1">
+		<form:form modelAttribute="visit" style="margin-top: 3%;" id="visit" name="visit">
 			<legend>
 				<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
 					<c:set var="readOnly" scope="page" value="true" />
@@ -48,14 +49,16 @@
 						</div>
 						<div class="col-6">
 							<label for="visitDate" class="col-form-label"><b>Fecha de visita</b> </label>
-							<form:input class="form-control" type="date" value="2020-06-01"
-								id="date" path="date" readonly="${readOnly}" />
+							<form:input class="form-control" type="date" value="${date}"
+								id="visitDate" path="date" readonly="${readOnly}" required="true" name="visitDate"/>
+								<div></div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="description "><b>Motivo de visita</b></label>
 						<form:textarea class="form-control col-12" id="description"
-							rows="3" path="initialDescription"  readonly="${readOnly}"/>
+							rows="3" path="initialDescription"  readonly="${readOnly}" required="true" name="description"/>
+							<div id="caracteres"></div>
 					</div>
 
 					<!-- Added Employee inputs -->
@@ -65,8 +68,9 @@
 						<div class="form-group">
 							<label for="description col-12"><b>Resolucion de la
 									visita</b></label>
-							<form:textarea class="form-control col-12" id="description"
-								rows="3" path="resolution" />
+							<form:textarea class="form-control col-12" id="resolution"
+								rows="3" path="resolution" required="true" name="resolution"/>
+								<div id="caracteresResoulucion"></div>
 						</div>
 						<div class="col-12">
 							<c:if test="${!visit.completed}">

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 public abstract class Employee extends User implements Serializable {
@@ -13,6 +14,7 @@ public abstract class Employee extends User implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@NotNull
 	@Column(name = "shift", nullable = false, length = 15)
 	private String shift;
 

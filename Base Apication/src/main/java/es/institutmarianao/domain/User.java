@@ -28,7 +28,7 @@ public abstract class User implements Serializable, UserDetails {
 	@NotNull
 	private String mediCard;
 	@NotNull
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate bornDate;
 	@NotNull
 	private String gender;
