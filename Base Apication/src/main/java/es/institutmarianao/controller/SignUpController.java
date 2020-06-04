@@ -54,6 +54,9 @@ public class SignUpController {
 		if (result.hasErrors()) {
 			return "user";
 		}
+		if (patientService.checkIfExists(newPatientToAdd)) {
+			return "user";
+		}
 		// encode password
 		newPatientToAdd.setPassword(passwordEncoder.encode(newPatientToAdd.getPassword()));
 

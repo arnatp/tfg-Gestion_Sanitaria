@@ -48,4 +48,14 @@ public class PatientServiceImpl implements PatientService {
 		return patientWebService.getUserByMediCard(mediCard);
 	}
 
+	@Override
+	public boolean checkIfExists(Patient newPatientToAdd) {
+		List<Patient> patients = patientWebService.getAll();
+		for (Patient patient : patients) {
+			if (newPatientToAdd.equals(patient)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

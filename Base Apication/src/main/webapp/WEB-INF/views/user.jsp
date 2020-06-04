@@ -71,8 +71,7 @@
 						</label>
 					</div>
 					<div class="form-group row">
-						<div class="form-group col-md-8">
-							<label for="gender"><b>Sexo</b>
+							<label class="form-group col-md-8" for="gender"><b>Sexo</b>
 								<c:choose>
 				                    <c:when test="${hasRoleUser==3}">
 										<form:select id="gender" class="form-control" path="gender">
@@ -90,7 +89,7 @@
 				                    </c:otherwise>
 			            		</c:choose>
 		            		</label>
-						</div>
+						
 					</div>
 				</div>
 				<!-- | -->
@@ -114,7 +113,7 @@
 					</sec:authorize>
 					<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
 						<div class="form-group row">
-							<label class="col-4 col-form-label"> <b>Turno</b> 
+							<label class="col-8 col-form-label"> <b>Turno</b> 
 								<form:input class="form-control" type="text"
 								placeholder="afternoon" id="shift" path="shift"
 								readonly="true" required="true"/>

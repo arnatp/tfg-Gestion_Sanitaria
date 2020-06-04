@@ -18,4 +18,6 @@ public interface PatientService {
 
 	Patient getUserByMediCard(String mediCard);
 
+	boolean checkIfExists(Patient newPatientToAdd);
+
 }
