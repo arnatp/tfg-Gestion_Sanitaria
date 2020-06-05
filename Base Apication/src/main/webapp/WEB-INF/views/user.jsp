@@ -110,7 +110,8 @@
 								code="user.password" /></b></label>
 					<form:input class="form-control" type="password" id="password1"
 						path="password" value="" name="password1" required="true" />
-					<meter max="4" id="password-strength-meter"></meter>
+					<br>
+					<meter max="4" id="password-strength-meter" class="col-12" ></meter>
 					<div></div>
 				</div>
 			</div>

@@ -113,8 +113,12 @@ public class VisitController {
 	public ModelAndView getAllVisitsByPatientId(@RequestParam("patientDNI") String patientDNI)
 			throws ServletException, IOException {
 		ModelAndView modelview = new ModelAndView("allVisits");
-		List<Visit> visits = visitService.getVisitsByPatientId(patientService.getUserByDni(patientDNI).getUserId());
-		modelview.getModelMap().addAttribute("visits", visits);
+		try {
+			List<Visit> visits = visitService.getVisitsByPatientId(patientService.getUserByDni(patientDNI).getUserId());
+			modelview.getModelMap().addAttribute("visits", visits);
+		} catch (Exception e) {
+			modelview.getModelMap().addAttribute("error", "No se ha encontrado el paciente");
+		}
 		modelview.getModelMap().addAttribute("patientDni", patientDNI);
 
 		return modelview;
