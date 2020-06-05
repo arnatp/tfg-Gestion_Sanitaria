@@ -148,7 +148,7 @@
 							</td>
 						<td><c:choose>
 								<c:when test="${hasRoleUser==1}">
-									<a class="btn btn-secondary btn-sm"
+									<a class="cancelVisit btn btn-secondary btn-sm"
 										href="<c:url value="/patient/cancelVisit">
 											<c:param name="visitId" value ="${visit.visitId}"/></c:url>"
 										role="button" id="cancelVisit"><spring:message
