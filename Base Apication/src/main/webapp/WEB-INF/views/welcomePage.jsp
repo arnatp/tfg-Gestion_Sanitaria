@@ -16,9 +16,8 @@
 	<jsp:include page="sections/navMenu.jsp" />
 	<div class="jumbotron p-2">
 		<div class="container">
-			<h4 class="display-4">Gestión Santiaria</h4>
-			<p class="lead">Aplicación para la gestión de tus visitas con tus
-				médicos de confianza.</p>
+			<h4 class="display-4"><spring:message code="welcomePage.name" /></h4>
+			<p class="lead"><spring:message code="welcomePage.description" /></p>
 		</div>
 	</div>
 	<div class="container col-6">

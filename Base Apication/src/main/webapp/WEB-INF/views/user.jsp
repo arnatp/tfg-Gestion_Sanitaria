@@ -41,7 +41,7 @@
 		<hr style="background-color: hsl(120, 60%, 50%)">
 		<form:form modelAttribute="user" style="margin-top: 3%;" name="user">
 			<div class="form-row m-3">
-				<div class="col-md-6 col-sm-10">
+				<div class="col-md-6 col-sm-12">
 					<form:input class="form-control" type="text" placeholder="0001"
 						path="userId" id="userId" hidden="true" readonly="true" />
 					<label for="name" class="col-form-label"> <b><spring:message
@@ -52,7 +52,7 @@
 						readonly="${hasRoleUser!=3}" name="name" required="true" />
 					<div></div>
 				</div>
-				<div class="col-md-6 col-sm-10">
+				<div class="col-md-6 col-sm-12">
 					<label for="email" class="col-form-label"> <b><spring:message
 								code="user.email" /></b>
 					</label>
@@ -63,7 +63,7 @@
 				</div>
 			</div>
 			<div class="form-row m-3">
-				<div class="col-md-6 col-sm-10">
+				<div class="col-md-6 col-sm-12">
 					<label for="dni"> <b><spring:message code="user.DNI" /></b>
 					</label>
 					<form:input class="form-control" type="text"
@@ -72,13 +72,13 @@
 					<div></div>
 				</div>
 				<sec:authorize access="!hasAnyRole('ROLE_EMPLOYEE')">
-					<div class="col">
+					<div class="col-md-3 col-sm-12">
 						<label> <b><spring:message code="user.height" /></b>
 						</label>
 						<form:input class="form-control" type="number" step="0.1" min="0"
 							id="height" path="height" required="true" />
 					</div>
-					<div class="col">
+					<div class="col-md-3 col-sm-12">
 						<label> <b><spring:message code="user.weigth" /></b>
 						</label>
 						<form:input class="form-control" type="number" step="0.2" min="0"
@@ -86,7 +86,7 @@
 					</div>
 				</sec:authorize>
 				<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
-					<div class="col-md-6 col-sm-10">
+					<div class="col-md-6 col-sm-12">
 						<label> <b><spring:message code="user.shift" /></b>
 						</label>
 						<form:input class="form-control" type="text"
@@ -96,7 +96,7 @@
 				</sec:authorize>
 			</div>
 			<div class="form-row m-3">
-				<div class="col-md-6 col-sm-10">
+				<div class="col-md-6 col-sm-12">
 					<label for="mediCard"> <b><spring:message
 								code="user.mediCard" /></b>
 					</label>
@@ -105,7 +105,7 @@
 						readonly="${hasRoleUser!=3}" name="mediCard" required="true" />
 					<div></div>
 				</div>
-				<div class="col-md-6 col-sm-10">
+				<div class="col-md-6 col-sm-12">
 					<label for="password1"> <b><spring:message
 								code="user.password" /></b></label>
 					<form:input class="form-control" type="password" id="password1"
@@ -115,7 +115,7 @@
 				</div>
 			</div>
 			<div class="form-row m-3">
-				<div class="col">
+				<div class="col-md-3 col-sm-12">
 					<label for="gender"><b><spring:message
 								code="user.gender" /></b> </label>
 					<c:choose>
@@ -131,7 +131,7 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-				<div class="col">
+				<div class="col-md-3 col-sm-12">
 					<label for="bornDate"> <b><spring:message
 								code="user.birthDate" /></b>
 					</label>
@@ -140,7 +140,7 @@
 						name="bornDate" required="true" />
 					<div></div>
 				</div>
-				<div class="col-md-6 col-sm-10">
+				<div class="col-md-6 col-sm-12">
 					<label for="password2"> <b><spring:message
 								code="user.repeatPassword" /></b>
 					</label>
