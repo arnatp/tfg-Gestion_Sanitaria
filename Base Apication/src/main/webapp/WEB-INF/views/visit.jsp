@@ -80,7 +80,7 @@
 				<div class="col-12">
 					<button class="btn btn-outline-secondary col-12" type="button"
 						data-toggle="collapse" data-target="#Collapse"
-						aria-expanded="true" aria-controls="Collapse">Receta:</button>
+						aria-expanded="true" aria-controls="Collapse"><spring:message code="visit.prescription" /></button>
 
 				</div>
 				<br>
@@ -88,8 +88,7 @@
 
 				<div class="collapse" id="Collapse">
 					<div class="col-12">
-						<label for="visitDate" class="col-form-label"><b>Nombre
-								del medicamento:</b> </label>
+						<label for="visitDate" class="col-form-label"><b><spring:message code="visit.prescriptionName" /></b> </label>
 
 						<form:input class="form-control" type="text" value="" id=""
 							path="prescription.medicamentName" readonly="${visitCompleted}" />
