@@ -13,8 +13,7 @@
 <link href="<c:url value="/resources/css/footer.css"/>" rel="stylesheet">
 </head>
 
-<body class="bg"
-	style="background-image:url(<c:url value='/resources/images/background.jpg' />)">
+<body >
 	<jsp:include page="sections/navMenu.jsp" />
 	<c:if test="${visit.completed == true}">
 		<c:set var="visitCompleted" scope="page" value="true" />
@@ -35,7 +34,7 @@
 			<div class="row">
 				<div class="col-6">
 					<label for="doctor" class="col-form-label"><b>Doctor</b></label> <select id="doctor"
-						class="form-control" name="doctorDni" readonly="${readOnly}">
+						class="form-control" name="doctorDni" <sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')" > readonly</sec:authorize> >
 						<c:forEach var="doctor" items="${doctor}">
 							<option value="${doctor.dni}">
 								<c:out value="${doctor.name}" />
@@ -75,13 +74,13 @@
 				</div>
 				<div class="col-12">
 					<button class="btn btn-outline-secondary col-12" type="button"
-						data-toggle="collapse" data-target="#multiCollapseExample2"
-						aria-expanded="false" aria-controls="multiCollapseExample2">Receta:</button>
+						data-toggle="collapse" data-target="#Collapse"
+						aria-expanded="true" aria-controls="Collapse">Receta:</button>
 				</div>
 				<br>
 				<!--  -->
-				<div class="collapse multi-collapse" id="multiCollapseExample2">
-					<div class="col">
+				<div class="collapse" id="Collapse">
+					<div class="col-12">
 						<label for="visitDate" class="col-form-label"><b>Nombre
 								del medicamento:</b> </label>
 						<form:input class="form-control" type="text" value="" id=""
@@ -113,5 +112,6 @@
 			</div>
 	</form:form>
 	</div>
+	<br>
 <body>
 </html>
