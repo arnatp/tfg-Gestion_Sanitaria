@@ -7,6 +7,8 @@
 
 <head>
 <jsp:include page="sections/head.jsp" />
+<jsp:include page="sections/footer.jsp" />
+<link href="<c:url value="/resources/css/footer.css"/>" rel="stylesheet">
 </head>
 
 <body>
@@ -17,29 +19,12 @@
 	<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
 		<c:set var="hasRoleUser" value="2" scope="request" />
 	</sec:authorize>
-	<div class="container">
+	<div class="container bg-white" style="margin-top: 3%;">
 		<br>
-		<h3>
-			<i class="fa fa-calendar-plus-o">Todas las visitas:</i>
-		</h3>
-		<h3>
-			<c:if test="${visits.size()!=0}">
-				<c:choose>
-					<c:when test="${hasRoleUser==1}">
-						<a href="<c:url value="printHistory"></c:url>">Imprimir mi
-							historial</a>
-					</c:when>
-					<c:otherwise>
-						<c:if test="${patientDni != null}">
-							<a
-								href="<c:url value="printHistory"><c:param name="patientDNI" value="${patientDni}"/></c:url>">Imprimir
-								el historial del paciente</a>
-						</c:if>
-					</c:otherwise>
-				</c:choose>
-			</c:if>
-
-		</h3>
+		<h2>
+			<i class="fa fa-calendar"></i> Todas las visitas
+		</h2>
+		<hr style="background-color: hsl(120, 60%, 50%)">
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
@@ -103,6 +88,24 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<c:if test="${visits.size()!=0}">
+			<c:choose>
+				<c:when test="${hasRoleUser==1}">
+					<a class="btn btn-secondary btn-sm" role="button"
+						href="<c:url value="printHistory"></c:url>"
+						style="float: right; margin-right: 1.5%;"><i
+						class="fa fa-print"></i> PDF</a>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${patientDni != null}">
+						<a class="btn btn-secondary btn-sm" role="button"
+							href="<c:url value="printHistory"><c:param name="patientDNI" value="${patientDni}"/></c:url>"
+							style="float: right; margin-right: 1.5%;"><i
+							class="fa fa-print"></i> PDF</a>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
+		</c:if>
 	</div>
 <body>
 </html>

@@ -19,3 +19,4 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
 	<title>TFG Gestion Sanitaria</title>
  	<link rel="icon" type="image/x-icon" href="https://cdn.onlinewebfonts.com/svg/img_529425.png">
+ 	

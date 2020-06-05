@@ -13,7 +13,7 @@
 
 	<mvc:resources mapping="/images/**"
 		location="WEB-INF/images/" />
-	<mvc:resources mapping="/resources/**" location="/resources/js/" cache-period="31556926"/>
+	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926"/>
 		
 	<mvc:annotation-driven
 		enable-matrix-variables="true" />

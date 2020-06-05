@@ -158,7 +158,7 @@ function inici() {
         console.log(meter.length);
         if (this.value.length > 0) {
             switch (meter.value) {
-                case 0: tractaError(this, "Esa contraseña no vale ni para la chatarra");
+                case 0: tractaError(this, "Eso no es ni una contraseña");
                     password2.setAttribute("disabled", "0");
                     return 0;
                 case 1: tractaError(this, "Esa contraseña todavía no vale ni para empezar");
@@ -167,10 +167,10 @@ function inici() {
                 case 2: tractaError(this, "Por lo menos lo estás intentando");
                     password2.setAttribute("disabled", "0");
                     return 0;
-                case 3: tractaPassword(this, "Esa contraseña es mas buena que un buen vino");
+                case 3: tractaPassword(this, "Que contraseña mas bacana me brindaste amigo");
                     password2.removeAttribute("disabled");
                     return 0;
-                case 4: tractaPassword(this, "Que contraseña mas bacana me brindaste amigo");
+                case 4: tractaPassword(this, "Esa contraseña es mas mejor que un buen vino");
                     password2.removeAttribute("disabled");
                     return 0;
             }

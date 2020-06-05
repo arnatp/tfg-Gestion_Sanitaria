@@ -32,6 +32,7 @@ public class PatientController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Patient patient = patientService.getUserByDni(auth.getName());
 		ModelAndView modelview = new ModelAndView("user");
+		patient.setPassword("");
 		modelview.getModelMap().addAttribute("user", patient);
 		return modelview;
 	}

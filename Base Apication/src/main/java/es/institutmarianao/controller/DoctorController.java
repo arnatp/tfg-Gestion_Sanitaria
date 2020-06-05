@@ -33,7 +33,7 @@ public class DoctorController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Doctor doctor = doctorService.getUserByDni(auth.getName());
 		ModelAndView modelview = new ModelAndView("user");
-		doctor.setPassword(null);
+		doctor.setPassword("");
 		modelview.getModelMap().addAttribute("user", doctor);
 		return modelview;
 	}

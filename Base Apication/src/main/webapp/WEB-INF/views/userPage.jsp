@@ -9,39 +9,32 @@
 
 <head>
 <jsp:include page="sections/head.jsp" />
-<script>
-		function inici(){
-			document.getElementById('cancelVisit').onclick = function(e){
-			    if( !confirm('Seguro que quieres borrar la visita?') ) {
-			        e.preventDefault();
-			    }
-			}
-		}
-		window.onload = inici;
-		</script>
+<script src="<c:url value="/resources/js/cancelVisit.js"/>"></script>
+<jsp:include page="sections/footer.jsp" />
+<link href="<c:url value="/resources/css/footer.css"/>" rel="stylesheet">
+</head>
 
 <body>
 	<jsp:include page="sections/navMenu.jsp" />
 
 	<sec:authorize access="hasAnyRole('ROLE_PATIENT')">
 		<c:set var="hasRoleUser" value="1" scope="request" />
-		
 	</sec:authorize>
 	<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
 		<c:set var="hasRoleUser" value="2" scope="request" />
 	</sec:authorize>
 
-	<div class="container" style="margin-top: 3%;">
+	<div class="container bg-white" style="margin-top: 3%;">
 		<sec:authorize access="hasAnyRole('ROLE_PATIENT')">
 			<h2>
-				<i class="fa fa-user"></i> Bienvenido
+				<i class="fa fa-user"></i> <spring:message code="userPage.welcome" />
 				<c:out value="${sessionScope.user.name}" />
 			</h2>
 			<hr style="background-color: hsl(120, 60%, 50%)">
 		</sec:authorize>
 		<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE')">
 			<h2>
-				<i class="fa fa-user-md"></i> Bienvenido
+				<i class="fa fa-user-md"></i> <spring:message code="userPage.welcome" />
 				<c:out value="${sessionScope.user.name}" />
 			</h2>
 			<hr style="background-color: hsl(120, 60%, 50%)">
@@ -54,7 +47,7 @@
 								<i class="fa fa-history fa-3x"></i>
 							</div>
 							<div class="d-flex justify-content-center">
-								<b style="margin-top: 1%;">Ver historial de visitas</b>
+								<b style="margin-top: 1%;"><spring:message code="userPage.seeHistory" /></b>
 							</div>
 					</a></td>
 					<td><a href="<c:url value='/patient/visit'/>"
@@ -63,7 +56,7 @@
 								<i class="fa fa-calendar-plus-o fa-3x"></i>
 							</div>
 							<div class="d-flex justify-content-center">
-								<b style="margin-top: 1%;">Solicitar nueva visita</b>
+								<b style="margin-top: 1%;"><spring:message code="userPage.newVisit" /></b>
 							</div>
 					</a></td>
 				</tr>
@@ -77,7 +70,7 @@
 								<i class="fa fa-history fa-3x"></i>
 							</div>
 							<div class="d-flex justify-content-center">
-								<b style="margin-top: 1%;">Ver historial de visitas</b>
+								<b style="margin-top: 1%;"><spring:message code="userPage.seeHistory" /></b>
 							</div>
 					</a></td>
 					<td><a href=""
@@ -86,33 +79,32 @@
 								<i class="fa fa-search fa-3x"></i>
 							</div>
 							<div class="d-flex justify-content-center">
-								<b style="margin-top: 1%;">Buscar historial de paciente por
-									DNI</b>
+								<b style="margin-top: 1%;"><spring:message code="userPage.findByDNI" /></b>
 							</div>
 					</a></td>
 				</tr>
 			</sec:authorize>
-			<tr>
-				<table class="table">
+			</table>
+			<table class="table">
 					<thead class="thead-dark">
 						<tr>
-							<th scope="row">IdVisita</th>
-							<th>Fecha</th>
+							<th scope="row"><spring:message code="userPage.idVisit" /></th>
+							<th><spring:message code="userPage.date" /></th>
 							<c:choose>
 								<c:when test="${hasRoleUser==1}">
-									<th>Nombre del Doctor</th>
+									<th><spring:message code="userPage.doctorName" /></th>
 								</c:when>
 								<c:otherwise>
-									<th>Nombre del Paciente</th>
+									<th><spring:message code="userPage.patientName" /></th>
 								</c:otherwise>
 							</c:choose>
-							<th>Descripcion de la visita</th>
+							<th><spring:message code="userPage.visitDescr" /></th>
 							<c:choose>
 								<c:when test="${hasRoleUser==1}">
-									<th>Cancelar Visita</th>
+									<th><spring:message code="userPage.cancelVisit" /></th>
 								</c:when>
 								<c:otherwise>
-									<th>ver visita</th>
+									<th><spring:message code="userPage.seeVisit" /></th>
 								</c:otherwise>
 							</c:choose>
 						</tr>
@@ -121,10 +113,10 @@
 						<tr>
 							<c:choose>
 								<c:when test="${hasRoleUser==1}">
-									<td colspan="5">No has solicitado ninguna visita</td>
+									<td colspan="5"><spring:message code="userPage.anyVisit" /></td>
 								</c:when>
 								<c:otherwise>
-									<td colspan="5">No tienes visitas pendientes para hoy</td>
+									<td colspan="5"><spring:message code="userPage.todayVisit" /></td>
 								</c:otherwise>
 							</c:choose>
 						</tr>
@@ -147,19 +139,17 @@
 										<a class="btn btn-secondary btn-sm"
 										href="<c:url value="/patient/cancelVisit">
 											<c:param name="visitId" value ="${visit.visitId}"/></c:url>"
-											role="button" id="cancelVisit">Cancelar</a>
+											role="button" id="cancelVisit"><spring:message code="userPage.cancel" /></a>
 									</c:when>
 									<c:otherwise>
 										<a class="btn btn-secondary btn-sm"
 											href="<c:url value="/doctor/visit"><c:param name="visitId" value ="${visit.visitId}"/></c:url>"
-											role="button">Gestionar</a>
+											role="button"><spring:message code="userPage.manage" /></a>
 									</c:otherwise>
 								</c:choose></td>
 						</tr>
 					</c:forEach>
 				</table>
-			</tr>
-		</table>
 	</div>
 
 <div class="modal fade" id="modalSubscriptionForm" tabindex="-1"
@@ -179,14 +169,13 @@
             
             
             <div class="d-flex justify-content-center" style="margin-bottom: 4%;">
-                <button type="submit" class="btn btn-outline-success">Buscar por Dni</button>
+                <button type="submit" class="btn btn-outline-success"><spring:message code="userPage.findDNI" /></button>
             </div>
         </form>
 				
 			</div>
 		</div>
 	</div>
-
 </body>
 
 </html>
