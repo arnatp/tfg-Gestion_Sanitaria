@@ -95,7 +95,6 @@
 					</tr>
 				</c:forEach>
 			</table>
-
 			<c:if test="${visits.size()!=0}">
 				<c:choose>
 					<c:when test="${hasRoleUser==1}">
